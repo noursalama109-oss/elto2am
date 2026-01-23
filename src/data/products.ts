@@ -49,12 +49,12 @@ export const products: Product[] = [
   },
   {
     id: '5',
-    name: 'سلسلة محرك معدنية',
+    name: 'موبينة مارش 200 اصلي',
     price: 150,
-    image: '/placeholder.svg',
+    image: '/d.jpeg',
     category: 'essentials',
     vehicleType: 'motorcycle',
-    description: 'سلسلة محرك قوية ومتينة',
+    description: 'موبينة مارش قوية ومتينة',
     inStock: true,
   },
   {
