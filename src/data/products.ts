@@ -6,7 +6,7 @@ export const products: Product[] = [
     name: 'فلتر هواء عالي الأداء',
     price: 250,
     originalPrice: 300,
-    image: '/فلتر هواء',
+    image: '/فلتر هواء.jpeg',
     category: 'essentials',
     vehicleType: 'motorcycle',
     isBestSeller: true,
