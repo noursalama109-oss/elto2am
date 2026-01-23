@@ -22,7 +22,7 @@ const Header = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2">
             <div className="w-10 h-10 rounded-lg gradient-primary flex items-center justify-center">
-              <span className="text-primary-foreground font-bold text-xl">ت</span>
+              <span className="text-primary-foreground font-bold text-xl">H & M</span>
             </div>
             <div className="flex flex-col">
               <span className="font-bold text-lg leading-tight">التوأم</span>
@@ -90,7 +90,7 @@ const Header = () => {
               </Link>
             ))}
             <a
-              href="tel:+201234567890"
+              href="tel:+201014868268"
               className="flex items-center gap-2 py-3 text-muted-foreground"
             >
               <Phone className="w-4 h-4" />
