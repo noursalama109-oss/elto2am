@@ -3,7 +3,7 @@ import { Product } from '@/types/product';
 export const products: Product[] = [
   {
     id: '1',
-    name: 'فلتر هواء عالي الأداء',
+    name: 'فلتر هواء دايون 40 عالي الأداء',
     price: 250,
     originalPrice: 300,
     image: '/filter.jpeg',
