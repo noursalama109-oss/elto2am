@@ -65,7 +65,7 @@ export const products: Product[] = [
     category: 'accessories',
     vehicleType: 'both',
     description: 'كلاكس مميز بصوت نقي',
-    inStock: false,
+    inStock: true,
   },
   {
     id: '7',
