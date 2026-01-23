@@ -50,15 +50,15 @@ const Footer = () => {
             <ul className="space-y-3">
               <li className="flex items-center gap-2 text-muted-foreground">
                 <Phone className="w-4 h-4 text-primary" />
-                <span dir="ltr">+20 123 456 7890</span>
+                <span dir="ltr">+201014868268 </span>
               </li>
               <li className="flex items-center gap-2 text-muted-foreground">
                 <MapPin className="w-4 h-4 text-primary" />
-                <span>القاهرة، مصر</span>
+                <span>الاسماعيلية، مصر</span>
               </li>
               <li className="flex items-center gap-2 text-muted-foreground">
                 <Clock className="w-4 h-4 text-primary" />
-                <span>9 صباحاً - 10 مساءً</span>
+                <span>11 صباحاً - 10 مساءً</span>
               </li>
             </ul>
           </div>
