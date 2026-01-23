@@ -38,13 +38,13 @@ export const products: Product[] = [
   },
   {
     id: '4',
-    name: 'مصابيح LED أمامية',
+    name: 'فانوس امامي هوجان 3  ',
     price: 320,
     image: '/placeholder.svg',
     category: 'accessories',
     vehicleType: 'both',
     isBestSeller: true,
-    description: 'مصابيح LED قوية للإضاءة الليلية',
+    description: 'فانوس LED قوي للإضاءة الليلية',
     inStock: true,
   },
   {
