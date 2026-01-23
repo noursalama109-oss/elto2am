@@ -102,12 +102,12 @@ export const products: Product[] = [
   },
   {
     id: '10',
-    name: 'تيل فرامل أمامي',
+    name: 'وش ترس امامي دايون 40',
     price: 95,
-    image: '/placeholder.svg',
+    image: '/j.jpeg',
     category: 'essentials',
     vehicleType: 'both',
-    description: 'تيل فرامل عالي الجودة',
+    description: 'لو عايز تحافظ ع الترس يبقي منتجنا هو الحل',
     inStock: true,
   },
   {
