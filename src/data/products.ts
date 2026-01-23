@@ -91,13 +91,13 @@ export const products: Product[] = [
   },
   {
     id: '9',
-    name: 'صندوق خلفي تروسيكل',
+    name: 'ألة جر H & M',
     price: 1200,
-    image: '/placeholder.svg',
-    category: 'accessories',
-    vehicleType: 'tricycle',
+    image: '/h.jpeg',
+    category: 'essentials',
+    vehicleType: 'motorcycle',
     isBestSeller: true,
-    description: 'صندوق خلفي كبير للتحميل',
+    description: 'ألة جر تعيش معاك و تتحكل المشاوير الصعبة',
     inStock: true,
   },
   {
