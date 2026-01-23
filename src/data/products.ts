@@ -29,7 +29,7 @@ export const products: Product[] = [
     name: 'جنط خلفي تروسيكل cmg 5 خرم',
     price: 850,
     originalPrice: 950,
-    image: '/placeholder.svg',
+    image: '/b.jpeg',
     category: 'essentials',
     vehicleType: 'tricycle',
     isBestSeller: true,
