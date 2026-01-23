@@ -25,7 +25,7 @@ const HeroSection = () => {
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 animate-slide-up">
             <span className="text">التوأم</span>
             <br />
-            <span className="text-forceground">لقطع الغيار</span>
+            <span className="text-3xl font-bold mb-2">لقطع الغيار</span>
           </h1>
 
           {/* Description */}
