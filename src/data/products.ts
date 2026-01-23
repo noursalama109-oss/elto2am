@@ -17,7 +17,7 @@ export const products: Product[] = [
     id: '2',
     name: 'وش كهرباء هوجان 3',
     price: 180,
-    image: '/placeholder.svg',
+    image: '/a.jpeg',
     category: 'essentials',
     vehicleType: 'motorcycle',
     isBestSeller: true,
