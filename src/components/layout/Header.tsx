@@ -51,7 +51,7 @@ const Header = () => {
           {/* Actions */}
           <div className="flex items-center gap-3">
             <a
-              href="tel:+201234567890"
+              href="tel:+201014868268"
               className="hidden sm:flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
             >
               <Phone className="w-4 h-4" />
