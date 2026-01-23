@@ -17,7 +17,7 @@ const HeroSection = () => {
           <div className="inline-flex items-center gap-2 bg-primary/10 border border-primary/20 rounded-full px-4 py-2 mb-6 animate-fade-in">
             <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
             <span className="text-primary text-sm font-medium">
-              أفضل قطع الغيار الأصلية
+              متوفر شحن جميع المحافظات
             </span>
           </div>
 
