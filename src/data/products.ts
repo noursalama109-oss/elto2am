@@ -97,7 +97,7 @@ export const products: Product[] = [
     category: 'essentials',
     vehicleType: 'motorcycle',
     isBestSeller: true,
-    description: 'ألة جر تعيش معاك و تتحكل المشاوير الصعبة',
+    description: 'ألة جر تعيش معاك و تتحمل المشاوير الصعبة',
     inStock: true,
   },
   {
