@@ -3,7 +3,7 @@ import { Wallet, Truck, CreditCard, Shield } from 'lucide-react';
 const PaymentMethods = () => {
   const methods = [
     {
-      icon: Vodafone,
+      icon: Wallet,
       title: 'فودافون كاش',
       description: 'ادفع بسهولة عن طريق محفظة فودافون كاش',
       available: true,
