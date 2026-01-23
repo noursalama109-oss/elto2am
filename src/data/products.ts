@@ -69,14 +69,14 @@ export const products: Product[] = [
   },
   {
     id: '7',
-    name: 'بطارية 12 فولت',
+    name: 'مساعد امامي CMG كاملة اصلي',
     price: 450,
     originalPrice: 520,
-    image: '/placeholder.svg',
+    image: '/f.jpeg',
     category: 'essentials',
     vehicleType: 'both',
     isBestSeller: true,
-    description: 'بطارية عالية الجودة طويلة العمر',
+    description: 'مساعد اصلي يتحمل معاك ',
     inStock: true,
   },
   {
