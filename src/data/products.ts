@@ -15,13 +15,13 @@ export const products: Product[] = [
   },
   {
     id: '2',
-    name: 'مرايا جانبية كروم',
+    name: 'وش كهرباء هوجان 3',
     price: 180,
     image: '/placeholder.svg',
-    category: 'accessories',
+    category: 'essentials',
     vehicleType: 'motorcycle',
     isBestSeller: true,
-    description: 'مرايا جانبية أنيقة بتصميم كروم',
+    description: 'وش كهرباء عالي الجودة',
     inStock: true,
   },
   {
