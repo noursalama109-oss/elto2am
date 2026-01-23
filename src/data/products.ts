@@ -40,7 +40,7 @@ export const products: Product[] = [
     id: '4',
     name: 'فانوس امامي هوجان 3  ',
     price: 320,
-    image: '/placeholder.svg',
+    image: '/c.jpeg',
     category: 'accessories',
     vehicleType: 'both',
     isBestSeller: true,
