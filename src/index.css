@@ -18,13 +18,13 @@
     --primary: 25 95% 53%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 220 15% 20%;
+    --secondary: 0 0% 98.0392%;
     --secondary-foreground: 0 0% 98%;
 
     --muted: 220 15% 18%;
     --muted-foreground: 220 10% 60%;
 
-    --accent: 25 95% 53%;
+    --accent: 25 94.9791% 53.1373%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84% 60%;
@@ -34,7 +34,7 @@
     --input: 220 15% 22%;
     --ring: 25 95% 53%;
 
-    --radius: 0.75rem;
+    --radius: 1.5rem;
 
     --success: 142 76% 36%;
     --success-foreground: 0 0% 100%;
@@ -59,6 +59,17 @@
     /* Shadows */
     --shadow-glow: 0 0 30px hsl(25 95% 53% / 0.3);
     --shadow-card: 0 4px 20px hsl(0 0% 0% / 0.3);
+    --shadow-sm: 0px 1px 3px 0px hsla(0, 0%, 0%, 0.14);
+    --shadow: 0px 1px 6px 0px hsla(0, 0%, 0%, 0.14);
+    --shadow-md: 0px 1px 9px 0px hsla(0, 0%, 0%, 0.14);
+    --shadow-lg: 0px 1px 15px 0px hsla(0, 0%, 0%, 0.14);
+  }
+  .dark {
+    --radius: 1.5rem;
+    --shadow-sm: 0px 1px 3px 0px hsla(0, 0%, 0%, 0.14);
+    --shadow: 0px 1px 6px 0px hsla(0, 0%, 0%, 0.14);
+    --shadow-md: 0px 1px 9px 0px hsla(0, 0%, 0%, 0.14);
+    --shadow-lg: 0px 1px 15px 0px hsla(0, 0%, 0%, 0.14);
   }
 }
 
