@@ -22,7 +22,7 @@ const Header = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2">
             <div className="w-14 h-14 rounded-lg bg-white border border-gray-200 flex items-center justify-center">
-              <span className="text-primary-foreground font-bold text-xl">H & M</span>
+              <span className="text-green-600 font-bold text-xl">H & M</span>
             </div>
             <div className="flex flex-col">
               <span className="font-bold text-lg leading-tight">التوأم</span>
