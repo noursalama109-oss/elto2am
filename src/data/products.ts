@@ -81,12 +81,12 @@ export const products: Product[] = [
   },
   {
     id: '8',
-    name: 'مقود رياضي',
+    name: 'وش زيت هوجان 3 اصلي',
     price: 280,
-    image: '/placeholder.svg',
+    image: '/g.jpeg',
     category: 'accessories',
     vehicleType: 'motorcycle',
-    description: 'مقود رياضي مريح للقيادة',
+    description: 'لو بتدور علي الأداء القوي والشكل المميز',
     inStock: true,
   },
   {
