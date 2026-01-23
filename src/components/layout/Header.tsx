@@ -26,7 +26,7 @@ const Header = () => {
             </div>
             <div className="flex flex-col">
               <span className="font-bold text-lg leading-tight">التوأم</span>
-              <span className="text-xs text-muted-foreground">لقطع الغيار</span>
+              <span className="text-xs text-muted-sm font-medium">لقطع الغيار</span>
             </div>
           </Link>
 
