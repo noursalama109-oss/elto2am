@@ -21,7 +21,7 @@ const Header = () => {
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2">
-            <div className="w-10 h-10 rounded-lg gradient-primary flex items-center justify-center">
+            <div className="w-13 h-13 rounded-lg gradient-primary flex items-center justify-center">
               <span className="text-primary-foreground font-bold text-xl">H & M</span>
             </div>
             <div className="flex flex-col">
