@@ -57,7 +57,7 @@ const HeroSection = () => {
             <div className="w-px h-12 bg-border" />
             <div className="flex flex-col items-center gap-2 text-muted-foreground">
               <div className="w-14 h-14 rounded-xl bg-secondary flex items-center justify-center">
-                <truck className="w-7 h-7 text-primary" />
+                <Truck className="w-7 h-7 text-primary" />
               </div>
               <span className="text-sm font-medium">تروسيكل</span>
             </div>
