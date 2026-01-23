@@ -23,9 +23,9 @@ const HeroSection = () => {
 
           {/* Title */}
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 animate-slide-up">
-            <span className="text-sm font-medium">التوأم</span>
+            <span className="text">التوأم</span>
             <br />
-            <span className="text-foreground">لقطع الغيار</span>
+            <span className="text-sm font-large">لقطع الغيار</span>
           </h1>
 
           {/* Description */}
