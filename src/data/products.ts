@@ -59,12 +59,12 @@ export const products: Product[] = [
   },
   {
     id: '6',
-    name: 'غطاء محرك حماية',
+    name: 'كلاكس CG صامولة اصلي',
     price: 220,
-    image: '/placeholder.svg',
+    image: '/e.jpeg',
     category: 'accessories',
     vehicleType: 'both',
-    description: 'غطاء حماية للمحرك من الأتربة',
+    description: 'كلاكس مميز بصوت نقي',
     inStock: false,
   },
   {
