@@ -50,14 +50,14 @@ const HeroSection = () => {
           <div className="flex items-center justify-center gap-8 animate-fade-in">
             <div className="flex flex-col items-center gap-2 text-muted-foreground">
               <div className="w-14 h-14 rounded-xl bg-secondary flex items-center justify-center">
-                <Bike className="w-7 h-7 text-primary" />
+                <motorcycle className="w-7 h-7 text-primary" />
               </div>
               <span className="text-sm font-medium">موتوسيكل</span>
             </div>
             <div className="w-px h-12 bg-border" />
             <div className="flex flex-col items-center gap-2 text-muted-foreground">
               <div className="w-14 h-14 rounded-xl bg-secondary flex items-center justify-center">
-                <Truck className="w-7 h-7 text-primary" />
+                <trycycle className="w-7 h-7 text-primary" />
               </div>
               <span className="text-sm font-medium">تروسيكل</span>
             </div>
