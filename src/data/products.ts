@@ -26,14 +26,14 @@ export const products: Product[] = [
   },
   {
     id: '3',
-    name: 'إطار خلفي تروسيكل',
+    name: 'جنط خلفي تروسيكل cmg 5 خرم',
     price: 850,
     originalPrice: 950,
     image: '/placeholder.svg',
     category: 'essentials',
     vehicleType: 'tricycle',
     isBestSeller: true,
-    description: 'إطار خلفي متين للتروسيكل',
+    description: 'جنط خلفي للتروسيكل بجودة عالية',
     inStock: true,
   },
   {
