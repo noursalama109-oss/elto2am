@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ArrowLeft, Bike, Truck } from 'lucide-react';
+import { ArrowLeft, Bike, Truck, ClipboardList, Send } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const HeroSection = () => {
@@ -34,7 +34,7 @@ const HeroSection = () => {
           </p>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12 animate-slide-up">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8 animate-slide-up">
             <Button asChild size="lg" className="gradient-primary shadow-glow hover:opacity-90 w-full sm:w-auto">
               <Link to="/products" className="flex items-center gap-2">
                 تصفح المنتجات
@@ -44,6 +44,32 @@ const HeroSection = () => {
             <Button asChild variant="outline" size="lg" className="w-full sm:w-auto">
               <Link to="/best-sellers">الأكثر مبيعاً</Link>
             </Button>
+          </div>
+
+          {/* Bulk Order Banner */}
+          <div className="bg-card border border-border rounded-2xl p-6 mb-12 animate-fade-in shadow-card">
+            <div className="flex flex-col md:flex-row items-center gap-4 md:gap-6">
+              <div className="w-16 h-16 rounded-xl bg-primary/20 flex items-center justify-center shrink-0">
+                <ClipboardList className="w-8 h-8 text-primary" />
+              </div>
+              <div className="flex-1 text-center md:text-right">
+                <h3 className="text-xl font-bold mb-1">عندك كشف طلبية كبيرة؟</h3>
+                <p className="text-muted-foreground">
+                  ابعت لنا الكشف أو صور لنا قائمة الطلبات وهنجهز الكشف وهيوصلك لحد عندك
+                </p>
+              </div>
+              <Button
+                onClick={() => {
+                  const message = `مرحباً، عندي كشف طلبية كبيرة وعايز أبعتلكم القائمة 📋`;
+                  const whatsappUrl = `https://wa.me/201014868268?text=${encodeURIComponent(message)}`;
+                  window.open(whatsappUrl, '_blank');
+                }}
+                className="gradient-primary shadow-glow hover:opacity-90 gap-2 shrink-0"
+              >
+                <Send className="w-4 h-4" />
+                ابعت الكشف
+              </Button>
+            </div>
           </div>
 
           {/* Vehicle Types */}
