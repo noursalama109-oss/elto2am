@@ -1,7 +1,9 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, ClipboardList, Send, Truck, Wallet, Shield } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import hmLogo from '@/assets/hm-logo.jpg';
+import PaymentMethodDialog from '@/components/checkout/PaymentMethodDialog';
 
 // WhatsApp icon
 const WhatsAppIcon = ({ className }: { className?: string }) => (
@@ -11,6 +13,8 @@ const WhatsAppIcon = ({ className }: { className?: string }) => (
 );
 
 const HeroSection = () => {
+  const [showPaymentDialog, setShowPaymentDialog] = useState(false);
+  const [currentWhatsappMessage, setCurrentWhatsappMessage] = useState('');
   return (
     <section className="relative gradient-hero py-16 md:py-24 overflow-hidden">
       {/* Background Pattern */}
@@ -84,16 +88,9 @@ const HeroSection = () => {
               </div>
               <Button
                 onClick={() => {
-                  const message = `*السلام عليكم* 👋
-
-📋 *عندي كشف طلبية كبيرة*
-
-*هبعتلكم الكشف أو صور القائمة دلوقتي*.
-*ياريت تجهز وتوصلي في اسرع وقت* 👌⚡
-
-*شكراً ليكم* 🙏`;
-                  const whatsappUrl = `https://wa.me/201014868268?text=${encodeURIComponent(message)}`;
-                  window.open(whatsappUrl, '_blank');
+                  const message = `*السلام عليكم* 👋%0A%0A📋 *عندي كشف طلبية كبيرة*%0A%0A*هبعتلكم الكشف أو صور القائمة دلوقتي*.%0A*ياريت تجهز وتوصلي في اسرع وقت* 👌⚡%0A%0A*شكراً ليكم* 🙏`;
+                  setCurrentWhatsappMessage(message);
+                  setShowPaymentDialog(true);
                 }}
                 className="gradient-primary shadow-glow hover:opacity-90 gap-2 shrink-0"
               >
@@ -129,9 +126,9 @@ const HeroSection = () => {
           <div className="flex justify-center animate-fade-in">
             <Button
               onClick={() => {
-                const message = `*السلام عليكم* 👋\n\nأريد الاستفسار عن منتجاتكم`;
-                const whatsappUrl = `https://wa.me/201014868268?text=${encodeURIComponent(message)}`;
-                window.open(whatsappUrl, '_blank');
+                const message = `*السلام عليكم* 👋%0A%0Aأريد الاستفسار عن منتجاتكم`;
+                setCurrentWhatsappMessage(message);
+                setShowPaymentDialog(true);
               }}
               variant="outline"
               size="lg"
@@ -143,6 +140,12 @@ const HeroSection = () => {
           </div>
         </div>
       </div>
+
+      <PaymentMethodDialog
+        open={showPaymentDialog}
+        onOpenChange={setShowPaymentDialog}
+        whatsappMessage={currentWhatsappMessage}
+      />
     </section>
   );
 };
