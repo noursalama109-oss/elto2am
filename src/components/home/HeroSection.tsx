@@ -19,7 +19,7 @@ const HeroSection = () => {
             <img 
               src={hmLogo} 
               alt="H&M Original Parts" 
-              className="w-32 h-32 md:w-40 md:h-40 mx-auto object-contain"
+              className="w-40 h-40 md:w-52 md:h-52 mx-auto object-contain"
             />
           </div>
 
