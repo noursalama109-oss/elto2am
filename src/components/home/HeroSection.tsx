@@ -4,6 +4,7 @@ import { ArrowLeft, ClipboardList, Send, Truck, Wallet, Shield } from 'lucide-re
 import { Button } from '@/components/ui/button';
 import hmLogo from '@/assets/hm-logo.jpg';
 import PaymentMethodDialog from '@/components/checkout/PaymentMethodDialog';
+import ScrollReveal from '@/components/ui/scroll-reveal';
 
 // WhatsApp icon
 const WhatsAppIcon = ({ className }: { className?: string }) => (
@@ -26,118 +27,136 @@ const HeroSection = () => {
       <div className="container mx-auto px-4 relative">
         <div className="max-w-3xl mx-auto text-center">
           {/* H&M Logo */}
-          <div className="mb-6 animate-fade-in">
-            <img 
-              src={hmLogo} 
-              alt="H&M Original Parts" 
-              className="w-40 h-40 md:w-52 md:h-52 mx-auto object-contain"
-            />
-          </div>
+          <ScrollReveal variant="scale" duration={0.5}>
+            <div className="mb-6">
+              <img 
+                src={hmLogo} 
+                alt="H&M Original Parts" 
+                className="w-40 h-40 md:w-52 md:h-52 mx-auto object-contain"
+              />
+            </div>
+          </ScrollReveal>
 
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 bg-primary/10 border border-primary/20 rounded-full px-4 py-2 mb-6 animate-fade-in">
-            <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
-            <span className="text-primary text-sm font-medium">
-              متوفر شحن جميع المحافظات
-            </span>
-          </div>
+          <ScrollReveal variant="fadeUp" delay={0.1}>
+            <div className="inline-flex items-center gap-2 bg-primary/10 border border-primary/20 rounded-full px-4 py-2 mb-6">
+              <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
+              <span className="text-primary text-sm font-medium">
+                متوفر شحن جميع المحافظات
+              </span>
+            </div>
+          </ScrollReveal>
 
           {/* Title */}
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-3 animate-slide-up">
-            <span className="text">التوأم</span>
-            <br />
-            <span className="text-3xl font-bold">لقطع الغيار</span>
-          </h1>
+          <ScrollReveal variant="fadeUp" delay={0.2}>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-3">
+              <span className="text">التوأم</span>
+              <br />
+              <span className="text-3xl font-bold">لقطع الغيار</span>
+            </h1>
+          </ScrollReveal>
           
           {/* Authorized Distributor Badge */}
-          <div className="mb-6 animate-fade-in">
-            <p className="text-lg md:text-xl font-bold text-accent">
-              الموزع المعتمد لدى H & M
-            </p>
-          </div>
+          <ScrollReveal variant="fadeUp" delay={0.3}>
+            <div className="mb-6">
+              <p className="text-lg md:text-xl font-bold text-accent">
+                الموزع المعتمد لدى H & M
+              </p>
+            </div>
+          </ScrollReveal>
 
           {/* Description */}
-          <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-xl mx-auto animate-fade-in">
-            نوفر لك جميع قطع غيار الموتوسيكل والتروسيكل بأعلى جودة وأفضل الأسعار مع ضمان حقيقي
-          </p>
+          <ScrollReveal variant="fadeUp" delay={0.4}>
+            <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-xl mx-auto">
+              نوفر لك جميع قطع غيار الموتوسيكل والتروسيكل بأعلى جودة وأفضل الأسعار مع ضمان حقيقي
+            </p>
+          </ScrollReveal>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8 animate-slide-up">
-            <Button asChild size="lg" className="gradient-primary shadow-glow hover:opacity-90 w-full sm:w-auto">
-              <Link to="/products" className="flex items-center gap-2">
-                تصفح المنتجات
-                <ArrowLeft className="w-5 h-5" />
-              </Link>
-            </Button>
-            <Button asChild variant="outline" size="lg" className="w-full sm:w-auto">
-              <Link to="/best-sellers">الأكثر مبيعاً</Link>
-            </Button>
-          </div>
+          <ScrollReveal variant="fadeUp" delay={0.5}>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
+              <Button asChild size="lg" className="gradient-primary shadow-glow hover:opacity-90 w-full sm:w-auto">
+                <Link to="/products" className="flex items-center gap-2">
+                  تصفح المنتجات
+                  <ArrowLeft className="w-5 h-5" />
+                </Link>
+              </Button>
+              <Button asChild variant="outline" size="lg" className="w-full sm:w-auto">
+                <Link to="/best-sellers">الأكثر مبيعاً</Link>
+              </Button>
+            </div>
+          </ScrollReveal>
 
           {/* Bulk Order Banner */}
-          <div className="bg-card border border-border rounded-2xl p-6 mb-12 animate-fade-in shadow-card">
-            <div className="flex flex-col md:flex-row items-center gap-4 md:gap-6">
-              <div className="w-16 h-16 rounded-xl bg-primary/20 flex items-center justify-center shrink-0">
-                <ClipboardList className="w-8 h-8 text-primary" />
+          <ScrollReveal variant="fadeUp" delay={0.6}>
+            <div className="bg-card border border-border rounded-2xl p-6 mb-12 shadow-card">
+              <div className="flex flex-col md:flex-row items-center gap-4 md:gap-6">
+                <div className="w-16 h-16 rounded-xl bg-primary/20 flex items-center justify-center shrink-0">
+                  <ClipboardList className="w-8 h-8 text-primary" />
+                </div>
+                <div className="flex-1 text-center md:text-right">
+                  <h3 className="text-xl font-bold mb-1">عندك كشف طلبية كبيرة؟</h3>
+                  <p className="text-muted-foreground">
+                    ابعت لنا الكشف أو صور لنا قائمة الطلبات هنجهز الكشف وهيوصلك لحد عندك
+                  </p>
+                </div>
+                <Button
+                  onClick={() => {
+                    const message = `*السلام عليكم* 👋%0A%0A📋 *عندي كشف طلبية كبيرة*%0A%0A*هبعتلكم الكشف أو صور القائمة دلوقتي*.%0A*ياريت تجهز وتوصلي في اسرع وقت* 👌⚡%0A%0A*شكراً ليكم* 🙏`;
+                    setCurrentWhatsappMessage(message);
+                    setShowPaymentDialog(true);
+                  }}
+                  className="gradient-primary shadow-glow hover:opacity-90 gap-2 shrink-0"
+                >
+                  <Send className="w-4 h-4" />
+                  ابعت الكشف
+                </Button>
               </div>
-              <div className="flex-1 text-center md:text-right">
-                <h3 className="text-xl font-bold mb-1">عندك كشف طلبية كبيرة؟</h3>
-                <p className="text-muted-foreground">
-                  ابعت لنا الكشف أو صور لنا قائمة الطلبات هنجهز الكشف وهيوصلك لحد عندك
-                </p>
+            </div>
+          </ScrollReveal>
+
+          {/* Feature Strip */}
+          <ScrollReveal variant="fadeUp" delay={0.7}>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+              <div className="group flex items-center justify-center gap-3 bg-secondary/50 border border-border rounded-xl px-4 py-3 cursor-pointer transition-all duration-300 hover:bg-primary/10 hover:border-primary/50 hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/10">
+                <div className="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center transition-all duration-300 group-hover:bg-primary group-hover:scale-110">
+                  <Truck className="w-5 h-5 text-primary transition-colors duration-300 group-hover:text-primary-foreground" />
+                </div>
+                <span className="text-sm font-medium transition-colors duration-300 group-hover:text-primary">شحن سريع لجميع المحافظات</span>
               </div>
+              <div className="group flex items-center justify-center gap-3 bg-secondary/50 border border-border rounded-xl px-4 py-3 cursor-pointer transition-all duration-300 hover:bg-primary/10 hover:border-primary/50 hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/10">
+                <div className="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center transition-all duration-300 group-hover:bg-primary group-hover:scale-110">
+                  <Wallet className="w-5 h-5 text-primary transition-colors duration-300 group-hover:text-primary-foreground" />
+                </div>
+                <span className="text-sm font-medium transition-colors duration-300 group-hover:text-primary">الدفع عند الاستلام</span>
+              </div>
+              <div className="group flex items-center justify-center gap-3 bg-secondary/50 border border-border rounded-xl px-4 py-3 cursor-pointer transition-all duration-300 hover:bg-primary/10 hover:border-primary/50 hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/10">
+                <div className="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center transition-all duration-300 group-hover:bg-primary group-hover:scale-110">
+                  <Shield className="w-5 h-5 text-primary transition-colors duration-300 group-hover:text-primary-foreground" />
+                </div>
+                <span className="text-sm font-medium transition-colors duration-300 group-hover:text-primary">ضمان أفضل سعر</span>
+              </div>
+            </div>
+          </ScrollReveal>
+
+          {/* WhatsApp Button */}
+          <ScrollReveal variant="fadeUp" delay={0.8}>
+            <div className="flex justify-center">
               <Button
                 onClick={() => {
-                  const message = `*السلام عليكم* 👋%0A%0A📋 *عندي كشف طلبية كبيرة*%0A%0A*هبعتلكم الكشف أو صور القائمة دلوقتي*.%0A*ياريت تجهز وتوصلي في اسرع وقت* 👌⚡%0A%0A*شكراً ليكم* 🙏`;
+                  const message = `*السلام عليكم* 👋%0A%0Aأريد الاستفسار عن منتجاتكم`;
                   setCurrentWhatsappMessage(message);
                   setShowPaymentDialog(true);
                 }}
-                className="gradient-primary shadow-glow hover:opacity-90 gap-2 shrink-0"
+                variant="outline"
+                size="lg"
+                className="gap-2 border-green-500/50 text-green-500 hover:bg-green-500/10 hover:text-green-400"
               >
-                <Send className="w-4 h-4" />
-                ابعت الكشف
+                <WhatsAppIcon className="w-5 h-5" />
+                اطلب عبر واتساب
               </Button>
             </div>
-          </div>
-
-          {/* Feature Strip */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6 animate-fade-in">
-            <div className="group flex items-center justify-center gap-3 bg-secondary/50 border border-border rounded-xl px-4 py-3 cursor-pointer transition-all duration-300 hover:bg-primary/10 hover:border-primary/50 hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/10">
-              <div className="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center transition-all duration-300 group-hover:bg-primary group-hover:scale-110">
-                <Truck className="w-5 h-5 text-primary transition-colors duration-300 group-hover:text-primary-foreground" />
-              </div>
-              <span className="text-sm font-medium transition-colors duration-300 group-hover:text-primary">شحن سريع لجميع المحافظات</span>
-            </div>
-            <div className="group flex items-center justify-center gap-3 bg-secondary/50 border border-border rounded-xl px-4 py-3 cursor-pointer transition-all duration-300 hover:bg-primary/10 hover:border-primary/50 hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/10">
-              <div className="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center transition-all duration-300 group-hover:bg-primary group-hover:scale-110">
-                <Wallet className="w-5 h-5 text-primary transition-colors duration-300 group-hover:text-primary-foreground" />
-              </div>
-              <span className="text-sm font-medium transition-colors duration-300 group-hover:text-primary">الدفع عند الاستلام</span>
-            </div>
-            <div className="group flex items-center justify-center gap-3 bg-secondary/50 border border-border rounded-xl px-4 py-3 cursor-pointer transition-all duration-300 hover:bg-primary/10 hover:border-primary/50 hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/10">
-              <div className="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center transition-all duration-300 group-hover:bg-primary group-hover:scale-110">
-                <Shield className="w-5 h-5 text-primary transition-colors duration-300 group-hover:text-primary-foreground" />
-              </div>
-              <span className="text-sm font-medium transition-colors duration-300 group-hover:text-primary">ضمان أفضل سعر</span>
-            </div>
-          </div>
-
-          {/* WhatsApp Button */}
-          <div className="flex justify-center animate-fade-in">
-            <Button
-              onClick={() => {
-                const message = `*السلام عليكم* 👋%0A%0Aأريد الاستفسار عن منتجاتكم`;
-                setCurrentWhatsappMessage(message);
-                setShowPaymentDialog(true);
-              }}
-              variant="outline"
-              size="lg"
-              className="gap-2 border-green-500/50 text-green-500 hover:bg-green-500/10 hover:text-green-400"
-            >
-              <WhatsAppIcon className="w-5 h-5" />
-              اطلب عبر واتساب
-            </Button>
-          </div>
+          </ScrollReveal>
         </div>
       </div>
 

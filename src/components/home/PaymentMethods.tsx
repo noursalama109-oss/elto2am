@@ -1,4 +1,5 @@
 import { Wallet, Truck, CreditCard, Shield } from 'lucide-react';
+import ScrollReveal from '@/components/ui/scroll-reveal';
 
 const PaymentMethods = () => {
   const methods = [
@@ -32,35 +33,38 @@ const PaymentMethods = () => {
     <section className="py-16 md:py-20 bg-card">
       <div className="container mx-auto px-4">
         {/* Header */}
-        <div className="text-center mb-12">
-          <h2 className="text-2xl md:text-3xl font-bold mb-2">طرق الدفع</h2>
-          <p className="text-muted-foreground">
-            نوفر لك خيارات دفع متعددة لراحتك
-          </p>
-        </div>
+        <ScrollReveal variant="fadeUp">
+          <div className="text-center mb-12">
+            <h2 className="text-2xl md:text-3xl font-bold mb-2">طرق الدفع</h2>
+            <p className="text-muted-foreground">
+              نوفر لك خيارات دفع متعددة لراحتك
+            </p>
+          </div>
+        </ScrollReveal>
 
         {/* Methods Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {methods.map((method, index) => {
             const Icon = method.icon;
             return (
-              <div
-                key={index}
-                className={`relative bg-background rounded-xl border border-border p-6 text-center transition-all duration-300 hover:border-primary/50 hover:-translate-y-1 ${
-                  !method.available ? 'opacity-60' : ''
-                }`}
-              >
-                {!method.available && (
-                  <span className="absolute top-3 left-3 text-xs bg-secondary text-muted-foreground px-2 py-1 rounded-full">
-                    قريباً
-                  </span>
-                )}
-                <div className="w-14 h-14 mx-auto mb-4 rounded-xl gradient-primary flex items-center justify-center shadow-glow">
-                  <Icon className="w-7 h-7 text-primary-foreground" />
+              <ScrollReveal key={index} variant="fadeUp" delay={index * 0.1}>
+                <div
+                  className={`relative bg-background rounded-xl border border-border p-6 text-center transition-all duration-300 hover:border-primary/50 hover:-translate-y-1 h-full ${
+                    !method.available ? 'opacity-60' : ''
+                  }`}
+                >
+                  {!method.available && (
+                    <span className="absolute top-3 left-3 text-xs bg-secondary text-muted-foreground px-2 py-1 rounded-full">
+                      قريباً
+                    </span>
+                  )}
+                  <div className="w-14 h-14 mx-auto mb-4 rounded-xl gradient-primary flex items-center justify-center shadow-glow">
+                    <Icon className="w-7 h-7 text-primary-foreground" />
+                  </div>
+                  <h3 className="font-bold mb-2">{method.title}</h3>
+                  <p className="text-sm text-muted-foreground">{method.description}</p>
                 </div>
-                <h3 className="font-bold mb-2">{method.title}</h3>
-                <p className="text-sm text-muted-foreground">{method.description}</p>
-              </div>
+              </ScrollReveal>
             );
           })}
         </div>

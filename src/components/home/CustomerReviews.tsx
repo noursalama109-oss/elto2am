@@ -5,6 +5,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
+import ScrollReveal from '@/components/ui/scroll-reveal';
 
 interface Review {
   id: number;
@@ -123,100 +124,107 @@ const CustomerReviews = () => {
   return (
     <section className="py-16 bg-gradient-to-b from-background to-card">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            آراء <span className="text-3xl md:text-4xl font-bold mb-4">عملائنا</span>
-          </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            نفتخر بثقة عملائنا ونسعى دائماً لتقديم أفضل خدمة وأعلى جودة
-          </p>
-        </div>
+        <ScrollReveal variant="fadeUp">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              آراء <span className="text-3xl md:text-4xl font-bold mb-4">عملائنا</span>
+            </h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              نفتخر بثقة عملائنا ونسعى دائماً لتقديم أفضل خدمة وأعلى جودة
+            </p>
+          </div>
+        </ScrollReveal>
 
         {/* نموذج إضافة تقييم */}
-        <Card className="max-w-2xl mx-auto mb-12 bg-card/50 backdrop-blur-sm border-primary/20">
-          <CardContent className="p-6">
-            <h3 className="text-xl font-bold mb-4 text-center">شاركنا رأيك ✍️</h3>
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <Input
-                  placeholder="اسمك"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  className="bg-background/50"
-                  maxLength={50}
-                />
-                <Input
-                  placeholder="البلد (مثال: الإسماعيلية)"
-                  value={location}
-                  onChange={(e) => setLocation(e.target.value)}
-                  className="bg-background/50"
-                  maxLength={50}
-                />
-              </div>
-              <div>
-                <Textarea
-                  placeholder="اكتب تجربتك معانا..."
-                  value={comment}
-                  onChange={(e) => setComment(e.target.value)}
-                  className="bg-background/50 min-h-[100px]"
-                  maxLength={300}
-                />
-              </div>
-              <div className="flex flex-col items-center gap-2">
-                <span className="text-sm text-muted-foreground">تقييمك</span>
-                <div className="flex gap-1 rtl:flex-row-reverse">
-                  {renderInteractiveStars()}
+        <ScrollReveal variant="scale" delay={0.1}>
+          <Card className="max-w-2xl mx-auto mb-12 bg-card/50 backdrop-blur-sm border-primary/20">
+            <CardContent className="p-6">
+              <h3 className="text-xl font-bold mb-4 text-center">شاركنا رأيك ✍️</h3>
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <Input
+                    placeholder="اسمك"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    className="bg-background/50"
+                    maxLength={50}
+                  />
+                  <Input
+                    placeholder="البلد (مثال: الإسماعيلية)"
+                    value={location}
+                    onChange={(e) => setLocation(e.target.value)}
+                    className="bg-background/50"
+                    maxLength={50}
+                  />
                 </div>
-              </div>
-              <Button type="submit" className="w-full gap-2">
-                <Send className="w-4 h-4" />
-                إرسال التقييم
-              </Button>
-            </form>
-          </CardContent>
-        </Card>
+                <div>
+                  <Textarea
+                    placeholder="اكتب تجربتك معانا..."
+                    value={comment}
+                    onChange={(e) => setComment(e.target.value)}
+                    className="bg-background/50 min-h-[100px]"
+                    maxLength={300}
+                  />
+                </div>
+                <div className="flex flex-col items-center gap-2">
+                  <span className="text-sm text-muted-foreground">تقييمك</span>
+                  <div className="flex gap-1 rtl:flex-row-reverse">
+                    {renderInteractiveStars()}
+                  </div>
+                </div>
+                <Button type="submit" className="w-full gap-2">
+                  <Send className="w-4 h-4" />
+                  إرسال التقييم
+                </Button>
+              </form>
+            </CardContent>
+          </Card>
+        </ScrollReveal>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {reviews.map((review) => (
-            <Card
-              key={review.id}
-              className="bg-card/50 backdrop-blur-sm border-border hover:border-primary/50 transition-all duration-300 hover:shadow-glow"
-            >
-              <CardContent className="p-6">
-                <Quote className="w-8 h-8 text-primary/30 mb-4" />
-                
-                <p className="text-foreground/90 text-sm leading-relaxed mb-4">
-                  "{review.comment}"
-                </p>
+          {reviews.map((review, index) => (
+            <ScrollReveal key={review.id} variant="fadeUp" delay={index * 0.1}>
+              <Card
+                className="bg-card/50 backdrop-blur-sm border-border hover:border-primary/50 transition-all duration-300 hover:shadow-glow h-full"
+              >
+                <CardContent className="p-6">
+                  <Quote className="w-8 h-8 text-primary/30 mb-4" />
+                  
+                  <p className="text-foreground/90 text-sm leading-relaxed mb-4">
+                    "{review.comment}"
+                  </p>
 
-                <div className="flex items-center gap-1 mb-3">
-                  {renderStars(review.rating)}
-                </div>
+                  <div className="flex items-center gap-1 mb-3">
+                    {renderStars(review.rating)}
+                  </div>
 
-                <div className="border-t border-border pt-4">
-                  <h4 className="font-bold text-foreground">{review.name}</h4>
-                  <p className="text-xs text-muted-foreground">{review.location}</p>
-                  {review.vehicleType && (
-                    <span className="inline-block mt-2 text-xs bg-primary/10 text-primary px-2 py-1 rounded-full">
-                      {review.vehicleType}
-                    </span>
-                  )}
-                </div>
-              </CardContent>
-            </Card>
+                  <div className="border-t border-border pt-4">
+                    <h4 className="font-bold text-foreground">{review.name}</h4>
+                    <p className="text-xs text-muted-foreground">{review.location}</p>
+                    {review.vehicleType && (
+                      <span className="inline-block mt-2 text-xs bg-primary/10 text-primary px-2 py-1 rounded-full">
+                        {review.vehicleType}
+                      </span>
+                    )}
+                  </div>
+                </CardContent>
+              </Card>
+            </ScrollReveal>
           ))}
         </div>
 
-        <div className="mt-12 text-center">
-          <div className="inline-flex items-center gap-2 bg-card/50 backdrop-blur-sm border border-border rounded-full px-6 py-3">
-            <div className="flex items-center gap-1">
-              {renderStars(5)}
+        <ScrollReveal variant="fadeUp" delay={0.5}>
+          <div className="mt-12 text-center">
+            <div className="inline-flex items-center gap-2 bg-card/50 backdrop-blur-sm border border-border rounded-full px-6 py-3">
+              <div className="flex items-center gap-1">
+                {renderStars(5)}
+              </div>
+              <span className="text-muted-foreground text-sm">
+                تقييم <span className="text-primary font-bold">4.8</span> من 5 بناءً على آراء العملاء
+              </span>
             </div>
-            <span className="text-muted-foreground text-sm">
-              تقييم <span className="text-primary font-bold">4.8</span> من 5 بناءً على آراء العملاء
-            </span>
           </div>
-        </div>
+        </ScrollReveal>
       </div>
     </section>
   );
