@@ -142,4 +142,15 @@ export const products: Product[] = [
     description: 'غطاء وش عالي الجودة',
     inStock: true,
   },
-];
+{
+  id: '13',
+    name: 'غطاء وش زيت دايون 40',
+    price: 70,
+    image: '/k.jpeg',
+    category: 'essentials',
+    vehicleType: 'motorcycle',
+    brand: 'dayon',
+    description: 'غطاء وش عالي الجودة',
+    inStock: true,
+  },
+  ]
