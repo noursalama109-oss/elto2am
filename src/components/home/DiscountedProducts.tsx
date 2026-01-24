@@ -28,7 +28,7 @@ const DiscountedProducts = () => {
               <p className="text-muted-foreground">وفّر أكثر مع عروضنا الحصرية</p>
             </div>
           </div>
-          <Link to="/products">
+          <Link to="/products?discount=true">
             <Button variant="outline" className="gap-2">
               عرض الكل
               <ArrowLeft className="w-4 h-4" />

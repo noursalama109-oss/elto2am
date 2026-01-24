@@ -9,6 +9,7 @@ import { CategoryFilter, VehicleFilter } from '@/types/product';
 const Products = () => {
   const [searchParams] = useSearchParams();
   const searchQuery = searchParams.get('search') || '';
+  const discountOnly = searchParams.get('discount') === 'true';
   
   const [categoryFilter, setCategoryFilter] = useState<CategoryFilter>('all');
   const [vehicleFilter, setVehicleFilter] = useState<VehicleFilter>('all');
@@ -33,9 +34,12 @@ const Products = () => {
         vehicleFilter === 'all' ||
         product.vehicleType === vehicleFilter ||
         product.vehicleType === 'both';
-      return matchesSearch && matchesCategory && matchesVehicle;
+      const matchesDiscount = discountOnly
+        ? product.originalPrice && product.originalPrice > product.price
+        : true;
+      return matchesSearch && matchesCategory && matchesVehicle && matchesDiscount;
     });
-  }, [categoryFilter, vehicleFilter, searchQuery]);
+  }, [categoryFilter, vehicleFilter, searchQuery, discountOnly]);
 
   return (
     <Layout>
@@ -44,12 +48,18 @@ const Products = () => {
           {/* Header */}
           <div className="mb-8">
             <h1 className="text-3xl md:text-4xl font-bold mb-2">
-              {searchQuery ? `نتائج البحث: "${searchQuery}"` : 'جميع المنتجات'}
+              {discountOnly 
+                ? 'العروض والخصومات' 
+                : searchQuery 
+                  ? `نتائج البحث: "${searchQuery}"` 
+                  : 'جميع المنتجات'}
             </h1>
             <p className="text-muted-foreground">
-              {searchQuery
-                ? `تم العثور على ${filteredProducts.length} منتج`
-                : 'تصفح مجموعتنا الكاملة من قطع الغيار'}
+              {discountOnly
+                ? `${filteredProducts.length} منتج بأسعار مخفضة`
+                : searchQuery
+                  ? `تم العثور على ${filteredProducts.length} منتج`
+                  : 'تصفح مجموعتنا الكاملة من قطع الغيار'}
             </p>
           </div>
 
