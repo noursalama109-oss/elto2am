@@ -560,4 +560,4 @@ export const products: Product[] = [
     description: '',
     inStock: true,
   },
-  {
+ ]
