@@ -66,7 +66,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
           <Button
             size="sm"
             disabled={!product.inStock}
-            className="gradient-primary shadow-glow hover:opacity-90 text-white"
+            className="gradient-primary shadow-glow hover:opacity-90 text-white shrink-0 whitespace-nowrap"
             asChild
           >
             <a
