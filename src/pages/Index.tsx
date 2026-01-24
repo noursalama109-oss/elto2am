@@ -2,6 +2,7 @@ import Layout from '@/components/layout/Layout';
 import HeroSection from '@/components/home/HeroSection';
 import DiscountedProducts from '@/components/home/DiscountedProducts';
 import FeaturedProducts from '@/components/home/FeaturedProducts';
+import CustomerReviews from '@/components/home/CustomerReviews';
 import PaymentMethods from '@/components/home/PaymentMethods';
 
 const Index = () => {
@@ -10,6 +11,7 @@ const Index = () => {
       <HeroSection />
       <DiscountedProducts />
       <FeaturedProducts />
+      <CustomerReviews />
       <PaymentMethods />
     </Layout>
   );
