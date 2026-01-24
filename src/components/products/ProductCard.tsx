@@ -69,20 +69,14 @@ const ProductCard = ({ product }: ProductCardProps) => {
             className="gradient-primary shadow-glow hover:opacity-90"
             asChild
           >
-            <Button
-        size="sm"
-        disabled={!product.inStock}
-        className="gradient-primary shadow-glow hover:opacity-90"
-        asChild
-      >
-        <a
-          href={https://wa.me/201014868268?text=أهلاً، أريد طلب ${product.name} بسعر ${product.price} جنيه}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <ShoppingCart className="w-4 h-4" />
-        </a>
-        </Button>
+            <a
+              href={`https://wa.me/201014868268?text=أهلاً، أريد طلب ${product.name} بسعر ${product.price} جنيه`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              اطلب الآن
+            </a>
+          </Button>
         </div>
       </div>
     </div>
