@@ -54,7 +54,7 @@ export const products: Product[] = [
   {
     id: '5',
     name: 'موبينة مارش 200 اصلي',
-    price: 150,
+    price: 220,
     image: '/d.jpeg',
     category: 'essentials',
     vehicleType: 'motorcycle',
