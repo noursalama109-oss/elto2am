@@ -1,9 +1,11 @@
 import { useState } from 'react';
-import { MessageCircle } from 'lucide-react';
+import { MessageCircle, Maximize2, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog';
 import { Product } from '@/types/product';
 import PaymentMethodDialog from '@/components/checkout/PaymentMethodDialog';
+import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 
 interface ProductCardProps {
   product: Product;
@@ -11,6 +13,7 @@ interface ProductCardProps {
 
 const ProductCard = ({ product }: ProductCardProps) => {
   const [showPaymentDialog, setShowPaymentDialog] = useState(false);
+  const [showImageDialog, setShowImageDialog] = useState(false);
 
   const vehicleTypeLabel = {
     motorcycle: 'موتوسيكل',
@@ -30,6 +33,16 @@ const ProductCard = ({ product }: ProductCardProps) => {
             alt={product.name}
             className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
           />
+          
+          {/* View Full Image Button */}
+          <button
+            onClick={() => setShowImageDialog(true)}
+            className="absolute bottom-3 right-3 w-9 h-9 rounded-full bg-black/60 flex items-center justify-center text-white hover:bg-black/80 transition-colors opacity-0 group-hover:opacity-100"
+            aria-label="عرض الصورة كاملة"
+          >
+            <Maximize2 className="w-4 h-4" />
+          </button>
+
           {!product.inStock && (
             <div className="absolute inset-0 bg-background/80 flex items-center justify-center">
               <span className="text-muted-foreground font-medium">غير متوفر</span>
@@ -77,6 +90,40 @@ const ProductCard = ({ product }: ProductCardProps) => {
           </div>
         </div>
       </div>
+
+      {/* Full Image Dialog */}
+      <Dialog open={showImageDialog} onOpenChange={setShowImageDialog}>
+        <DialogContent className="max-w-4xl w-[95vw] p-0 bg-transparent border-none shadow-none">
+          <VisuallyHidden>
+            <DialogTitle>صورة {product.name}</DialogTitle>
+          </VisuallyHidden>
+          <div className="relative">
+            {/* Close Button */}
+            <button
+              onClick={() => setShowImageDialog(false)}
+              className="absolute top-2 left-2 z-10 w-10 h-10 rounded-full bg-black/60 flex items-center justify-center text-white hover:bg-black/80 transition-colors"
+              aria-label="إغلاق"
+            >
+              <X className="w-5 h-5" />
+            </button>
+            
+            {/* Product Name Badge */}
+            <div className="absolute bottom-4 right-4 left-4 z-10">
+              <div className="bg-black/70 backdrop-blur-sm rounded-lg p-3">
+                <h3 className="text-white font-bold text-lg">{product.name}</h3>
+                <p className="text-white/80 text-sm">{product.price} جنيه</p>
+              </div>
+            </div>
+
+            {/* Image */}
+            <img
+              src={product.image}
+              alt={product.name}
+              className="w-full max-h-[85vh] object-contain rounded-xl"
+            />
+          </div>
+        </DialogContent>
+      </Dialog>
 
       <PaymentMethodDialog
         open={showPaymentDialog}
