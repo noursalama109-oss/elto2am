@@ -124,7 +124,7 @@ export const products: Product[] = [
   {
     id: '11',
     name: 'مساعد خلفي هوجان 3',
-    price: 380,
+    price: 2150,
     image: '/i.jpeg',
     category: 'essentials',
     vehicleType: 'motorcycle',
