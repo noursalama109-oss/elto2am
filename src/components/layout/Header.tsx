@@ -17,7 +17,6 @@ const Header = () => {
   const navLinks = [
     { name: 'الرئيسية', path: '/' },
     { name: 'المنتجات', path: '/products' },
-    { name: 'الأكثر مبيعاً', path: '/best-sellers' },
   ];
 
   const scrollToSection = (sectionId: string) => {

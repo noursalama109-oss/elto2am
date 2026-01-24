@@ -1,5 +1,8 @@
+import { Link } from 'react-router-dom';
+import { ArrowLeft } from 'lucide-react';
 import { Product, ProductSection as ProductSectionType, sectionLabels } from '@/types/product';
 import ProductCard from './ProductCard';
+import { Button } from '@/components/ui/button';
 import {
   Carousel,
   CarouselContent,
@@ -11,9 +14,10 @@ import {
 interface ProductSectionProps {
   section: ProductSectionType;
   products: Product[];
+  showViewAll?: boolean;
 }
 
-const ProductSection = ({ section, products }: ProductSectionProps) => {
+const ProductSection = ({ section, products, showViewAll = true }: ProductSectionProps) => {
   // Filter out products with price 0 (placeholders)
   const validProducts = products.filter(p => p.price > 0);
   
@@ -21,10 +25,20 @@ const ProductSection = ({ section, products }: ProductSectionProps) => {
 
   return (
     <section className="mb-12">
-      <div className="flex items-center gap-3 mb-6">
-        <div className="w-1.5 h-8 bg-primary rounded-full" />
-        <h2 className="text-2xl md:text-3xl font-bold">{sectionLabels[section]}</h2>
-        <span className="text-muted-foreground text-sm">({validProducts.length} منتج)</span>
+      <div className="flex items-center justify-between mb-6">
+        <div className="flex items-center gap-3">
+          <div className="w-1.5 h-8 bg-primary rounded-full" />
+          <h2 className="text-2xl md:text-3xl font-bold">{sectionLabels[section]}</h2>
+          <span className="text-muted-foreground text-sm">({validProducts.length} منتج)</span>
+        </div>
+        {showViewAll && (
+          <Button asChild variant="outline" size="sm">
+            <Link to={`/products/${section}`} className="flex items-center gap-2">
+              عرض الكل
+              <ArrowLeft className="w-4 h-4" />
+            </Link>
+          </Button>
+        )}
       </div>
       
       <Carousel
