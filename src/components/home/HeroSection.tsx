@@ -22,11 +22,18 @@ const HeroSection = () => {
           </div>
 
           {/* Title */}
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 animate-slide-up">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-3 animate-slide-up">
             <span className="text">التوأم</span>
             <br />
-            <span className="text-3xl font-bold mb-2">لقطع الغيار</span>
+            <span className="text-3xl font-bold">لقطع الغيار</span>
           </h1>
+          
+          {/* Authorized Distributor Badge */}
+          <div className="mb-6 animate-fade-in">
+            <p className="text-lg md:text-xl font-semibold text-primary">
+              الموزع المعتمد لدى H & M
+            </p>
+          </div>
 
           {/* Description */}
           <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-xl mx-auto animate-fade-in">
