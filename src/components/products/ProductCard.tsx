@@ -1,4 +1,4 @@
-import { ShoppingCart } from 'lucide-react';
+import { MessageCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Product } from '@/types/product';
@@ -70,10 +70,11 @@ const ProductCard = ({ product }: ProductCardProps) => {
             asChild
           >
             <a
-              href={`https://wa.me/201014868268?text=أهلاً، أريد طلب ${product.name} بسعر ${product.price} جنيه`}
+              href={`https://wa.me/201014868268?text=أهلاً، أريد طلب المنتج التالي:%0A%0A📦 المنتج: ${product.name}%0A💰 السعر: ${product.price} جنيه${product.originalPrice ? ` (بدلاً من ${product.originalPrice} جنيه)` : ''}%0A🏍️ نوع المركبة: ${vehicleTypeLabel[product.vehicleType]}${product.description ? `%0A📝 الوصف: ${product.description}` : ''}`}
               target="_blank"
               rel="noopener noreferrer"
             >
+              <MessageCircle className="w-4 h-4" />
               اطلب الآن
             </a>
           </Button>
