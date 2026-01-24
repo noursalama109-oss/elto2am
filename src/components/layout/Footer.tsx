@@ -9,8 +9,8 @@ const Footer = () => {
           {/* About */}
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-10 h-10 rounded-lg gradient-primary flex items-center justify-center">
-                <span className="text-primary-foreground font-bold text-xl">ت</span>
+              <div className="w-10 h-10 rounded-lg bg-white border border-gray-200 flex items-center justify-center">
+                <span className="text-green-600 font-bold text-sm">H & M</span>
               </div>
               <div className="flex flex-col">
                 <span className="font-bold text-lg leading-tight">التوأم</span>
