@@ -52,9 +52,21 @@ const Footer = () => {
                 <Phone className="w-4 h-4 text-primary" />
                 <span dir="ltr">+201014868268 </span>
               </li>
-              <li className="flex items-center gap-2 text-muted-foreground">
-                <MapPin className="w-4 h-4 text-primary" />
-                <span>الاسماعيلية، مصر</span>
+              <li className="flex items-start gap-2 text-muted-foreground">
+                <MapPin className="w-4 h-4 text-primary mt-1 shrink-0" />
+                <div className="flex flex-col gap-1">
+                  <span>الشهداء - شارع عبدالحكيم عامر</span>
+                  <span className="text-xs">بجوار دار المناسبات - محل التوأم</span>
+                  <a 
+                    href="https://maps.app.goo.gl/vBDypH4iC4aYmBd59" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-primary hover:underline text-xs flex items-center gap-1 mt-1"
+                  >
+                    <MapPin className="w-3 h-3" />
+                    عرض على خريطة جوجل
+                  </a>
+                </div>
               </li>
               <li className="flex items-center gap-2 text-muted-foreground">
                 <Clock className="w-4 h-4 text-primary" />
