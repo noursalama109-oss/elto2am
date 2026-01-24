@@ -1,12 +1,16 @@
-import { useState } from 'react';
+import { useState, useMemo, useRef, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Menu, X, Phone, Search } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { products } from '@/data/products';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
+  const [showSuggestions, setShowSuggestions] = useState(false);
+  const searchRef = useRef<HTMLDivElement>(null);
+  const mobileSearchRef = useRef<HTMLDivElement>(null);
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -16,12 +20,45 @@ const Header = () => {
     { name: 'الأكثر مبيعاً', path: '/best-sellers' },
   ];
 
+  // Filter products based on search query
+  const suggestions = useMemo(() => {
+    if (!searchQuery.trim()) return [];
+    const query = searchQuery.trim().toLowerCase();
+    return products
+      .filter((product) => 
+        product.name.toLowerCase().includes(query) ||
+        product.description?.toLowerCase().includes(query)
+      )
+      .slice(0, 5);
+  }, [searchQuery]);
+
+  // Close suggestions when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        searchRef.current && !searchRef.current.contains(event.target as Node) &&
+        mobileSearchRef.current && !mobileSearchRef.current.contains(event.target as Node)
+      ) {
+        setShowSuggestions(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     if (searchQuery.trim()) {
       navigate(`/products?search=${encodeURIComponent(searchQuery.trim())}`);
       setSearchQuery('');
+      setShowSuggestions(false);
     }
+  };
+
+  const handleSuggestionClick = (productName: string) => {
+    navigate(`/products?search=${encodeURIComponent(productName)}`);
+    setSearchQuery('');
+    setShowSuggestions(false);
   };
 
   const isActive = (path: string) => location.pathname === path;
@@ -59,19 +96,48 @@ const Header = () => {
             ))}
           </nav>
 
-          {/* Search Bar */}
-          <form onSubmit={handleSearch} className="hidden md:flex items-center gap-2 flex-1 max-w-md mx-4">
-            <div className="relative w-full">
-              <Search className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-              <Input
-                type="text"
-                placeholder="ابحث عن قطع الغيار... (مثال: تيل فرامل، بستم)"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="pr-10 text-right"
-              />
-            </div>
-          </form>
+          {/* Search Bar with Suggestions */}
+          <div ref={searchRef} className="hidden md:block flex-1 max-w-md mx-4 relative">
+            <form onSubmit={handleSearch} className="flex items-center gap-2">
+              <div className="relative w-full">
+                <Search className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                <Input
+                  type="text"
+                  placeholder="ابحث عن قطع الغيار... (مثال: تيل فرامل، بستم)"
+                  value={searchQuery}
+                  onChange={(e) => {
+                    setSearchQuery(e.target.value);
+                    setShowSuggestions(true);
+                  }}
+                  onFocus={() => setShowSuggestions(true)}
+                  className="pr-10 text-right"
+                />
+              </div>
+            </form>
+            
+            {/* Suggestions Dropdown */}
+            {showSuggestions && suggestions.length > 0 && (
+              <div className="absolute top-full right-0 left-0 mt-1 bg-background border border-border rounded-lg shadow-lg z-50 overflow-hidden">
+                {suggestions.map((product) => (
+                  <button
+                    key={product.id}
+                    onClick={() => handleSuggestionClick(product.name)}
+                    className="w-full px-4 py-3 text-right hover:bg-accent transition-colors flex items-center gap-3 border-b border-border last:border-b-0"
+                  >
+                    <img 
+                      src={product.image} 
+                      alt={product.name}
+                      className="w-10 h-10 object-cover rounded"
+                    />
+                    <div className="flex-1">
+                      <p className="font-medium text-sm">{product.name}</p>
+                      <p className="text-xs text-muted-foreground">{product.price} جنيه</p>
+                    </div>
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
 
           {/* Actions */}
           <div className="flex items-center gap-3">
@@ -93,19 +159,48 @@ const Header = () => {
           </div>
         </div>
 
-        {/* Mobile Search */}
-        <form onSubmit={handleSearch} className="md:hidden py-2 border-t border-border">
-          <div className="relative w-full">
-            <Search className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-            <Input
-              type="text"
-              placeholder="ابحث عن قطع الغيار..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="pr-10 text-right"
-            />
-          </div>
-        </form>
+        {/* Mobile Search with Suggestions */}
+        <div ref={mobileSearchRef} className="md:hidden py-2 border-t border-border relative">
+          <form onSubmit={handleSearch}>
+            <div className="relative w-full">
+              <Search className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+              <Input
+                type="text"
+                placeholder="ابحث عن قطع الغيار..."
+                value={searchQuery}
+                onChange={(e) => {
+                  setSearchQuery(e.target.value);
+                  setShowSuggestions(true);
+                }}
+                onFocus={() => setShowSuggestions(true)}
+                className="pr-10 text-right"
+              />
+            </div>
+          </form>
+          
+          {/* Mobile Suggestions Dropdown */}
+          {showSuggestions && suggestions.length > 0 && (
+            <div className="absolute top-full right-0 left-0 mt-1 bg-background border border-border rounded-lg shadow-lg z-50 overflow-hidden mx-4">
+              {suggestions.map((product) => (
+                <button
+                  key={product.id}
+                  onClick={() => handleSuggestionClick(product.name)}
+                  className="w-full px-4 py-3 text-right hover:bg-accent transition-colors flex items-center gap-3 border-b border-border last:border-b-0"
+                >
+                  <img 
+                    src={product.image} 
+                    alt={product.name}
+                    className="w-10 h-10 object-cover rounded"
+                  />
+                  <div className="flex-1">
+                    <p className="font-medium text-sm">{product.name}</p>
+                    <p className="text-xs text-muted-foreground">{product.price} جنيه</p>
+                  </div>
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
