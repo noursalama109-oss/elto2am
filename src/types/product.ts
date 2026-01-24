@@ -1,5 +1,16 @@
 export type Brand = 'dayon' | 'hogan' | 'cmg' | 'halawa' | 'other';
 
+export type ProductSection = 
+  | 'towing' // آلات الجر
+  | 'shocks' // المساعدين
+  | 'filters' // الفلاتر
+  | 'electrical' // الكهرباء
+  | 'wheels' // الجنوط
+  | 'lights' // الإضاءة
+  | 'covers' // الأغطية والوش
+  | 'horns' // الكلاكسات
+  | 'other'; // أخرى
+
 export interface Product {
   id: string;
   name: string;
@@ -9,6 +20,7 @@ export interface Product {
   category: 'accessories' | 'essentials';
   vehicleType: 'motorcycle' | 'tricycle' | 'both';
   brand: Brand;
+  section: ProductSection;
   isBestSeller?: boolean;
   description?: string;
   inStock: boolean;
@@ -17,3 +29,15 @@ export interface Product {
 export type CategoryFilter = 'all' | 'accessories' | 'essentials';
 export type VehicleFilter = 'all' | 'motorcycle' | 'tricycle';
 export type BrandFilter = 'all' | Brand;
+
+export const sectionLabels: Record<ProductSection, string> = {
+  towing: 'آلات الجر',
+  shocks: 'المساعدين',
+  filters: 'الفلاتر',
+  electrical: 'الكهرباء',
+  wheels: 'الجنوط',
+  lights: 'الإضاءة',
+  covers: 'الأغطية والوش',
+  horns: 'الكلاكسات',
+  other: 'أخرى',
+};

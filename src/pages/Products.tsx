@@ -1,91 +1,116 @@
-import { useState, useMemo, useEffect } from 'react';
+import { useMemo } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import Layout from '@/components/layout/Layout';
-import ProductFilters from '@/components/products/ProductFilters';
+import ProductSection from '@/components/products/ProductSection';
 import ProductGrid from '@/components/products/ProductGrid';
 import { products } from '@/data/products';
-import { CategoryFilter, VehicleFilter, BrandFilter } from '@/types/product';
+import { ProductSection as ProductSectionType, sectionLabels } from '@/types/product';
+
+// Define section order
+const sectionOrder: ProductSectionType[] = [
+  'towing',
+  'shocks', 
+  'filters',
+  'electrical',
+  'wheels',
+  'lights',
+  'covers',
+  'horns',
+  'other',
+];
 
 const Products = () => {
   const [searchParams] = useSearchParams();
   const searchQuery = searchParams.get('search') || '';
   const discountOnly = searchParams.get('discount') === 'true';
-  
-  const [categoryFilter, setCategoryFilter] = useState<CategoryFilter>('all');
-  const [vehicleFilter, setVehicleFilter] = useState<VehicleFilter>('all');
-  const [brandFilter, setBrandFilter] = useState<BrandFilter>('all');
 
-  // Reset filters when search query changes
-  useEffect(() => {
-    if (searchQuery) {
-      setCategoryFilter('all');
-      setVehicleFilter('all');
-      setBrandFilter('all');
-    }
-  }, [searchQuery]);
-
+  // Filter products for search or discount
   const filteredProducts = useMemo(() => {
+    if (!searchQuery && !discountOnly) return null; // Use sections view
+    
     return products.filter((product) => {
       const matchesSearch = searchQuery
         ? product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
           (product.description?.toLowerCase().includes(searchQuery.toLowerCase()) ?? false)
         : true;
-      const matchesCategory =
-        categoryFilter === 'all' || product.category === categoryFilter;
-      const matchesVehicle =
-        vehicleFilter === 'all' ||
-        product.vehicleType === vehicleFilter ||
-        product.vehicleType === 'both';
-      const matchesBrand =
-        brandFilter === 'all' || product.brand === brandFilter;
       const matchesDiscount = discountOnly
         ? product.originalPrice && product.originalPrice > product.price
         : true;
-      return matchesSearch && matchesCategory && matchesVehicle && matchesBrand && matchesDiscount;
+      // Filter out placeholder products
+      const hasPrice = product.price > 0;
+      return matchesSearch && matchesDiscount && hasPrice;
     });
-  }, [categoryFilter, vehicleFilter, brandFilter, searchQuery, discountOnly]);
+  }, [searchQuery, discountOnly]);
 
+  // Group products by section
+  const productsBySection = useMemo(() => {
+    const grouped: Record<ProductSectionType, typeof products> = {
+      towing: [],
+      shocks: [],
+      filters: [],
+      electrical: [],
+      wheels: [],
+      lights: [],
+      covers: [],
+      horns: [],
+      other: [],
+    };
+
+    products.forEach((product) => {
+      if (product.section && grouped[product.section]) {
+        grouped[product.section].push(product);
+      }
+    });
+
+    return grouped;
+  }, []);
+
+  // If searching or filtering, show grid view
+  if (filteredProducts) {
+    return (
+      <Layout>
+        <div className="py-8 md:py-12">
+          <div className="container mx-auto px-4">
+            <div className="mb-8">
+              <h1 className="text-3xl md:text-4xl font-bold mb-2">
+                {discountOnly 
+                  ? 'العروض والخصومات' 
+                  : `نتائج البحث: "${searchQuery}"`}
+              </h1>
+              <p className="text-muted-foreground">
+                {discountOnly
+                  ? `${filteredProducts.length} منتج بأسعار مخفضة`
+                  : `تم العثور على ${filteredProducts.length} منتج`}
+              </p>
+            </div>
+            <ProductGrid products={filteredProducts} />
+          </div>
+        </div>
+      </Layout>
+    );
+  }
+
+  // Default: sections view
   return (
     <Layout>
       <div className="py-8 md:py-12">
         <div className="container mx-auto px-4">
           {/* Header */}
-          <div className="mb-8">
-            <h1 className="text-3xl md:text-4xl font-bold mb-2">
-              {discountOnly 
-                ? 'العروض والخصومات' 
-                : searchQuery 
-                  ? `نتائج البحث: "${searchQuery}"` 
-                  : 'جميع المنتجات'}
-            </h1>
+          <div className="mb-10">
+            <h1 className="text-3xl md:text-4xl font-bold mb-2">جميع المنتجات</h1>
             <p className="text-muted-foreground">
-              {discountOnly
-                ? `${filteredProducts.length} منتج بأسعار مخفضة`
-                : searchQuery
-                  ? `تم العثور على ${filteredProducts.length} منتج`
-                  : 'تصفح مجموعتنا الكاملة من قطع الغيار'}
+              تصفح مجموعتنا الكاملة من قطع الغيار مقسمة حسب الفئات
             </p>
           </div>
 
-          {/* Filters */}
-          <ProductFilters
-            categoryFilter={categoryFilter}
-            vehicleFilter={vehicleFilter}
-            brandFilter={brandFilter}
-            onCategoryChange={setCategoryFilter}
-            onVehicleChange={setVehicleFilter}
-            onBrandChange={setBrandFilter}
-          />
-
-          {/* Results Count */}
-          <div className="mb-6">
-            <p className="text-sm text-muted-foreground">
-              عرض {filteredProducts.length} منتج
-            </p>
-          </div>
-
-          {/* Products Grid */}
-          <ProductGrid products={filteredProducts} />
+          {/* Sections */}
+          {sectionOrder.map((section) => (
+            <ProductSection
+              key={section}
+              section={section}
+              products={productsBySection[section]}
+            />
+          ))}
         </div>
       </div>
     </Layout>
