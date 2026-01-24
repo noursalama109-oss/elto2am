@@ -30,8 +30,7 @@ export const products: Product[] = [
     id: '3',
     name: 'جنط خلفي تروسيكل cmg 5 خرم',
     price: 295,
-    originalPrice: 350
-    ,
+    originalPrice: 350,
     image: '/b.jpeg',
     category: 'essentials',
     vehicleType: 'tricycle',
@@ -77,8 +76,8 @@ export const products: Product[] = [
   {
     id: '7',
     name: 'مساعد امامي CMG كاملة اصلي',
-    price: 450,
-    originalPrice: 520,
+    price: 2150,
+    originalPrice: 2250,
     image: '/f.jpeg',
     category: 'essentials',
     vehicleType: 'both',
