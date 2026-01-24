@@ -63,7 +63,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
               </span>
             )}
           </div>
-          <<a 
+          <a 
   href={https://wa.me/201014868268?text=أهلاً، أريد طلب ${product.name} بسعر ${product.price} جنيه} 
   target="_blank" 
   className="flex items-center justify-center p-2 rounded-lg gradient-primary shadow-gl"
