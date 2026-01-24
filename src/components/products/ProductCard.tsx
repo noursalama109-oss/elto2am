@@ -64,11 +64,11 @@ const ProductCard = ({ product }: ProductCardProps) => {
             )}
           </div>
           <a 
-  href={https://wa.me/201014868268?text=أهلاً، أريد طلب ${product.name} بسعر ${product.price} جنيه} 
+  href={https://wa.me/2010XXXXXXXX?text=أهلاً، أريد طلب ${product.name} بسعر ${product.price} جنيه} 
   target="_blank" 
-  className="flex items-center justify-center p-2 rounded-lg gradient-primary shadow-gl"
+  className="bg-orange-500 p-2 rounded-lg flex items-center justify-center hover:bg-orange-600 transition-colors"
 >
-  <ShoppingCart className="w-4 h-4 text-white" />
+  <ShoppingCart className="h-5 w-5 text-white" />
 </a>
         </div>
       </div>
