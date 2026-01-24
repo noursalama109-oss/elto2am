@@ -95,6 +95,7 @@ const Header = () => {
             <div className="flex flex-col">
               <span className="font-bold text-lg leading-tight">التوأم</span>
               <span className="text-xs text-muted-sm font-medium">لقطع الغيار</span>
+              <span className="text-xs font-bold text-accent">الموزع المعتمد لدى H & M</span>
             </div>
           </Link>
 
