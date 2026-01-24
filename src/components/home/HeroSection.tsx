@@ -1,19 +1,12 @@
 import { Link } from 'react-router-dom';
-import { ArrowLeft, ClipboardList, Send } from 'lucide-react';
+import { ArrowLeft, ClipboardList, Send, Truck, Wallet, Shield } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import hmLogo from '@/assets/hm-logo.jpg';
 
-// Custom solid motorcycle icon
-const MotorcycleIcon = ({ className }: { className?: string }) => (
+// WhatsApp icon
+const WhatsAppIcon = ({ className }: { className?: string }) => (
   <svg className={className} viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-    <path d="M19.5 12c-1.38 0-2.6.56-3.5 1.47V12h-3l-1.5-3h2V7h-5v2h1.47l.73 1.47L8.27 12H5.5c-.55 0-1 .45-1 1s.45 1 1 1h2.77l1.5-1.5.73 1.47c-.94.76-1.5 1.9-1.5 3.18 0 2.21 1.79 4 4 4s4-1.79 4-4c0-.62-.14-1.21-.39-1.73l1.89-1.89c.3.51.5 1.09.5 1.73 0 1.93-1.57 3.5-3.5 3.5v2c3.04 0 5.5-2.46 5.5-5.5S22.54 12 19.5 12zM13 18.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5zM5.5 6C4.12 6 3 7.12 3 8.5S4.12 11 5.5 11 8 9.88 8 8.5 6.88 6 5.5 6z"/>
-  </svg>
-);
-
-// Custom solid tricycle icon
-const TricycleIcon = ({ className }: { className?: string }) => (
-  <svg className={className} viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-    <path d="M12 4c-.55 0-1 .45-1 1v2H8v2h3v2.5l-4.5 5H5c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3c0-.55-.15-1.06-.41-1.5h4.82c-.26.44-.41.95-.41 1.5 0 1.66 1.34 3 3 3s3-1.34 3-3c0-.55-.15-1.06-.41-1.5h.91c1.66 0 3-1.34 3-3 0-.83-.34-1.58-.88-2.12l-3.12-3.12V9h3V7h-3V5c0-.55-.45-1-1-1h-5zm0 2h3v4.38l2.62 2.62H6.5l4.5-5V9h-2V6h3zM5 18c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm10 0c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm3.5-3c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1z"/>
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
   </svg>
 );
 
@@ -110,21 +103,43 @@ const HeroSection = () => {
             </div>
           </div>
 
-          {/* Vehicle Types */}
-          <div className="flex items-center justify-center gap-8 animate-fade-in">
-            <div className="flex flex-col items-center gap-2 text-muted-foreground">
-              <div className="w-14 h-14 rounded-xl bg-secondary flex items-center justify-center">
-                <MotorcycleIcon className="w-7 h-7 text-primary" />
+          {/* Feature Strip */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6 animate-fade-in">
+            <div className="flex items-center justify-center gap-3 bg-secondary/50 border border-border rounded-xl px-4 py-3">
+              <div className="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center">
+                <Truck className="w-5 h-5 text-primary" />
               </div>
-              <span className="text-sm font-medium">موتوسيكل</span>
+              <span className="text-sm font-medium">شحن سريع لجميع المحافظات</span>
             </div>
-            <div className="w-px h-12 bg-border" />
-            <div className="flex flex-col items-center gap-2 text-muted-foreground">
-              <div className="w-14 h-14 rounded-xl bg-secondary flex items-center justify-center">
-                <TricycleIcon className="w-7 h-7 text-primary" />
+            <div className="flex items-center justify-center gap-3 bg-secondary/50 border border-border rounded-xl px-4 py-3">
+              <div className="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center">
+                <Wallet className="w-5 h-5 text-primary" />
               </div>
-              <span className="text-sm font-medium">تروسيكل</span>
+              <span className="text-sm font-medium">الدفع عند الاستلام</span>
             </div>
+            <div className="flex items-center justify-center gap-3 bg-secondary/50 border border-border rounded-xl px-4 py-3">
+              <div className="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center">
+                <Shield className="w-5 h-5 text-primary" />
+              </div>
+              <span className="text-sm font-medium">ضمان أفضل سعر</span>
+            </div>
+          </div>
+
+          {/* WhatsApp Button */}
+          <div className="flex justify-center animate-fade-in">
+            <Button
+              onClick={() => {
+                const message = `*السلام عليكم* 👋\n\nأريد الاستفسار عن منتجاتكم`;
+                const whatsappUrl = `https://wa.me/201014868268?text=${encodeURIComponent(message)}`;
+                window.open(whatsappUrl, '_blank');
+              }}
+              variant="outline"
+              size="lg"
+              className="gap-2 border-green-500/50 text-green-500 hover:bg-green-500/10 hover:text-green-400"
+            >
+              <WhatsAppIcon className="w-5 h-5" />
+              اطلب عبر واتساب
+            </Button>
           </div>
         </div>
       </div>
