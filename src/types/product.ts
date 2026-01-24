@@ -21,7 +21,7 @@ export interface Product {
   vehicleType: 'motorcycle' | 'tricycle' | 'both';
   brand: Brand;
   section: ProductSection;
-  isBestSeller?: boolean;
+  
   description?: string;
   inStock: boolean;
 }

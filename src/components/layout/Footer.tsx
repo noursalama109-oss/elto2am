@@ -36,11 +36,6 @@ const Footer = () => {
                   جميع المنتجات
                 </Link>
               </li>
-              <li>
-                <Link to="/best-sellers" className="text-muted-foreground hover:text-primary transition-colors">
-                  الأكثر مبيعاً
-                </Link>
-              </li>
             </ul>
           </div>
 

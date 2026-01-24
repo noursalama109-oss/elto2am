@@ -30,11 +30,6 @@ const ProductCard = ({ product }: ProductCardProps) => {
             alt={product.name}
             className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
           />
-          {product.isBestSeller && (
-            <Badge className="absolute top-3 right-3 bg-primary text-primary-foreground">
-              الأكثر مبيعاً
-            </Badge>
-          )}
           {!product.inStock && (
             <div className="absolute inset-0 bg-background/80 flex items-center justify-center">
               <span className="text-muted-foreground font-medium">غير متوفر</span>

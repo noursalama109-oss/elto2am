@@ -81,9 +81,6 @@ const HeroSection = () => {
                   <ArrowLeft className="w-5 h-5" />
                 </Link>
               </Button>
-              <Button asChild variant="outline" size="lg" className="w-full sm:w-auto">
-                <Link to="/best-sellers">الأكثر مبيعاً</Link>
-              </Button>
             </div>
           </ScrollReveal>
 
