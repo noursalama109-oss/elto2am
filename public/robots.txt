@@ -1,3 +1,4 @@
+# التوأم لقطع الغيار - Robots.txt
 User-agent: Googlebot
 Allow: /
 
@@ -12,3 +13,6 @@ Allow: /
 
 User-agent: *
 Allow: /
+
+# Sitemap
+Sitemap: https://elto2am.lovable.app/sitemap.xml
