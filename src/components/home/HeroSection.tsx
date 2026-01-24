@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { ArrowLeft, Bike, Truck, ClipboardList, Send } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import hmLogo from '@/assets/hm-logo.jpg';
 
 const HeroSection = () => {
   return (
@@ -13,6 +14,15 @@ const HeroSection = () => {
 
       <div className="container mx-auto px-4 relative">
         <div className="max-w-3xl mx-auto text-center">
+          {/* H&M Logo */}
+          <div className="mb-6 animate-fade-in">
+            <img 
+              src={hmLogo} 
+              alt="H&M Original Parts" 
+              className="w-32 h-32 md:w-40 md:h-40 mx-auto object-contain"
+            />
+          </div>
+
           {/* Badge */}
           <div className="inline-flex items-center gap-2 bg-primary/10 border border-primary/20 rounded-full px-4 py-2 mb-6 animate-fade-in">
             <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
