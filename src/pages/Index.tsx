@@ -5,7 +5,6 @@ import FeaturedProducts from '@/components/home/FeaturedProducts';
 import CustomerReviews from '@/components/home/CustomerReviews';
 import ComplaintsSection from '@/components/home/ComplaintsSection';
 import PaymentMethods from '@/components/home/PaymentMethods';
-import BulkOrderFloat from '@/components/home/BulkOrderFloat';
 
 const Index = () => {
   return (
@@ -22,7 +21,6 @@ const Index = () => {
       <section id="payment-methods">
         <PaymentMethods />
       </section>
-      <BulkOrderFloat />
     </Layout>
   );
 };
