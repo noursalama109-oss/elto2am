@@ -1,7 +1,7 @@
 import Layout from '@/components/layout/Layout';
 import HeroSection from '@/components/home/HeroSection';
 import DiscountedProducts from '@/components/home/DiscountedProducts';
-import FeaturedProducts from '@/components/home/FeaturedProducts';
+import ProductsPreview from '@/components/home/ProductsPreview';
 import CustomerVideos from '@/components/home/CustomerVideos';
 import CustomerReviews from '@/components/home/CustomerReviews';
 import ComplaintsSection from '@/components/home/ComplaintsSection';
@@ -12,7 +12,7 @@ const Index = () => {
     <Layout>
       <HeroSection />
       <DiscountedProducts />
-      <FeaturedProducts />
+      <ProductsPreview />
       <section id="customer-videos">
         <CustomerVideos />
       </section>
