@@ -1,6 +1,6 @@
 import { useState, useMemo, useRef, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Menu, X, Phone, Search } from 'lucide-react';
+import { Menu, X, Phone, Search, CreditCard, Star, MessageSquareWarning } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { products } from '@/data/products';
@@ -18,6 +18,26 @@ const Header = () => {
     { name: 'الرئيسية', path: '/' },
     { name: 'المنتجات', path: '/products' },
     { name: 'الأكثر مبيعاً', path: '/best-sellers' },
+  ];
+
+  const scrollToSection = (sectionId: string) => {
+    setIsMenuOpen(false);
+    if (location.pathname !== '/') {
+      navigate('/');
+      setTimeout(() => {
+        const element = document.getElementById(sectionId);
+        element?.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+    } else {
+      const element = document.getElementById(sectionId);
+      element?.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const sectionLinks = [
+    { name: 'آراء العملاء', id: 'customer-reviews', icon: Star },
+    { name: 'الشكاوى والمقترحات', id: 'complaints', icon: MessageSquareWarning },
+    { name: 'طرق الدفع', id: 'payment-methods', icon: CreditCard },
   ];
 
   // Filter products based on search query
@@ -217,9 +237,27 @@ const Header = () => {
                 {link.name}
               </Link>
             ))}
+            
+            <div className="border-t border-border mt-2 pt-2">
+              <span className="text-xs text-muted-foreground px-1">أقسام الصفحة الرئيسية</span>
+              {sectionLinks.map((section) => {
+                const Icon = section.icon;
+                return (
+                  <button
+                    key={section.id}
+                    onClick={() => scrollToSection(section.id)}
+                    className="flex items-center gap-2 py-3 w-full text-right font-medium text-foreground hover:text-primary transition-colors"
+                  >
+                    <Icon className="w-4 h-4" />
+                    <span>{section.name}</span>
+                  </button>
+                );
+              })}
+            </div>
+            
             <a
               href="tel:+201014868268"
-              className="flex items-center gap-2 py-3 text-muted-foreground"
+              className="flex items-center gap-2 py-3 text-muted-foreground border-t border-border mt-2 pt-2"
             >
               <Phone className="w-4 h-4" />
               <span>اتصل بنا</span>
