@@ -30,7 +30,7 @@ const HeroSection = () => {
           
           {/* Authorized Distributor Badge */}
           <div className="mb-6 animate-fade-in">
-            <p className="text-lg md:text-xl font-semibold text-primary">
+            <p className="text-lg md:text-xl font-bold text-accent">
               الموزع المعتمد لدى H & M
             </p>
           </div>
