@@ -12,9 +12,15 @@ const Index = () => {
       <HeroSection />
       <DiscountedProducts />
       <FeaturedProducts />
-      <CustomerReviews />
-      <ComplaintsSection />
-      <PaymentMethods />
+      <section id="customer-reviews">
+        <CustomerReviews />
+      </section>
+      <section id="complaints">
+        <ComplaintsSection />
+      </section>
+      <section id="payment-methods">
+        <PaymentMethods />
+      </section>
     </Layout>
   );
 };
