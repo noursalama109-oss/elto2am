@@ -1,5 +1,6 @@
 import { Play, Volume2, VolumeX, Maximize } from 'lucide-react';
 import { useState, useRef } from 'react';
+import ScrollReveal from '@/components/ui/scroll-reveal';
 
 interface VideoItem {
   id: number;
@@ -28,6 +29,7 @@ const videos: VideoItem[] = [
     description: 'القطعة تعمل بشكل مثالي بعد التركيب',
   },
 ];
+
 const VideoCard = ({ video }: { video: VideoItem }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
@@ -137,30 +139,36 @@ const CustomerVideos = () => {
     <section className="py-16 bg-secondary/30">
       <div className="container mx-auto px-4">
         {/* Section Header */}
-        <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 bg-primary/10 border border-primary/20 rounded-full px-4 py-2 mb-4">
-            <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
-            <span className="text-primary text-sm font-medium">دليل اجتماعي</span>
+        <ScrollReveal variant="fadeUp">
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center gap-2 bg-primary/10 border border-primary/20 rounded-full px-4 py-2 mb-4">
+              <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
+              <span className="text-primary text-sm font-medium">دليل اجتماعي</span>
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">تجربة عملائنا</h2>
+            <p className="text-muted-foreground text-lg max-w-xl mx-auto">
+              شاهد القطع وهي مركبة وتعمل بكفاءة عالية - دليل حقيقي على جودة منتجاتنا
+            </p>
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">تجربة عملائنا</h2>
-          <p className="text-muted-foreground text-lg max-w-xl mx-auto">
-            شاهد القطع وهي مركبة وتعمل بكفاءة عالية - دليل حقيقي على جودة منتجاتنا
-          </p>
-        </div>
+        </ScrollReveal>
 
         {/* Videos Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto">
-          {videos.map((video) => (
-            <VideoCard key={video.id} video={video} />
+          {videos.map((video, index) => (
+            <ScrollReveal key={video.id} variant="scale" delay={index * 0.15}>
+              <VideoCard video={video} />
+            </ScrollReveal>
           ))}
         </div>
 
         {/* Trust Badge */}
-        <div className="mt-10 text-center">
-          <p className="text-muted-foreground text-sm">
-            ✨ فيديوهات حقيقية من عملائنا - شاركنا تجربتك عبر الواتساب
-          </p>
-        </div>
+        <ScrollReveal variant="fadeUp" delay={0.5}>
+          <div className="mt-10 text-center">
+            <p className="text-muted-foreground text-sm">
+              ✨ فيديوهات حقيقية من عملائنا - شاركنا تجربتك عبر الواتساب
+            </p>
+          </div>
+        </ScrollReveal>
       </div>
     </section>
   );
