@@ -64,11 +64,11 @@ const ProductCard = ({ product }: ProductCardProps) => {
             )}
           </div>
          < Button
-            size="sm"
-            disabled={!product.inStock}
-            className="gradient-primary shadow-glow hover:opacity-90"
-          >
-            <ShoppingCart className="w-4 h-4" />
+             href={https://wa.me/201014868268?text=أهلاً، أريد طلب ${product.name} بسعر ${product.price} جنيه} 
+  target="_blank" 
+  className="flex items-center justify-center p-2 rounded-lg gradient-primary shadow-gl"
+>
+  <ShoppingCart className="w-4 h-4 text-white" />
           </Button>
         </div>
       </div>
