@@ -17,7 +17,7 @@ export const products: Product[] = [
   {
     id: '2',
     name: 'وش كهرباء هوجان 3',
-    price: 180,
+    price: 359,
     image: '/a.jpeg',
     category: 'essentials',
     vehicleType: 'motorcycle',
@@ -42,7 +42,7 @@ export const products: Product[] = [
   {
     id: '4',
     name: 'فانوس امامي هوجان 3  ',
-    price: 320,
+    price: 240,
     image: '/c.jpeg',
     category: 'essentials',
     vehicleType: 'both',
@@ -65,7 +65,7 @@ export const products: Product[] = [
   {
     id: '6',
     name: 'كلاكس CG صامولة اصلي',
-    price: 220,
+    price: 45,
     image: '/e.jpeg',
     category: 'essentials',
     vehicleType: 'both',
@@ -89,7 +89,7 @@ export const products: Product[] = [
   {
     id: '8',
     name: 'وش زيت هوجان 3 اصلي',
-    price: 280,
+    price: 595,
     image: '/g.jpeg',
     category: 'essentials',
     vehicleType: 'motorcycle',
@@ -100,7 +100,7 @@ export const products: Product[] = [
   {
     id: '9',
     name: 'ألة جر H & M',
-    price: 1200,
+    price: 350,
     image: '/h.jpeg',
     category: 'essentials',
     vehicleType: 'motorcycle',
@@ -112,7 +112,7 @@ export const products: Product[] = [
   {
     id: '10',
     name: 'وش ترس امامي دايون 40',
-    price: 95,
+    price: 105,
     image: '/j.jpeg',
     category: 'essentials',
     vehicleType: 'both',
@@ -123,7 +123,7 @@ export const products: Product[] = [
   {
     id: '11',
     name: 'مساعد خلفي هوجان 3',
-    price: 2150,
+    price: 763,
     image: '/i.jpeg',
     category: 'essentials',
     vehicleType: 'motorcycle',
@@ -134,7 +134,7 @@ export const products: Product[] = [
   {
     id: '12',
     name: 'غطاء وش زيت دايون 40',
-    price: 120,
+    price: 70,
     image: '/k.jpeg',
     category: 'essentials',
     vehicleType: 'motorcycle',
