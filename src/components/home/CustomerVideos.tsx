@@ -1,4 +1,4 @@
-import { Play, Volume2, VolumeX } from 'lucide-react';
+import { Play, Volume2, VolumeX, Maximize } from 'lucide-react';
 import { useState, useRef } from 'react';
 
 interface VideoItem {
@@ -20,6 +20,12 @@ const videos: VideoItem[] = [
     src: '/videos/customer-video-2.mp4',
     title: 'تجربة عميل',
     description: 'شاهد جودة القطع وأدائها الممتاز',
+  },
+  {
+    id: 3,
+    src: '/videos/customer-video-3.mp4',
+    title: 'أداء ممتاز',
+    description: 'القطعة تعمل بشكل مثالي بعد التركيب',
   },
 ];
 const VideoCard = ({ video }: { video: VideoItem }) => {
@@ -43,6 +49,26 @@ const VideoCard = ({ video }: { video: VideoItem }) => {
     if (videoRef.current) {
       videoRef.current.muted = !isMuted;
       setIsMuted(!isMuted);
+    }
+  };
+
+  const handleFullscreen = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (videoRef.current) {
+      if (videoRef.current.requestFullscreen) {
+        videoRef.current.requestFullscreen();
+      } else if ((videoRef.current as any).webkitRequestFullscreen) {
+        (videoRef.current as any).webkitRequestFullscreen();
+      } else if ((videoRef.current as any).webkitEnterFullscreen) {
+        (videoRef.current as any).webkitEnterFullscreen();
+      }
+      // Unmute and play in fullscreen
+      videoRef.current.muted = false;
+      setIsMuted(false);
+      if (!isPlaying) {
+        videoRef.current.play();
+        setIsPlaying(true);
+      }
     }
   };
 
@@ -72,15 +98,24 @@ const VideoCard = ({ video }: { video: VideoItem }) => {
           </div>
         )}
 
-        {/* Mute Button */}
-        {isPlaying && (
+        {/* Controls */}
+        <div className="absolute bottom-3 left-3 flex gap-2">
+          {/* Mute Button */}
           <button
             onClick={toggleMute}
-            className="absolute bottom-3 left-3 w-10 h-10 rounded-full bg-black/60 flex items-center justify-center text-white hover:bg-black/80 transition-colors"
+            className="w-10 h-10 rounded-full bg-black/60 flex items-center justify-center text-white hover:bg-black/80 transition-colors"
           >
             {isMuted ? <VolumeX className="w-5 h-5" /> : <Volume2 className="w-5 h-5" />}
           </button>
-        )}
+          
+          {/* Fullscreen Button */}
+          <button
+            onClick={handleFullscreen}
+            className="w-10 h-10 rounded-full bg-black/60 flex items-center justify-center text-white hover:bg-black/80 transition-colors"
+          >
+            <Maximize className="w-5 h-5" />
+          </button>
+        </div>
 
         {/* Video Badge */}
         <div className="absolute top-3 right-3 bg-primary/90 text-primary-foreground text-xs font-medium px-3 py-1 rounded-full">
@@ -114,7 +149,7 @@ const CustomerVideos = () => {
         </div>
 
         {/* Videos Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto">
           {videos.map((video) => (
             <VideoCard key={video.id} video={video} />
           ))}
