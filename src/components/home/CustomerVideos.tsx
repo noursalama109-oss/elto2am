@@ -21,12 +21,6 @@ const videos: VideoItem[] = [
     title: 'تجربة عميل',
     description: 'شاهد جودة القطع وأدائها الممتاز',
   },
-{
-id: 3,
-    src: '/customer-video-3.mp4.mp4',
-    title: 'تجربة ورشة صيانة',
-    description: 'قطعة غيار أصلية مركبة وتعمل بكفاءة عالية',
-  },
 ];
 const VideoCard = ({ video }: { video: VideoItem }) => {
   const [isPlaying, setIsPlaying] = useState(false);
