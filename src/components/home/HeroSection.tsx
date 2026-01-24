@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ArrowLeft, ClipboardList, Send } from 'lucide-react';
+import { ArrowLeft, Bike, Truck, ClipboardList, Send } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import hmLogo from '@/assets/hm-logo.jpg';
 
