@@ -4,7 +4,7 @@ import Layout from '@/components/layout/Layout';
 import ProductFilters from '@/components/products/ProductFilters';
 import ProductGrid from '@/components/products/ProductGrid';
 import { products } from '@/data/products';
-import { CategoryFilter, VehicleFilter } from '@/types/product';
+import { CategoryFilter, VehicleFilter, BrandFilter } from '@/types/product';
 
 const Products = () => {
   const [searchParams] = useSearchParams();
@@ -13,12 +13,14 @@ const Products = () => {
   
   const [categoryFilter, setCategoryFilter] = useState<CategoryFilter>('all');
   const [vehicleFilter, setVehicleFilter] = useState<VehicleFilter>('all');
+  const [brandFilter, setBrandFilter] = useState<BrandFilter>('all');
 
   // Reset filters when search query changes
   useEffect(() => {
     if (searchQuery) {
       setCategoryFilter('all');
       setVehicleFilter('all');
+      setBrandFilter('all');
     }
   }, [searchQuery]);
 
@@ -34,12 +36,14 @@ const Products = () => {
         vehicleFilter === 'all' ||
         product.vehicleType === vehicleFilter ||
         product.vehicleType === 'both';
+      const matchesBrand =
+        brandFilter === 'all' || product.brand === brandFilter;
       const matchesDiscount = discountOnly
         ? product.originalPrice && product.originalPrice > product.price
         : true;
-      return matchesSearch && matchesCategory && matchesVehicle && matchesDiscount;
+      return matchesSearch && matchesCategory && matchesVehicle && matchesBrand && matchesDiscount;
     });
-  }, [categoryFilter, vehicleFilter, searchQuery, discountOnly]);
+  }, [categoryFilter, vehicleFilter, brandFilter, searchQuery, discountOnly]);
 
   return (
     <Layout>
@@ -67,8 +71,10 @@ const Products = () => {
           <ProductFilters
             categoryFilter={categoryFilter}
             vehicleFilter={vehicleFilter}
+            brandFilter={brandFilter}
             onCategoryChange={setCategoryFilter}
             onVehicleChange={setVehicleFilter}
+            onBrandChange={setBrandFilter}
           />
 
           {/* Results Count */}

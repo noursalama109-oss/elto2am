@@ -1,3 +1,5 @@
+export type Brand = 'dayon' | 'hogan' | 'cmg' | 'halawa' | 'other';
+
 export interface Product {
   id: string;
   name: string;
@@ -6,6 +8,7 @@ export interface Product {
   image: string;
   category: 'accessories' | 'essentials';
   vehicleType: 'motorcycle' | 'tricycle' | 'both';
+  brand: Brand;
   isBestSeller?: boolean;
   description?: string;
   inStock: boolean;
@@ -13,3 +16,4 @@ export interface Product {
 
 export type CategoryFilter = 'all' | 'accessories' | 'essentials';
 export type VehicleFilter = 'all' | 'motorcycle' | 'tricycle';
+export type BrandFilter = 'all' | Brand;
