@@ -53,6 +53,7 @@ const initialReviews: Review[] = [
 const CustomerReviews = () => {
   const [reviews, setReviews] = useState<Review[]>(initialReviews);
   const [name, setName] = useState('');
+  const [location, setLocation] = useState('');
   const [comment, setComment] = useState('');
   const [rating, setRating] = useState(0);
   const [hoverRating, setHoverRating] = useState(0);
@@ -61,10 +62,10 @@ const CustomerReviews = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!name.trim() || !comment.trim() || rating === 0) {
+    if (!name.trim() || !location.trim() || !comment.trim() || rating === 0) {
       toast({
         title: "برجاء ملء جميع الحقول",
-        description: "الاسم والتعليق والتقييم مطلوبين",
+        description: "الاسم والبلد والتعليق والتقييم مطلوبين",
         variant: "destructive"
       });
       return;
@@ -73,7 +74,7 @@ const CustomerReviews = () => {
     const newReview: Review = {
       id: Date.now(),
       name: name.trim(),
-      location: "عميل جديد",
+      location: location.trim(),
       rating,
       comment: comment.trim(),
       vehicleType: ""
@@ -81,9 +82,9 @@ const CustomerReviews = () => {
 
     setReviews([newReview, ...reviews]);
     setName('');
+    setLocation('');
     setComment('');
     setRating(0);
-    
     toast({
       title: "شكراً لك! ✨",
       description: "تم إضافة تقييمك بنجاح"
@@ -136,11 +137,18 @@ const CustomerReviews = () => {
           <CardContent className="p-6">
             <h3 className="text-xl font-bold mb-4 text-center">شاركنا رأيك ✍️</h3>
             <form onSubmit={handleSubmit} className="space-y-4">
-              <div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <Input
                   placeholder="اسمك"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
+                  className="bg-background/50"
+                  maxLength={50}
+                />
+                <Input
+                  placeholder="البلد (مثال: الإسماعيلية)"
+                  value={location}
+                  onChange={(e) => setLocation(e.target.value)}
                   className="bg-background/50"
                   maxLength={50}
                 />
