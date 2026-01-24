@@ -105,23 +105,23 @@ const HeroSection = () => {
 
           {/* Feature Strip */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6 animate-fade-in">
-            <div className="flex items-center justify-center gap-3 bg-secondary/50 border border-border rounded-xl px-4 py-3">
-              <div className="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center">
-                <Truck className="w-5 h-5 text-primary" />
+            <div className="group flex items-center justify-center gap-3 bg-secondary/50 border border-border rounded-xl px-4 py-3 cursor-pointer transition-all duration-300 hover:bg-primary/10 hover:border-primary/50 hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/10">
+              <div className="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center transition-all duration-300 group-hover:bg-primary group-hover:scale-110">
+                <Truck className="w-5 h-5 text-primary transition-colors duration-300 group-hover:text-primary-foreground" />
               </div>
-              <span className="text-sm font-medium">شحن سريع لجميع المحافظات</span>
+              <span className="text-sm font-medium transition-colors duration-300 group-hover:text-primary">شحن سريع لجميع المحافظات</span>
             </div>
-            <div className="flex items-center justify-center gap-3 bg-secondary/50 border border-border rounded-xl px-4 py-3">
-              <div className="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center">
-                <Wallet className="w-5 h-5 text-primary" />
+            <div className="group flex items-center justify-center gap-3 bg-secondary/50 border border-border rounded-xl px-4 py-3 cursor-pointer transition-all duration-300 hover:bg-primary/10 hover:border-primary/50 hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/10">
+              <div className="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center transition-all duration-300 group-hover:bg-primary group-hover:scale-110">
+                <Wallet className="w-5 h-5 text-primary transition-colors duration-300 group-hover:text-primary-foreground" />
               </div>
-              <span className="text-sm font-medium">الدفع عند الاستلام</span>
+              <span className="text-sm font-medium transition-colors duration-300 group-hover:text-primary">الدفع عند الاستلام</span>
             </div>
-            <div className="flex items-center justify-center gap-3 bg-secondary/50 border border-border rounded-xl px-4 py-3">
-              <div className="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center">
-                <Shield className="w-5 h-5 text-primary" />
+            <div className="group flex items-center justify-center gap-3 bg-secondary/50 border border-border rounded-xl px-4 py-3 cursor-pointer transition-all duration-300 hover:bg-primary/10 hover:border-primary/50 hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/10">
+              <div className="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center transition-all duration-300 group-hover:bg-primary group-hover:scale-110">
+                <Shield className="w-5 h-5 text-primary transition-colors duration-300 group-hover:text-primary-foreground" />
               </div>
-              <span className="text-sm font-medium">ضمان أفضل سعر</span>
+              <span className="text-sm font-medium transition-colors duration-300 group-hover:text-primary">ضمان أفضل سعر</span>
             </div>
           </div>
 
