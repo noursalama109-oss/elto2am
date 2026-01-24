@@ -3,9 +3,9 @@ import { Product } from '@/types/product';
 export const products: Product[] = [
   {
     id: '1',
-    name: 'فلتر هواء دايون 40 عالي الأداء',
-    price: 250,
-    originalPrice: 300,
+    name: 'فلتر هواء دايون 40 ',
+    price: 150,
+    originalPrice: 180,
     image: '/filter.jpeg',
     category: 'essentials',
     vehicleType: 'motorcycle',
@@ -29,8 +29,9 @@ export const products: Product[] = [
   {
     id: '3',
     name: 'جنط خلفي تروسيكل cmg 5 خرم',
-    price: 850,
-    originalPrice: 950,
+    price: 295,
+    originalPrice: 350
+    ,
     image: '/b.jpeg',
     category: 'essentials',
     vehicleType: 'tricycle',
