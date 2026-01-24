@@ -1,17 +1,28 @@
 import { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, ShoppingCart, Phone } from 'lucide-react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Menu, X, Phone, Search } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
   const location = useLocation();
+  const navigate = useNavigate();
 
   const navLinks = [
     { name: 'الرئيسية', path: '/' },
     { name: 'المنتجات', path: '/products' },
     { name: 'الأكثر مبيعاً', path: '/best-sellers' },
   ];
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      navigate(`/products?search=${encodeURIComponent(searchQuery.trim())}`);
+      setSearchQuery('');
+    }
+  };
 
   const isActive = (path: string) => location.pathname === path;
 
@@ -48,6 +59,20 @@ const Header = () => {
             ))}
           </nav>
 
+          {/* Search Bar */}
+          <form onSubmit={handleSearch} className="hidden md:flex items-center gap-2 flex-1 max-w-md mx-4">
+            <div className="relative w-full">
+              <Search className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+              <Input
+                type="text"
+                placeholder="ابحث عن قطع الغيار... (مثال: تيل فرامل، بستم)"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="pr-10 text-right"
+              />
+            </div>
+          </form>
+
           {/* Actions */}
           <div className="flex items-center gap-3">
             <a
@@ -57,12 +82,6 @@ const Header = () => {
               <Phone className="w-4 h-4" />
               <span>اتصل بنا</span>
             </a>
-            <Button variant="outline" size="icon" className="relative">
-              <ShoppingCart className="w-5 h-5" />
-              <span className="absolute -top-1 -left-1 w-5 h-5 bg-primary text-primary-foreground text-xs rounded-full flex items-center justify-center">
-                0
-              </span>
-            </Button>
             <Button
               variant="ghost"
               size="icon"
@@ -73,6 +92,20 @@ const Header = () => {
             </Button>
           </div>
         </div>
+
+        {/* Mobile Search */}
+        <form onSubmit={handleSearch} className="md:hidden py-2 border-t border-border">
+          <div className="relative w-full">
+            <Search className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+            <Input
+              type="text"
+              placeholder="ابحث عن قطع الغيار..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="pr-10 text-right"
+            />
+          </div>
+        </form>
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
