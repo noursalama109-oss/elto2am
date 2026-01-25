@@ -66,7 +66,8 @@ const HeroSection = () => {
               <img 
                 src={hmLogo} 
                 alt="H&M Original Parts" 
-                className="w-40 h-auto md:w-56 mx-auto object-contain drop-shadow-2xl"
+                className="w-40 h-auto md:w-56 mx-auto object-contain"
+                style={{ filter: 'drop-shadow(0 0 20px rgba(22, 163, 74, 0.6)) drop-shadow(0 0 40px rgba(22, 163, 74, 0.4)) drop-shadow(0 0 60px rgba(22, 163, 74, 0.2))' }}
                 width={224}
                 height={150}
               />
