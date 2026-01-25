@@ -4,6 +4,8 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
+import { Checkbox } from '@/components/ui/checkbox';
+import { Label } from '@/components/ui/label';
 import ScrollReveal from '@/components/ui/scroll-reveal';
 import { useCustomerReviews } from '@/hooks/useCustomerReviews';
 
@@ -13,16 +15,18 @@ const CustomerReviews = () => {
   const [comment, setComment] = useState('');
   const [rating, setRating] = useState(0);
   const [hoverRating, setHoverRating] = useState(0);
+  const [publishName, setPublishName] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    const success = await submitReview({ name, comment, rating });
+    const success = await submitReview({ name, comment, rating, publishName });
     
     if (success) {
       setName('');
       setComment('');
       setRating(0);
+      setPublishName(false);
     }
   };
 
@@ -102,6 +106,17 @@ const CustomerReviews = () => {
                   <div className="flex gap-1 rtl:flex-row-reverse">
                     {renderInteractiveStars()}
                   </div>
+                </div>
+                <div className="flex items-center gap-2 justify-center">
+                  <Checkbox
+                    id="publishName"
+                    checked={publishName}
+                    onCheckedChange={(checked) => setPublishName(checked === true)}
+                    disabled={isSubmitting}
+                  />
+                  <Label htmlFor="publishName" className="text-sm text-muted-foreground cursor-pointer">
+                    أوافق على نشر اسمي مع التقييم
+                  </Label>
                 </div>
                 <Button 
                   type="submit" 

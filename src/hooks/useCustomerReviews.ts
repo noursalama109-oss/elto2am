@@ -15,6 +15,7 @@ interface SubmitReviewData {
   name: string;
   comment: string;
   rating: number;
+  publishName: boolean;
 }
 
 export const useCustomerReviews = () => {
@@ -66,7 +67,8 @@ export const useCustomerReviews = () => {
           comment: data.comment.trim(),
           rating: data.rating,
           location: 'غير محدد', // Required field but not displayed
-          vehicle_type: ''
+          vehicle_type: '',
+          publish_name: data.publishName
         });
 
       if (error) throw error;
