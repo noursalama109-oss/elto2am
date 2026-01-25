@@ -6,17 +6,18 @@ import ProductGrid from '@/components/products/ProductGrid';
 import { products } from '@/data/products';
 import { ProductSection as ProductSectionType, sectionLabels } from '@/types/product';
 
-// Define section order
+// ترتيب الأقسام الرئيسية
 const sectionOrder: ProductSectionType[] = [
-  'towing',
-  'shocks', 
-  'filters',
+  'engine',
   'electrical',
+  'suspension',
+  'brakes',
+  'drivetrain',
+  'fuel',
+  'body',
   'wheels',
-  'lights',
-  'covers',
-  'horns',
-  'other',
+  'oils',
+  'accessories',
 ];
 
 const Products = () => {
@@ -45,15 +46,16 @@ const Products = () => {
   // Group products by section
   const productsBySection = useMemo(() => {
     const grouped: Record<ProductSectionType, typeof products> = {
-      towing: [],
-      shocks: [],
-      filters: [],
+      engine: [],
       electrical: [],
+      suspension: [],
+      brakes: [],
+      drivetrain: [],
+      fuel: [],
+      body: [],
       wheels: [],
-      lights: [],
-      covers: [],
-      horns: [],
-      other: [],
+      oils: [],
+      accessories: [],
     };
 
     products.forEach((product) => {

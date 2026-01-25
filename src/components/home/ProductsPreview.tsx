@@ -8,7 +8,7 @@ import { ProductSection, sectionLabels } from '@/types/product';
 import ScrollReveal from '@/components/ui/scroll-reveal';
 
 // Show only first 3 sections on homepage
-const previewSections: ProductSection[] = ['towing', 'shocks', 'electrical'];
+const previewSections: ProductSection[] = ['engine', 'electrical', 'suspension'];
 
 const ProductsPreview = () => {
   const productsBySection = useMemo(() => {

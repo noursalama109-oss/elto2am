@@ -1,30 +1,44 @@
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { useParams, Navigate } from 'react-router-dom';
 import Layout from '@/components/layout/Layout';
 import ProductGrid from '@/components/products/ProductGrid';
 import { products } from '@/data/products';
-import { ProductSection, sectionLabels } from '@/types/product';
+import { 
+  ProductSection, 
+  ProductSubSection,
+  sectionLabels, 
+  subSectionLabels,
+  sectionSubSections 
+} from '@/types/product';
+import { Button } from '@/components/ui/button';
 
 const validSections: ProductSection[] = [
-  'towing', 'shocks', 'filters', 'electrical', 
-  'wheels', 'lights', 'covers', 'horns', 'other'
+  'engine', 'electrical', 'suspension', 'brakes', 
+  'drivetrain', 'fuel', 'body', 'wheels', 'oils', 'accessories'
 ];
 
 const SectionProducts = () => {
   const { section } = useParams<{ section: string }>();
+  const [selectedSubSection, setSelectedSubSection] = useState<ProductSubSection | 'all'>('all');
 
   // Validate section
   if (!section || !validSections.includes(section as ProductSection)) {
     return <Navigate to="/products" replace />;
   }
 
-  const sectionProducts = useMemo(() => {
-    return products.filter(
-      (product) => product.section === section && product.price > 0
-    );
-  }, [section]);
+  const currentSection = section as ProductSection;
+  const subSections = sectionSubSections[currentSection];
 
-  const sectionLabel = sectionLabels[section as ProductSection];
+  const sectionProducts = useMemo(() => {
+    return products.filter((product) => {
+      const matchesSection = product.section === currentSection;
+      const matchesSubSection = selectedSubSection === 'all' || product.subSection === selectedSubSection;
+      const hasPrice = product.price > 0;
+      return matchesSection && matchesSubSection && hasPrice;
+    });
+  }, [currentSection, selectedSubSection]);
+
+  const sectionLabel = sectionLabels[currentSection];
 
   return (
     <Layout>
@@ -40,6 +54,34 @@ const SectionProducts = () => {
               {sectionProducts.length} منتج متوفر في هذا القسم
             </p>
           </div>
+
+          {/* Sub-sections Filter */}
+          {subSections.length > 0 && (
+            <div className="mb-8">
+              <h3 className="font-semibold mb-3 text-sm text-muted-foreground">الأقسام الفرعية</h3>
+              <div className="flex flex-wrap gap-2">
+                <Button
+                  variant={selectedSubSection === 'all' ? 'default' : 'outline'}
+                  size="sm"
+                  onClick={() => setSelectedSubSection('all')}
+                  className={selectedSubSection === 'all' ? 'gradient-primary shadow-glow text-white' : ''}
+                >
+                  الكل
+                </Button>
+                {subSections.map((sub) => (
+                  <Button
+                    key={sub}
+                    variant={selectedSubSection === sub ? 'default' : 'outline'}
+                    size="sm"
+                    onClick={() => setSelectedSubSection(sub)}
+                    className={selectedSubSection === sub ? 'gradient-primary shadow-glow text-white' : ''}
+                  >
+                    {subSectionLabels[sub]}
+                  </Button>
+                ))}
+              </div>
+            </div>
+          )}
 
           {/* Products Grid */}
           {sectionProducts.length > 0 ? (
