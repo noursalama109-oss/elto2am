@@ -29,15 +29,19 @@ const SectionProducts = () => {
   const SectionIcon = sectionIcons[currentSection];
   const sectionLabel = sectionLabels[currentSection];
 
-  // Count products per sub-section
-  const subSectionCounts = useMemo(() => {
-    const counts: Record<string, number> = {};
+  // Get products and images per sub-section
+  const subSectionData = useMemo(() => {
+    const data: Record<string, { count: number; images: string[] }> = {};
     subSections.forEach((sub) => {
-      counts[sub] = products.filter(
+      const subProducts = products.filter(
         (p) => p.section === currentSection && p.subSection === sub && p.price > 0
-      ).length;
+      );
+      data[sub] = {
+        count: subProducts.length,
+        images: subProducts.map((p) => p.image).filter((img) => img !== '/placeholder.svg'),
+      };
     });
-    return counts;
+    return data;
   }, [currentSection, subSections]);
 
   // Total products in section
@@ -73,14 +77,20 @@ const SectionProducts = () => {
           </div>
           
           {subSections.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {subSections.map((sub) => (
-                <SubCategoryCard
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {subSections.map((sub, index) => (
+                <div
                   key={sub}
-                  section={currentSection}
-                  subSection={sub}
-                  productCount={subSectionCounts[sub]}
-                />
+                  className="animate-fade-in"
+                  style={{ animationDelay: `${index * 100}ms` }}
+                >
+                  <SubCategoryCard
+                    section={currentSection}
+                    subSection={sub}
+                    productCount={subSectionData[sub].count}
+                    productImages={subSectionData[sub].images}
+                  />
+                </div>
               ))}
             </div>
           ) : (
