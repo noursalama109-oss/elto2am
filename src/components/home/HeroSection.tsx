@@ -66,9 +66,9 @@ const HeroSection = () => {
               <img 
                 src={hmLogo} 
                 alt="H&M Original Parts" 
-                className="w-32 h-32 md:w-44 md:h-44 mx-auto object-contain rounded-2xl shadow-2xl border-2 border-accent/30"
-                width={176}
-                height={176}
+                className="w-40 h-auto md:w-56 mx-auto object-contain drop-shadow-2xl"
+                width={224}
+                height={150}
               />
             </div>
           </ScrollReveal>
