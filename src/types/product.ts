@@ -1,3 +1,17 @@
+import { 
+  Cog, 
+  Zap, 
+  Car, 
+  Disc, 
+  Link2, 
+  Fuel, 
+  Layers, 
+  Circle, 
+  Droplets, 
+  Sparkles,
+  LucideIcon
+} from 'lucide-react';
+
 export type Brand = 'dayon' | 'hogan' | 'cmg' | 'halawa' | 'bajaj' | 'other';
 
 // الأقسام الرئيسية
@@ -86,6 +100,20 @@ export const sectionLabels: Record<ProductSection, string> = {
   wheels: 'الإطارات والجنوط',
   oils: 'الزيوت والشحوم',
   accessories: 'الكماليات والإكسسوارات',
+};
+
+// أيقونات الأقسام الرئيسية
+export const sectionIcons: Record<ProductSection, LucideIcon> = {
+  engine: Cog,
+  electrical: Zap,
+  suspension: Car,
+  brakes: Disc,
+  drivetrain: Link2,
+  fuel: Fuel,
+  body: Layers,
+  wheels: Circle,
+  oils: Droplets,
+  accessories: Sparkles,
 };
 
 // تسميات الأقسام الفرعية

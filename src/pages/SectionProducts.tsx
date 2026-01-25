@@ -6,7 +6,8 @@ import { products } from '@/data/products';
 import { 
   ProductSection, 
   ProductSubSection,
-  sectionLabels, 
+  sectionLabels,
+  sectionIcons,
   subSectionLabels,
   sectionSubSections 
 } from '@/types/product';
@@ -28,6 +29,7 @@ const SectionProducts = () => {
 
   const currentSection = section as ProductSection;
   const subSections = sectionSubSections[currentSection];
+  const SectionIcon = sectionIcons[currentSection];
 
   const sectionProducts = useMemo(() => {
     return products.filter((product) => {
@@ -46,13 +48,17 @@ const SectionProducts = () => {
         <div className="container mx-auto px-4">
           {/* Header */}
           <div className="mb-8">
-            <div className="flex items-center gap-3 mb-2">
-              <div className="w-1.5 h-10 bg-primary rounded-full" />
-              <h1 className="text-3xl md:text-4xl font-bold">{sectionLabel}</h1>
+            <div className="flex items-center gap-4 mb-2">
+              <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center">
+                <SectionIcon className="w-7 h-7 text-primary" />
+              </div>
+              <div>
+                <h1 className="text-3xl md:text-4xl font-bold">{sectionLabel}</h1>
+                <p className="text-muted-foreground">
+                  {sectionProducts.length} منتج متوفر في هذا القسم
+                </p>
+              </div>
             </div>
-            <p className="text-muted-foreground">
-              {sectionProducts.length} منتج متوفر في هذا القسم
-            </p>
           </div>
 
           {/* Sub-sections Filter */}

@@ -4,7 +4,7 @@ import { ArrowLeft, Package } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { products } from '@/data/products';
 import ProductCard from '@/components/products/ProductCard';
-import { ProductSection, sectionLabels } from '@/types/product';
+import { ProductSection, sectionLabels, sectionIcons } from '@/types/product';
 import ScrollReveal from '@/components/ui/scroll-reveal';
 
 // Show only first 3 sections on homepage
@@ -55,12 +55,16 @@ const ProductsPreview = () => {
           const sectionProducts = productsBySection[section];
           if (!sectionProducts || sectionProducts.length === 0) return null;
 
+          const SectionIcon = sectionIcons[section];
+
           return (
             <div key={section} className="mb-10 last:mb-0">
               <ScrollReveal variant="fadeRight" delay={sectionIndex * 0.1}>
                 <div className="flex items-center justify-between mb-6">
                   <div className="flex items-center gap-3">
-                    <div className="w-1.5 h-8 bg-primary rounded-full" />
+                    <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
+                      <SectionIcon className="w-5 h-5 text-primary" />
+                    </div>
                     <h3 className="text-xl md:text-2xl font-bold">{sectionLabels[section]}</h3>
                   </div>
                   <Button asChild variant="outline" size="sm">
