@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Product, ProductSection as ProductSectionType, sectionLabels, sectionIcons, sectionSubSections, subSectionLabels } from '@/types/product';
-import { Card, CardContent } from '@/components/ui/card';
+import { ChevronLeft, Package } from 'lucide-react';
 
 interface ProductSectionProps {
   section: ProductSectionType;
@@ -22,7 +22,7 @@ const ProductSection = ({ section, products }: ProductSectionProps) => {
     return {
       subSection: sub,
       count: subProducts.length,
-      images: subProducts.map((p) => p.image).filter((img) => img !== '/placeholder.svg').slice(0, 2),
+      image: subProducts.find((p) => p.image !== '/placeholder.svg')?.image,
     };
   }).filter((data) => data.count > 0);
 
@@ -38,42 +38,49 @@ const ProductSection = ({ section, products }: ProductSectionProps) => {
         </div>
       </div>
       
-      {/* Sub-sections Grid */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
-        {subSectionData.map(({ subSection: sub, count, images }) => (
+      {/* Sub-sections Grid - Same style as ProductCard */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+        {subSectionData.map(({ subSection: sub, count, image }) => (
           <Link key={sub} to={`/products/${section}/${sub}`}>
-            <Card className="group hover:shadow-lg transition-all duration-300 hover:border-primary/50 cursor-pointer h-full overflow-hidden hover:-translate-y-1">
-              {/* Mini Images Preview */}
-              <div className="relative h-20 bg-gradient-to-br from-muted/30 to-muted/60 overflow-hidden">
-                {images.length > 0 ? (
-                  <div className="absolute inset-0 flex items-center justify-center gap-1 p-2">
-                    {images.map((img, index) => (
-                      <div
-                        key={index}
-                        className="w-12 h-12 rounded-md overflow-hidden shadow transition-transform duration-300 group-hover:scale-110"
-                        style={{ transform: `rotate(${(index - 0.5) * 6}deg)` }}
-                      >
-                        <img src={img} alt="" className="w-full h-full object-cover" />
-                      </div>
-                    ))}
-                  </div>
+            <div className="group bg-card rounded-xl border border-border overflow-hidden shadow-card hover:border-primary/50 transition-all duration-300 hover:-translate-y-1 h-full">
+              {/* Image */}
+              <div className="relative aspect-square bg-muted overflow-hidden">
+                {image ? (
+                  <img
+                    src={image}
+                    alt={subSectionLabels[sub]}
+                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  />
                 ) : (
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <SectionIcon className="w-8 h-8 text-muted-foreground/20" />
+                  <div className="w-full h-full flex items-center justify-center">
+                    <Package className="w-12 h-12 text-muted-foreground/30" />
                   </div>
                 )}
+                
                 {/* Count badge */}
-                <div className="absolute top-1.5 left-1.5 bg-primary/90 text-primary-foreground text-[10px] font-bold px-1.5 py-0.5 rounded-full">
-                  {count}
+                <div className="absolute top-2 left-2 bg-primary text-primary-foreground text-xs font-bold px-2 py-0.5 rounded-full shadow-lg">
+                  {count} منتج
                 </div>
               </div>
               
-              <CardContent className="p-2.5 text-center">
-                <h3 className="font-semibold text-sm group-hover:text-primary transition-colors line-clamp-1">
+              {/* Content */}
+              <div className="p-3">
+                <div className="mb-1">
+                  <span className="text-[10px] text-primary font-medium">
+                    اضغط للتصفح
+                  </span>
+                </div>
+                <h3 className="font-bold text-sm text-foreground mb-2 line-clamp-1 group-hover:text-primary transition-colors">
                   {subSectionLabels[sub]}
                 </h3>
-              </CardContent>
-            </Card>
+                <div className="flex items-center justify-between">
+                  <span className="text-xs text-muted-foreground">{count} قطعة</span>
+                  <div className="w-7 h-7 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary group-hover:scale-110 transition-all duration-300">
+                    <ChevronLeft className="w-4 h-4 text-primary group-hover:text-primary-foreground transition-colors duration-300" />
+                  </div>
+                </div>
+              </div>
+            </div>
           </Link>
         ))}
       </div>
