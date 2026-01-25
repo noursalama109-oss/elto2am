@@ -12,7 +12,7 @@ import {
   LucideIcon
 } from 'lucide-react';
 
-export type Brand = 'dayon' | 'hogan' | 'cmg' | 'halawa' | 'bajaj' | 'other';
+export type Brand = 'dayon' | 'hogan' | 'cmg' | 'halawa';
 
 // الأقسام الرئيسية
 export type ProductSection = 
@@ -137,7 +137,7 @@ export const subSectionLabels: Record<ProductSubSection, string> = {
   master_cylinder: 'خزنة وماستر',
   brake_drums: 'الطنابير',
   // الجر
-  chain_kit: 'طقم الجر',
+  chain_kit: 'الات الجر',
   speedometer: 'العدادات',
   // الوقود
   carburetor: 'الكاربيراتير',
@@ -179,6 +179,4 @@ export const brandLabels: Record<Brand, string> = {
   hogan: 'هوجان',
   cmg: 'CMG',
   halawa: 'حلاوة',
-  bajaj: 'باجاج',
-  other: 'أخرى',
 };
