@@ -66,16 +66,16 @@ const HeroSection = () => {
               <motion.img 
                 src={hmLogo} 
                 alt="H&M Original Parts" 
-                className="w-40 h-auto md:w-56 mx-auto object-contain"
-                style={{ filter: 'drop-shadow(0 0 20px rgba(22, 163, 74, 0.6)) drop-shadow(0 0 40px rgba(22, 163, 74, 0.4)) drop-shadow(0 0 60px rgba(22, 163, 74, 0.2))' }}
+                className="w-40 h-auto md:w-56 mx-auto object-contain brightness-125"
+                style={{ filter: 'brightness(1.3) drop-shadow(0 0 25px rgba(22, 163, 74, 0.8)) drop-shadow(0 0 50px rgba(22, 163, 74, 0.6)) drop-shadow(0 0 80px rgba(22, 163, 74, 0.4))' }}
                 width={224}
                 height={150}
                 animate={{ 
                   scale: [1, 1.03, 1],
                   filter: [
-                    'drop-shadow(0 0 20px rgba(22, 163, 74, 0.6)) drop-shadow(0 0 40px rgba(22, 163, 74, 0.4)) drop-shadow(0 0 60px rgba(22, 163, 74, 0.2))',
-                    'drop-shadow(0 0 30px rgba(22, 163, 74, 0.8)) drop-shadow(0 0 50px rgba(22, 163, 74, 0.5)) drop-shadow(0 0 80px rgba(22, 163, 74, 0.3))',
-                    'drop-shadow(0 0 20px rgba(22, 163, 74, 0.6)) drop-shadow(0 0 40px rgba(22, 163, 74, 0.4)) drop-shadow(0 0 60px rgba(22, 163, 74, 0.2))'
+                    'brightness(1.3) drop-shadow(0 0 25px rgba(22, 163, 74, 0.8)) drop-shadow(0 0 50px rgba(22, 163, 74, 0.6)) drop-shadow(0 0 80px rgba(22, 163, 74, 0.4))',
+                    'brightness(1.5) drop-shadow(0 0 35px rgba(22, 163, 74, 1)) drop-shadow(0 0 70px rgba(22, 163, 74, 0.7)) drop-shadow(0 0 100px rgba(22, 163, 74, 0.5))',
+                    'brightness(1.3) drop-shadow(0 0 25px rgba(22, 163, 74, 0.8)) drop-shadow(0 0 50px rgba(22, 163, 74, 0.6)) drop-shadow(0 0 80px rgba(22, 163, 74, 0.4))'
                   ]
                 }}
                 transition={{ 
