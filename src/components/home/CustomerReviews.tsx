@@ -54,7 +54,6 @@ const initialReviews: Review[] = [
 const CustomerReviews = () => {
   const [reviews, setReviews] = useState<Review[]>(initialReviews);
   const [name, setName] = useState('');
-  const [location, setLocation] = useState('');
   const [comment, setComment] = useState('');
   const [rating, setRating] = useState(0);
   const [hoverRating, setHoverRating] = useState(0);
@@ -63,10 +62,10 @@ const CustomerReviews = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!name.trim() || !location.trim() || !comment.trim() || rating === 0) {
+    if (!name.trim() || !comment.trim() || rating === 0) {
       toast({
         title: "برجاء ملء جميع الحقول",
-        description: "الاسم والبلد والتعليق والتقييم مطلوبين",
+        description: "الاسم والتعليق والتقييم مطلوبين",
         variant: "destructive"
       });
       return;
@@ -75,7 +74,7 @@ const CustomerReviews = () => {
     const newReview: Review = {
       id: Date.now(),
       name: name.trim(),
-      location: location.trim(),
+      location: "",
       rating,
       comment: comment.trim(),
       vehicleType: ""
@@ -83,7 +82,6 @@ const CustomerReviews = () => {
 
     setReviews([newReview, ...reviews]);
     setName('');
-    setLocation('');
     setComment('');
     setRating(0);
     toast({
@@ -141,22 +139,13 @@ const CustomerReviews = () => {
             <CardContent className="p-6">
               <h3 className="text-xl font-bold mb-4 text-center">شاركنا رأيك ✍️</h3>
               <form onSubmit={handleSubmit} className="space-y-4">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <Input
-                    placeholder="اسمك"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    className="bg-background/50"
-                    maxLength={50}
-                  />
-                  <Input
-                    placeholder="البلد (مثال: الإسماعيلية)"
-                    value={location}
-                    onChange={(e) => setLocation(e.target.value)}
-                    className="bg-background/50"
-                    maxLength={50}
-                  />
-                </div>
+                <Input
+                  placeholder="اسمك"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  className="bg-background/50"
+                  maxLength={50}
+                />
                 <div>
                   <Textarea
                     placeholder="اكتب تجربتك معانا..."
@@ -200,7 +189,6 @@ const CustomerReviews = () => {
 
                   <div className="border-t border-border pt-4">
                     <h4 className="font-bold text-foreground">{review.name}</h4>
-                    <p className="text-xs text-muted-foreground">{review.location}</p>
                     {review.vehicleType && (
                       <span className="inline-block mt-2 text-xs bg-primary/10 text-primary px-2 py-1 rounded-full">
                         {review.vehicleType}
