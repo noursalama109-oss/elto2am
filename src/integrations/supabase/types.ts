@@ -21,6 +21,7 @@ export type Database = {
           id: string
           location: string
           name: string
+          publish_name: boolean | null
           rating: number
           vehicle_type: string | null
         }
@@ -30,6 +31,7 @@ export type Database = {
           id?: string
           location: string
           name: string
+          publish_name?: boolean | null
           rating: number
           vehicle_type?: string | null
         }
@@ -39,6 +41,7 @@ export type Database = {
           id?: string
           location?: string
           name?: string
+          publish_name?: boolean | null
           rating?: number
           vehicle_type?: string | null
         }
@@ -59,7 +62,7 @@ export type Database = {
           comment?: string | null
           created_at?: string | null
           id?: string | null
-          name?: string | null
+          name?: never
           rating?: number | null
           vehicle_type?: string | null
         }
@@ -67,7 +70,7 @@ export type Database = {
           comment?: string | null
           created_at?: string | null
           id?: string | null
-          name?: string | null
+          name?: never
           rating?: number | null
           vehicle_type?: string | null
         }
