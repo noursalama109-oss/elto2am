@@ -9,7 +9,7 @@ import PaymentMethods from '@/components/home/PaymentMethods';
 
 const Index = () => {
   return (
-    <Layout>
+    <Layout hideHeaderPadding>
       <HeroSection />
       <DiscountedProducts />
       <ProductsPreview />
