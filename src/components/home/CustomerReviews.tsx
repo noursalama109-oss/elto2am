@@ -1,32 +1,25 @@
 import { useState } from 'react';
 import { Star, Quote, Send, Loader2 } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
-import { Checkbox } from '@/components/ui/checkbox';
-import { Label } from '@/components/ui/label';
 import ScrollReveal from '@/components/ui/scroll-reveal';
 import { useCustomerReviews } from '@/hooks/useCustomerReviews';
 
 const CustomerReviews = () => {
   const { reviews, isLoading, isSubmitting, submitReview } = useCustomerReviews();
-  const [name, setName] = useState('');
   const [comment, setComment] = useState('');
   const [rating, setRating] = useState(0);
   const [hoverRating, setHoverRating] = useState(0);
-  const [publishName, setPublishName] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    const success = await submitReview({ name, comment, rating, publishName });
+    const success = await submitReview({ comment, rating });
     
     if (success) {
-      setName('');
       setComment('');
       setRating(0);
-      setPublishName(false);
     }
   };
 
@@ -83,14 +76,6 @@ const CustomerReviews = () => {
             <CardContent className="p-6">
               <h3 className="text-xl font-bold mb-4 text-center">شاركنا رأيك ✍️</h3>
               <form onSubmit={handleSubmit} className="space-y-4">
-                <Input
-                  placeholder="اسمك"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  className="bg-background/50"
-                  maxLength={50}
-                  disabled={isSubmitting}
-                />
                 <div>
                   <Textarea
                     placeholder="اكتب تجربتك معانا..."
@@ -106,17 +91,6 @@ const CustomerReviews = () => {
                   <div className="flex gap-1 rtl:flex-row-reverse">
                     {renderInteractiveStars()}
                   </div>
-                </div>
-                <div className="flex items-center gap-2 justify-center">
-                  <Checkbox
-                    id="publishName"
-                    checked={publishName}
-                    onCheckedChange={(checked) => setPublishName(checked === true)}
-                    disabled={isSubmitting}
-                  />
-                  <Label htmlFor="publishName" className="text-sm text-muted-foreground cursor-pointer">
-                    أوافق على نشر اسمي مع التقييم
-                  </Label>
                 </div>
                 <Button 
                   type="submit" 
@@ -162,14 +136,13 @@ const CustomerReviews = () => {
                       {renderStars(review.rating)}
                     </div>
 
-                    <div className="border-t border-border pt-4">
-                      <h4 className="font-bold text-foreground">{review.name}</h4>
-                      {review.vehicle_type && (
-                        <span className="inline-block mt-2 text-xs bg-primary/10 text-primary px-2 py-1 rounded-full">
+                    {review.vehicle_type && (
+                      <div className="border-t border-border pt-4">
+                        <span className="inline-block text-xs bg-primary/10 text-primary px-2 py-1 rounded-full">
                           {review.vehicle_type}
                         </span>
-                      )}
-                    </div>
+                      </div>
+                    )}
                   </CardContent>
                 </Card>
               </ScrollReveal>

@@ -54,7 +54,6 @@ export type Database = {
           comment: string | null
           created_at: string | null
           id: string | null
-          name: string | null
           rating: number | null
           vehicle_type: string | null
         }
@@ -62,7 +61,6 @@ export type Database = {
           comment?: string | null
           created_at?: string | null
           id?: string | null
-          name?: never
           rating?: number | null
           vehicle_type?: string | null
         }
@@ -70,7 +68,6 @@ export type Database = {
           comment?: string | null
           created_at?: string | null
           id?: string | null
-          name?: never
           rating?: number | null
           vehicle_type?: string | null
         }
