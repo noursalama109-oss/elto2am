@@ -6,15 +6,16 @@ import PageTransition from './PageTransition';
 
 interface LayoutProps {
   children: ReactNode;
+  hideHeaderPadding?: boolean;
 }
 
-const Layout = ({ children }: LayoutProps) => {
+const Layout = ({ children, hideHeaderPadding = false }: LayoutProps) => {
   const location = useLocation();
   
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
-      <main className="flex-1">
+      <main className={`flex-1 ${hideHeaderPadding ? '' : 'pt-20 md:pt-24'}`}>
         <PageTransition key={location.pathname}>
           {children}
         </PageTransition>

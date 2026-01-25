@@ -9,10 +9,25 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [showSuggestions, setShowSuggestions] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const searchRef = useRef<HTMLDivElement>(null);
   const mobileSearchRef = useRef<HTMLDivElement>(null);
   const location = useLocation();
   const navigate = useNavigate();
+
+  const isHomePage = location.pathname === '/';
+
+  // Handle scroll effect for transparent navbar
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+    
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Check initial scroll position
+    
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const navLinks = [
     { name: 'الرئيسية', path: '/' },
@@ -82,18 +97,23 @@ const Header = () => {
 
   const isActive = (path: string) => location.pathname === path;
 
+  // Dynamic header styles based on scroll and page
+  const headerBgClass = isHomePage && !isScrolled && !isMenuOpen
+    ? 'bg-transparent'
+    : 'bg-background/95 backdrop-blur-md border-b border-border';
+
   return (
-    <header className="sticky top-0 z-50 bg-background/95 backdrop-blur-md border-b border-border">
+    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${headerBgClass}`}>
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2">
-            <div className="w-14 h-14 rounded-lg bg-white border border-gray-200 flex items-center justify-center">
+            <div className="w-14 h-14 rounded-lg bg-white border border-gray-200 flex items-center justify-center shadow-sm">
               <span className="text-green-600 font-bold text-xl">H & M</span>
             </div>
             <div className="flex flex-col">
-              <span className="font-bold text-lg leading-tight">التوأم</span>
-              <span className="text-xs text-muted-sm font-medium">لقطع الغيار</span>
+              <span className="font-bold text-lg leading-tight text-foreground">التوأم</span>
+              <span className="text-xs text-muted-foreground font-medium">لقطع الغيار</span>
               <span className="text-xs font-bold text-accent">الموزع المعتمد لدى H & M</span>
             </div>
           </Link>
@@ -104,13 +124,13 @@ const Header = () => {
               <Link
                 key={link.path}
                 to={link.path}
-                className={`relative font-medium transition-colors hover:text-primary ${
-                  isActive(link.path) ? 'text-primary' : 'text-foreground'
+                className={`relative font-medium transition-colors hover:text-accent ${
+                  isActive(link.path) ? 'text-accent' : 'text-foreground'
                 }`}
               >
                 {link.name}
                 {isActive(link.path) && (
-                  <span className="absolute -bottom-1 right-0 left-0 h-0.5 bg-primary rounded-full" />
+                  <span className="absolute -bottom-1 right-0 left-0 h-0.5 bg-accent rounded-full" />
                 )}
               </Link>
             ))}
@@ -130,7 +150,7 @@ const Header = () => {
                     setShowSuggestions(true);
                   }}
                   onFocus={() => setShowSuggestions(true)}
-                  className="pr-10 text-right"
+                  className="pr-10 text-right bg-background/80 backdrop-blur-sm"
                 />
               </div>
             </form>
@@ -142,7 +162,7 @@ const Header = () => {
                   <button
                     key={product.id}
                     onClick={() => handleSuggestionClick(product.name)}
-                    className="w-full px-4 py-3 text-right hover:bg-accent transition-colors flex items-center gap-3 border-b border-border last:border-b-0"
+                    className="w-full px-4 py-3 text-right hover:bg-accent/10 transition-colors flex items-center gap-3 border-b border-border last:border-b-0"
                   >
                     <img 
                       src={product.image} 
@@ -163,7 +183,7 @@ const Header = () => {
           <div className="flex items-center gap-3">
             <a
               href="tel:+201014868268"
-              className="hidden sm:flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
+              className="hidden sm:flex items-center gap-2 text-sm text-muted-foreground hover:text-accent transition-colors"
             >
               <Phone className="w-4 h-4" />
               <span>اتصل بنا</span>
@@ -181,7 +201,7 @@ const Header = () => {
         </div>
 
         {/* Mobile Search with Suggestions */}
-        <div ref={mobileSearchRef} className="md:hidden py-2 border-t border-border relative">
+        <div ref={mobileSearchRef} className={`md:hidden py-2 relative ${isHomePage && !isScrolled && !isMenuOpen ? 'border-t border-white/10' : 'border-t border-border'}`}>
           <form onSubmit={handleSearch}>
             <div className="relative w-full">
               <Search className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
@@ -194,7 +214,7 @@ const Header = () => {
                   setShowSuggestions(true);
                 }}
                 onFocus={() => setShowSuggestions(true)}
-                className="pr-10 text-right"
+                className="pr-10 text-right bg-background/80 backdrop-blur-sm"
               />
             </div>
           </form>
@@ -206,7 +226,7 @@ const Header = () => {
                 <button
                   key={product.id}
                   onClick={() => handleSuggestionClick(product.name)}
-                  className="w-full px-4 py-3 text-right hover:bg-accent transition-colors flex items-center gap-3 border-b border-border last:border-b-0"
+                  className="w-full px-4 py-3 text-right hover:bg-accent/10 transition-colors flex items-center gap-3 border-b border-border last:border-b-0"
                 >
                   <img 
                     src={product.image} 
@@ -225,14 +245,14 @@ const Header = () => {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <nav className="md:hidden py-4 border-t border-border animate-slide-up">
+          <nav className="md:hidden py-4 border-t border-border animate-slide-up bg-background/95 backdrop-blur-md">
             {navLinks.map((link) => (
               <Link
                 key={link.path}
                 to={link.path}
                 onClick={() => setIsMenuOpen(false)}
                 className={`block py-3 font-medium transition-colors ${
-                  isActive(link.path) ? 'text-primary' : 'text-foreground'
+                  isActive(link.path) ? 'text-accent' : 'text-foreground'
                 }`}
               >
                 {link.name}
@@ -247,7 +267,7 @@ const Header = () => {
                   <button
                     key={section.id}
                     onClick={() => scrollToSection(section.id)}
-                    className="flex items-center gap-2 py-3 w-full text-right font-medium text-foreground hover:text-primary transition-colors"
+                    className="flex items-center gap-2 py-3 w-full text-right font-medium text-foreground hover:text-accent transition-colors"
                   >
                     <Icon className="w-4 h-4" />
                     <span>{section.name}</span>
