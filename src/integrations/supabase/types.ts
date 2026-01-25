@@ -46,7 +46,33 @@ export type Database = {
       }
     }
     Views: {
-      [_ in never]: never
+      customer_reviews_public: {
+        Row: {
+          comment: string | null
+          created_at: string | null
+          id: string | null
+          name: string | null
+          rating: number | null
+          vehicle_type: string | null
+        }
+        Insert: {
+          comment?: string | null
+          created_at?: string | null
+          id?: string | null
+          name?: string | null
+          rating?: number | null
+          vehicle_type?: string | null
+        }
+        Update: {
+          comment?: string | null
+          created_at?: string | null
+          id?: string | null
+          name?: string | null
+          rating?: number | null
+          vehicle_type?: string | null
+        }
+        Relationships: []
+      }
     }
     Functions: {
       [_ in never]: never
