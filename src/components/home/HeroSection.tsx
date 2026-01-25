@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { ArrowLeft, Truck, Shield, CreditCard, Award } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import hmLogo from '@/assets/hm-logo.jpg';
+import hmLogo from '@/assets/hm-logo.png';
 import heroImage from '@/assets/hero-motorcycle-engine.jpg';
 import PaymentMethodDialog from '@/components/checkout/PaymentMethodDialog';
 import ScrollReveal from '@/components/ui/scroll-reveal';
