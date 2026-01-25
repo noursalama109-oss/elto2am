@@ -97,7 +97,7 @@ const HeroSection = () => {
                   <ClipboardList className="w-8 h-8 text-primary" />
                 </div>
                 <div className="flex-1 text-center md:text-right">
-                  <h3 className="text-xl font-bold mb-1">عندك كشف طلبية كبيرة؟</h3>
+                  <p className="text-xl font-bold mb-1">عندك كشف طلبية كبيرة؟</p>
                   <p className="text-muted-foreground">
                     ابعت لنا الكشف أو صور لنا قائمة الطلبات هنجهز الكشف وهيوصلك لحد عندك
                   </p>
