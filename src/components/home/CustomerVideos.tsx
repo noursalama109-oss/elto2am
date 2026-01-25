@@ -106,6 +106,7 @@ const VideoCard = ({ video }: { video: VideoItem }) => {
           <button
             onClick={toggleMute}
             className="w-10 h-10 rounded-full bg-black/60 flex items-center justify-center text-white hover:bg-black/80 transition-colors"
+            aria-label={isMuted ? "تشغيل الصوت" : "كتم الصوت"}
           >
             {isMuted ? <VolumeX className="w-5 h-5" /> : <Volume2 className="w-5 h-5" />}
           </button>
@@ -114,6 +115,7 @@ const VideoCard = ({ video }: { video: VideoItem }) => {
           <button
             onClick={handleFullscreen}
             className="w-10 h-10 rounded-full bg-black/60 flex items-center justify-center text-white hover:bg-black/80 transition-colors"
+            aria-label="ملء الشاشة"
           >
             <Maximize className="w-5 h-5" />
           </button>
