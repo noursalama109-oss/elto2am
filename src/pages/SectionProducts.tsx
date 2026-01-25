@@ -1,17 +1,15 @@
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import { useParams, Navigate } from 'react-router-dom';
 import Layout from '@/components/layout/Layout';
-import ProductGrid from '@/components/products/ProductGrid';
+import ProductBreadcrumbs from '@/components/products/ProductBreadcrumbs';
+import SubCategoryCard from '@/components/products/SubCategoryCard';
 import { products } from '@/data/products';
 import { 
   ProductSection, 
-  ProductSubSection,
   sectionLabels,
   sectionIcons,
-  subSectionLabels,
   sectionSubSections 
 } from '@/types/product';
-import { Button } from '@/components/ui/button';
 
 const validSections: ProductSection[] = [
   'engine', 'electrical', 'suspension', 'brakes', 
@@ -20,7 +18,6 @@ const validSections: ProductSection[] = [
 
 const SectionProducts = () => {
   const { section } = useParams<{ section: string }>();
-  const [selectedSubSection, setSelectedSubSection] = useState<ProductSubSection | 'all'>('all');
 
   // Validate section
   if (!section || !validSections.includes(section as ProductSection)) {
@@ -30,22 +27,31 @@ const SectionProducts = () => {
   const currentSection = section as ProductSection;
   const subSections = sectionSubSections[currentSection];
   const SectionIcon = sectionIcons[currentSection];
-
-  const sectionProducts = useMemo(() => {
-    return products.filter((product) => {
-      const matchesSection = product.section === currentSection;
-      const matchesSubSection = selectedSubSection === 'all' || product.subSection === selectedSubSection;
-      const hasPrice = product.price > 0;
-      return matchesSection && matchesSubSection && hasPrice;
-    });
-  }, [currentSection, selectedSubSection]);
-
   const sectionLabel = sectionLabels[currentSection];
+
+  // Count products per sub-section
+  const subSectionCounts = useMemo(() => {
+    const counts: Record<string, number> = {};
+    subSections.forEach((sub) => {
+      counts[sub] = products.filter(
+        (p) => p.section === currentSection && p.subSection === sub && p.price > 0
+      ).length;
+    });
+    return counts;
+  }, [currentSection, subSections]);
+
+  // Total products in section
+  const totalProducts = useMemo(() => {
+    return products.filter((p) => p.section === currentSection && p.price > 0).length;
+  }, [currentSection]);
 
   return (
     <Layout>
       <div className="py-8 md:py-12">
         <div className="container mx-auto px-4">
+          {/* Breadcrumbs */}
+          <ProductBreadcrumbs section={currentSection} />
+
           {/* Header */}
           <div className="mb-8">
             <div className="flex items-center gap-4 mb-2">
@@ -55,47 +61,32 @@ const SectionProducts = () => {
               <div>
                 <h1 className="text-3xl md:text-4xl font-bold">{sectionLabel}</h1>
                 <p className="text-muted-foreground">
-                  {sectionProducts.length} منتج متوفر في هذا القسم
+                  {totalProducts} منتج متوفر • {subSections.length} قسم فرعي
                 </p>
               </div>
             </div>
           </div>
 
-          {/* Sub-sections Filter */}
-          {subSections.length > 0 && (
-            <div className="mb-8">
-              <h3 className="font-semibold mb-3 text-sm text-muted-foreground">الأقسام الفرعية</h3>
-              <div className="flex flex-wrap gap-2">
-                <Button
-                  variant={selectedSubSection === 'all' ? 'default' : 'outline'}
-                  size="sm"
-                  onClick={() => setSelectedSubSection('all')}
-                  className={selectedSubSection === 'all' ? 'gradient-primary shadow-glow text-white' : ''}
-                >
-                  الكل
-                </Button>
-                {subSections.map((sub) => (
-                  <Button
-                    key={sub}
-                    variant={selectedSubSection === sub ? 'default' : 'outline'}
-                    size="sm"
-                    onClick={() => setSelectedSubSection(sub)}
-                    className={selectedSubSection === sub ? 'gradient-primary shadow-glow text-white' : ''}
-                  >
-                    {subSectionLabels[sub]}
-                  </Button>
-                ))}
-              </div>
+          {/* Sub-sections Cards */}
+          <div className="mb-6">
+            <h3 className="font-semibold mb-4 text-lg">اختر القسم الفرعي</h3>
+          </div>
+          
+          {subSections.length > 0 ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              {subSections.map((sub) => (
+                <SubCategoryCard
+                  key={sub}
+                  section={currentSection}
+                  subSection={sub}
+                  productCount={subSectionCounts[sub]}
+                />
+              ))}
             </div>
-          )}
-
-          {/* Products Grid */}
-          {sectionProducts.length > 0 ? (
-            <ProductGrid products={sectionProducts} />
           ) : (
             <div className="text-center py-16">
               <p className="text-muted-foreground text-lg">
-                لا توجد منتجات في هذا القسم حالياً
+                لا توجد أقسام فرعية متاحة
               </p>
             </div>
           )}

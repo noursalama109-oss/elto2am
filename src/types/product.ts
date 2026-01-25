@@ -12,7 +12,7 @@ import {
   LucideIcon
 } from 'lucide-react';
 
-export type Brand = 'dayon' | 'hogan' | 'cmg' | 'halawa';
+export type Brand = 'dayon' | 'hogan' | 'cmg' | 'halawa' | 'bajaj' | 'other';
 
 // الأقسام الرئيسية
 export type ProductSection = 
@@ -179,4 +179,6 @@ export const brandLabels: Record<Brand, string> = {
   hogan: 'هوجان',
   cmg: 'CMG',
   halawa: 'حلاوة',
+  bajaj: 'باجاج',
+  other: 'أخرى',
 };

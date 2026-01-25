@@ -3,6 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 import Layout from '@/components/layout/Layout';
 import ProductSection from '@/components/products/ProductSection';
 import ProductGrid from '@/components/products/ProductGrid';
+import ProductBreadcrumbs from '@/components/products/ProductBreadcrumbs';
 import { products } from '@/data/products';
 import { ProductSection as ProductSectionType, sectionLabels } from '@/types/product';
 
@@ -97,6 +98,9 @@ const Products = () => {
     <Layout>
       <div className="py-8 md:py-12">
         <div className="container mx-auto px-4">
+          {/* Breadcrumbs */}
+          <ProductBreadcrumbs />
+
           {/* Header */}
           <div className="mb-10">
             <h1 className="text-3xl md:text-4xl font-bold mb-2">جميع المنتجات</h1>
