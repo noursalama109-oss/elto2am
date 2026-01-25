@@ -5,8 +5,10 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-// Lazy load pages for code splitting
-const Index = lazy(() => import("./pages/Index"));
+// Import Index directly for faster LCP (main entry point)
+import Index from "./pages/Index";
+
+// Lazy load secondary pages for code splitting
 const Products = lazy(() => import("./pages/Products"));
 const SectionProducts = lazy(() => import("./pages/SectionProducts"));
 const SubSectionProducts = lazy(() => import("./pages/SubSectionProducts"));
