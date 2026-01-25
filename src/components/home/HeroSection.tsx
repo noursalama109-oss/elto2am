@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, Truck, Shield, CreditCard, Award } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import hmLogo from '@/assets/hm-logo.jpg';
 import heroImage from '@/assets/hero-motorcycle-engine.jpg';
 import PaymentMethodDialog from '@/components/checkout/PaymentMethodDialog';
@@ -17,6 +18,15 @@ const WhatsAppIcon = ({ className }: { className?: string }) => (
 const HeroSection = () => {
   const [showPaymentDialog, setShowPaymentDialog] = useState(false);
   const [currentWhatsappMessage, setCurrentWhatsappMessage] = useState('');
+  const heroRef = useRef<HTMLElement>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"]
+  });
+
+  const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
+  const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0.3]);
 
   const features = [
     { icon: Truck, text: 'شحن سريع لجميع المحافظات' },
@@ -28,21 +38,25 @@ const HeroSection = () => {
   return (
     <>
       {/* Hero Section - Full Screen */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        {/* Background Image with Overlay */}
-        <div className="absolute inset-0">
-          <img 
+      <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-hidden">
+        {/* Background Image with Parallax Effect */}
+        <motion.div 
+          className="absolute inset-0"
+          style={{ y: backgroundY }}
+        >
+          <motion.img 
             src={heroImage}
             alt="Motorcycle Engine"
-            className="w-full h-full object-cover"
+            className="w-full h-[120%] object-cover"
             loading="eager"
             fetchPriority="high"
+            style={{ opacity }}
           />
           {/* Dark Gradient Overlay */}
           <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/80" />
           {/* Orange Accent Glow */}
           <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-accent/10 to-transparent" />
-        </div>
+        </motion.div>
 
         {/* Hero Content */}
         <div className="relative z-10 container mx-auto px-4 text-center pt-20">
