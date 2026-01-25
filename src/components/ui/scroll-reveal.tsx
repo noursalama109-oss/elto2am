@@ -1,5 +1,5 @@
 import { motion, useInView, type Variants } from 'framer-motion';
-import { ReactNode, useRef } from 'react';
+import { ReactNode, useRef, forwardRef } from 'react';
 
 interface ScrollRevealProps {
   children: ReactNode;
@@ -37,33 +37,42 @@ const variants: Record<string, Variants> = {
   },
 };
 
-const ScrollReveal = ({
-  children,
-  className = '',
-  variant = 'fadeUp',
-  delay = 0,
-  duration = 0.6,
-  once = true,
-}: ScrollRevealProps) => {
-  const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once, margin: '-50px' });
+const ScrollReveal = forwardRef<HTMLDivElement, ScrollRevealProps>(
+  (
+    {
+      children,
+      className = '',
+      variant = 'fadeUp',
+      delay = 0,
+      duration = 0.6,
+      once = true,
+    },
+    forwardedRef
+  ) => {
+    const internalRef = useRef<HTMLDivElement>(null);
+    const ref = (forwardedRef as React.RefObject<HTMLDivElement>) || internalRef;
+    const isInView = useInView(ref, { once, margin: '-50px' });
 
-  return (
-    <motion.div
-      ref={ref}
-      initial="hidden"
-      animate={isInView ? 'visible' : 'hidden'}
-      variants={variants[variant]}
-      transition={{
-        duration,
-        delay,
-        ease: [0.25, 0.1, 0.25, 1],
-      }}
-      className={className}
-    >
-      {children}
-    </motion.div>
-  );
-};
+    return (
+      <motion.div
+        ref={ref}
+        initial="hidden"
+        animate={isInView ? 'visible' : 'hidden'}
+        variants={variants[variant]}
+        transition={{
+          duration,
+          delay,
+          ease: [0.25, 0.1, 0.25, 1],
+        }}
+        className={className}
+        style={{ willChange: 'opacity, transform' }}
+      >
+        {children}
+      </motion.div>
+    );
+  }
+);
+
+ScrollReveal.displayName = 'ScrollReveal';
 
 export default ScrollReveal;
