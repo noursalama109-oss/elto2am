@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/button';
-import { CategoryFilter, VehicleFilter, BrandFilter } from '@/types/product';
+import { CategoryFilter, VehicleFilter, BrandFilter, brandLabels } from '@/types/product';
 
 interface ProductFiltersProps {
   categoryFilter: CategoryFilter;
@@ -32,11 +32,12 @@ const ProductFilters = ({
 
   const brands: { value: BrandFilter; label: string }[] = [
     { value: 'all', label: 'الكل' },
-    { value: 'dayon', label: 'دايون' },
-    { value: 'hogan', label: 'هوجان' },
-    { value: 'cmg', label: 'CMG' },
-    { value: 'halawa', label: 'حلاوة' },
-    { value: 'other', label: 'أخرى' },
+    { value: 'dayon', label: brandLabels.dayon },
+    { value: 'hogan', label: brandLabels.hogan },
+    { value: 'cmg', label: brandLabels.cmg },
+    { value: 'halawa', label: brandLabels.halawa },
+    { value: 'bajaj', label: brandLabels.bajaj },
+    { value: 'other', label: brandLabels.other },
   ];
 
   return (
