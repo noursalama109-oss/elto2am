@@ -10,7 +10,7 @@ const Footer = () => {
           <div>
             <div className="flex items-center gap-2 mb-4">
               <div className="w-10 h-10 rounded-lg bg-white border border-gray-200 flex items-center justify-center">
-                <span className="text-green-600 font-bold text-sm">H & M</span>
+                <span className="text-green-700 font-bold text-sm">H & M</span>
               </div>
               <div className="flex flex-col">
                 <span className="font-bold text-lg leading-tight">التوأم</span>
@@ -56,7 +56,7 @@ const Footer = () => {
                     href="https://maps.app.goo.gl/vBDypH4iC4aYmBd59" 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="text-primary hover:underline text-xs flex items-center gap-1 mt-1"
+                    className="text-accent hover:underline text-xs flex items-center gap-1 mt-1"
                   >
                     <MapPin className="w-3 h-3" />
                     عرض على خريطة جوجل
