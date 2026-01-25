@@ -4,22 +4,63 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
-import ScrollReveal from '@/components/ui/scroll-reveal';
-import { useCustomerReviews } from '@/hooks/useCustomerReviews';
-import { Skeleton } from '@/components/ui/skeleton';
 import { useToast } from '@/hooks/use-toast';
+import ScrollReveal from '@/components/ui/scroll-reveal';
+
+interface Review {
+  id: number;
+  name: string;
+  location: string;
+  rating: number;
+  comment: string;
+  vehicleType: string;
+}
+
+const initialReviews: Review[] = [
+  {
+    id: 1,
+    name: "أحمد محمود",
+    location: "الإسماعيلية",
+    rating: 5,
+    comment: "قطع غيار أصلية وأسعار ممتازة. تعاملت معاهم أكتر من مرة وكل مرة بيكونوا على قد المسؤولية.",
+    vehicleType: "تروسيكل دايون"
+  },
+  {
+    id: 2,
+    name: "محمد علي",
+    location: "أبو صوير",
+    rating: 5,
+    comment: "خدمة سريعة وقطع غيار بجودة عالية. الأسعار منافسة جداً مقارنة بالسوق.",
+    vehicleType: "موتوسيكل هوجان"
+  },
+  {
+    id: 3,
+    name: "عبدالله حسن",
+    location: "التل الكبير",
+    rating: 4,
+    comment: "محل محترم وناس بتفهم في شغلها. بينصحوك بالقطعة المناسبة لموتورك.",
+    vehicleType: "تروسيكل CMG"
+  },
+  {
+    id: 4,
+    name: "سامي إبراهيم",
+    location: "الإسماعيلية",
+    rating: 5,
+    comment: "أفضل محل قطع غيار في المنطقة. الشحن سريع والتغليف ممتاز.",
+    vehicleType: "موتوسيكل حلاوة"
+  }
+];
 
 const CustomerReviews = () => {
-  const { reviews, isLoading, addReview } = useCustomerReviews();
+  const [reviews, setReviews] = useState<Review[]>(initialReviews);
   const [name, setName] = useState('');
   const [location, setLocation] = useState('');
   const [comment, setComment] = useState('');
   const [rating, setRating] = useState(0);
   const [hoverRating, setHoverRating] = useState(0);
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
     if (!name.trim() || !location.trim() || !comment.trim() || rating === 0) {
@@ -31,16 +72,24 @@ const CustomerReviews = () => {
       return;
     }
 
-    setIsSubmitting(true);
-    const success = await addReview({ name, location, rating, comment });
-    
-    if (success) {
-      setName('');
-      setLocation('');
-      setComment('');
-      setRating(0);
-    }
-    setIsSubmitting(false);
+    const newReview: Review = {
+      id: Date.now(),
+      name: name.trim(),
+      location: location.trim(),
+      rating,
+      comment: comment.trim(),
+      vehicleType: ""
+    };
+
+    setReviews([newReview, ...reviews]);
+    setName('');
+    setLocation('');
+    setComment('');
+    setRating(0);
+    toast({
+      title: "شكراً لك! ✨",
+      description: "تم إضافة تقييمك بنجاح"
+    });
   };
 
   const renderStars = (rating: number) => {
@@ -72,10 +121,6 @@ const CustomerReviews = () => {
     ));
   };
 
-  const averageRating = reviews.length > 0 
-    ? (reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length).toFixed(1)
-    : '0';
-
   return (
     <section className="py-16 bg-gradient-to-b from-background to-card">
       <div className="container mx-auto px-4">
@@ -103,7 +148,6 @@ const CustomerReviews = () => {
                     onChange={(e) => setName(e.target.value)}
                     className="bg-background/50"
                     maxLength={50}
-                    disabled={isSubmitting}
                   />
                   <Input
                     placeholder="البلد (مثال: الإسماعيلية)"
@@ -111,7 +155,6 @@ const CustomerReviews = () => {
                     onChange={(e) => setLocation(e.target.value)}
                     className="bg-background/50"
                     maxLength={50}
-                    disabled={isSubmitting}
                   />
                 </div>
                 <div>
@@ -121,7 +164,6 @@ const CustomerReviews = () => {
                     onChange={(e) => setComment(e.target.value)}
                     className="bg-background/50 min-h-[100px]"
                     maxLength={300}
-                    disabled={isSubmitting}
                   />
                 </div>
                 <div className="flex flex-col items-center gap-2">
@@ -130,60 +172,46 @@ const CustomerReviews = () => {
                     {renderInteractiveStars()}
                   </div>
                 </div>
-                <Button type="submit" className="w-full gap-2" disabled={isSubmitting}>
+                <Button type="submit" className="w-full gap-2">
                   <Send className="w-4 h-4" />
-                  {isSubmitting ? 'جاري الإرسال...' : 'إرسال التقييم'}
+                  إرسال التقييم
                 </Button>
               </form>
             </CardContent>
           </Card>
         </ScrollReveal>
 
-        {isLoading ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[...Array(4)].map((_, i) => (
-              <Card key={i} className="bg-card/50">
-                <CardContent className="p-6 space-y-4">
-                  <Skeleton className="h-8 w-8" />
-                  <Skeleton className="h-20 w-full" />
-                  <Skeleton className="h-4 w-24" />
-                  <Skeleton className="h-6 w-32" />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {reviews.map((review, index) => (
+            <ScrollReveal key={review.id} variant="fadeUp" delay={index * 0.1}>
+              <Card
+                className="bg-card/50 backdrop-blur-sm border-border hover:border-primary/50 transition-all duration-300 hover:shadow-glow h-full"
+              >
+                <CardContent className="p-6">
+                  <Quote className="w-8 h-8 text-primary/30 mb-4" />
+                  
+                  <p className="text-foreground/90 text-sm leading-relaxed mb-4">
+                    "{review.comment}"
+                  </p>
+
+                  <div className="flex items-center gap-1 mb-3">
+                    {renderStars(review.rating)}
+                  </div>
+
+                  <div className="border-t border-border pt-4">
+                    <h4 className="font-bold text-foreground">{review.name}</h4>
+                    <p className="text-xs text-muted-foreground">{review.location}</p>
+                    {review.vehicleType && (
+                      <span className="inline-block mt-2 text-xs bg-primary/10 text-primary px-2 py-1 rounded-full">
+                        {review.vehicleType}
+                      </span>
+                    )}
+                  </div>
                 </CardContent>
               </Card>
-            ))}
-          </div>
-        ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {reviews.map((review, index) => (
-              <ScrollReveal key={review.id} variant="fadeUp" delay={index * 0.1}>
-                <Card
-                  className="bg-card/50 backdrop-blur-sm border-border hover:border-primary/50 transition-all duration-300 hover:shadow-glow h-full"
-                >
-                  <CardContent className="p-6">
-                    <Quote className="w-8 h-8 text-primary/30 mb-4" />
-                    
-                    <p className="text-foreground/90 text-sm leading-relaxed mb-4">
-                      "{review.comment}"
-                    </p>
-
-                    <div className="flex items-center gap-1 mb-3">
-                      {renderStars(review.rating)}
-                    </div>
-
-                    <div className="border-t border-border pt-4">
-                      <h4 className="font-bold text-foreground">{review.name}</h4>
-                      {review.vehicle_type && (
-                        <span className="inline-block mt-2 text-xs bg-primary/10 text-primary px-2 py-1 rounded-full">
-                          {review.vehicle_type}
-                        </span>
-                      )}
-                    </div>
-                  </CardContent>
-                </Card>
-              </ScrollReveal>
-            ))}
-          </div>
-        )}
+            </ScrollReveal>
+          ))}
+        </div>
 
         <ScrollReveal variant="fadeUp" delay={0.5}>
           <div className="mt-12 text-center">
@@ -192,7 +220,7 @@ const CustomerReviews = () => {
                 {renderStars(5)}
               </div>
               <span className="text-muted-foreground text-sm">
-                تقييم <span className="text-primary font-bold">{averageRating}</span> من 5 بناءً على آراء العملاء
+                تقييم <span className="text-primary font-bold">4.8</span> من 5 بناءً على آراء العملاء
               </span>
             </div>
           </div>

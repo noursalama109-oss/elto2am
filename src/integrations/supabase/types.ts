@@ -14,65 +14,10 @@ export type Database = {
   }
   public: {
     Tables: {
-      customer_reviews: {
-        Row: {
-          comment: string
-          created_at: string
-          id: string
-          location: string
-          name: string
-          rating: number
-          vehicle_type: string | null
-        }
-        Insert: {
-          comment: string
-          created_at?: string
-          id?: string
-          location: string
-          name: string
-          rating: number
-          vehicle_type?: string | null
-        }
-        Update: {
-          comment?: string
-          created_at?: string
-          id?: string
-          location?: string
-          name?: string
-          rating?: number
-          vehicle_type?: string | null
-        }
-        Relationships: []
-      }
+      [_ in never]: never
     }
     Views: {
-      customer_reviews_public: {
-        Row: {
-          comment: string | null
-          created_at: string | null
-          id: string | null
-          name: string | null
-          rating: number | null
-          vehicle_type: string | null
-        }
-        Insert: {
-          comment?: string | null
-          created_at?: string | null
-          id?: string | null
-          name?: string | null
-          rating?: number | null
-          vehicle_type?: string | null
-        }
-        Update: {
-          comment?: string | null
-          created_at?: string | null
-          id?: string | null
-          name?: string | null
-          rating?: number | null
-          vehicle_type?: string | null
-        }
-        Relationships: []
-      }
+      [_ in never]: never
     }
     Functions: {
       [_ in never]: never
