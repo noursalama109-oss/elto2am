@@ -31,7 +31,7 @@ const HeroSection = () => {
   const features = [
     { icon: Truck, text: 'شحن سريع لجميع المحافظات' },
     { icon: Award, text: 'قطع أصلية H&M' },
-    { icon: CreditCard, text: 'دفع عند الاستلام' },
+    { icon: CreditCard, text: 'طرق دفع متعددة' },
     { icon: Shield, text: 'ضمان الجودة' },
   ];
 
