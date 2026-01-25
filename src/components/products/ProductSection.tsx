@@ -1,16 +1,13 @@
 import { Link } from 'react-router-dom';
-import { ArrowLeft } from 'lucide-react';
 import { Product, ProductSection as ProductSectionType, sectionLabels, sectionIcons, sectionSubSections, subSectionLabels } from '@/types/product';
-import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 
 interface ProductSectionProps {
   section: ProductSectionType;
   products: Product[];
-  showViewAll?: boolean;
 }
 
-const ProductSection = ({ section, products, showViewAll = true }: ProductSectionProps) => {
+const ProductSection = ({ section, products }: ProductSectionProps) => {
   // Filter out products with price 0 (placeholders)
   const validProducts = products.filter(p => p.price > 0);
   
@@ -31,24 +28,14 @@ const ProductSection = ({ section, products, showViewAll = true }: ProductSectio
 
   return (
     <section className="mb-12">
-      <div className="flex items-center justify-between mb-6">
-        <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
-            <SectionIcon className="w-5 h-5 text-primary" />
-          </div>
-          <div>
-            <h2 className="text-2xl md:text-3xl font-bold">{sectionLabels[section]}</h2>
-            <span className="text-muted-foreground text-sm">({validProducts.length} منتج)</span>
-          </div>
+      <div className="flex items-center gap-3 mb-6">
+        <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
+          <SectionIcon className="w-5 h-5 text-primary" />
         </div>
-        {showViewAll && (
-          <Button asChild variant="outline" size="sm">
-            <Link to={`/products/${section}`} className="flex items-center gap-2">
-              عرض الكل
-              <ArrowLeft className="w-4 h-4" />
-            </Link>
-          </Button>
-        )}
+        <div>
+          <h2 className="text-2xl md:text-3xl font-bold">{sectionLabels[section]}</h2>
+          <span className="text-muted-foreground text-sm">({validProducts.length} منتج)</span>
+        </div>
       </div>
       
       {/* Sub-sections Grid */}
