@@ -4,7 +4,6 @@ import { useToast } from '@/hooks/use-toast';
 
 interface Review {
   id: string;
-  name: string;
   rating: number;
   comment: string;
   vehicle_type: string | null;
@@ -12,10 +11,8 @@ interface Review {
 }
 
 interface SubmitReviewData {
-  name: string;
   comment: string;
   rating: number;
-  publishName: boolean;
 }
 
 export const useCustomerReviews = () => {
@@ -35,7 +32,6 @@ export const useCustomerReviews = () => {
 
       setReviews(data?.map(r => ({
         id: r.id || '',
-        name: r.name || '',
         rating: r.rating || 0,
         comment: r.comment || '',
         vehicle_type: r.vehicle_type,
@@ -49,10 +45,10 @@ export const useCustomerReviews = () => {
   };
 
   const submitReview = async (data: SubmitReviewData): Promise<boolean> => {
-    if (!data.name.trim() || !data.comment.trim() || data.rating === 0) {
+    if (!data.comment.trim() || data.rating === 0) {
       toast({
         title: "برجاء ملء جميع الحقول",
-        description: "الاسم والتعليق والتقييم مطلوبين",
+        description: "التعليق والتقييم مطلوبين",
         variant: "destructive"
       });
       return false;
@@ -63,12 +59,11 @@ export const useCustomerReviews = () => {
       const { error } = await supabase
         .from('customer_reviews')
         .insert({
-          name: data.name.trim(),
+          name: 'عميل',
           comment: data.comment.trim(),
           rating: data.rating,
-          location: 'غير محدد', // Required field but not displayed
-          vehicle_type: '',
-          publish_name: data.publishName
+          location: 'غير محدد',
+          vehicle_type: ''
         });
 
       if (error) throw error;
