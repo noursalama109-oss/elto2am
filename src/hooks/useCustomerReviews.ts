@@ -19,13 +19,15 @@ export const useCustomerReviews = () => {
 
   const fetchReviews = async () => {
     try {
+      // Use the public view that excludes sensitive PII (location)
       const { data, error } = await supabase
-        .from('customer_reviews')
+        .from('customer_reviews_public')
         .select('*')
         .order('created_at', { ascending: false });
 
       if (error) throw error;
-      setReviews(data || []);
+      // Add empty location for compatibility with Review interface
+      setReviews((data || []).map(review => ({ ...review, location: '' })));
     } catch (error) {
       console.error('Error fetching reviews:', error);
       toast({

@@ -172,7 +172,6 @@ const CustomerReviews = () => {
 
                     <div className="border-t border-border pt-4">
                       <h4 className="font-bold text-foreground">{review.name}</h4>
-                      <p className="text-xs text-muted-foreground">{review.location}</p>
                       {review.vehicle_type && (
                         <span className="inline-block mt-2 text-xs bg-primary/10 text-primary px-2 py-1 rounded-full">
                           {review.vehicle_type}
