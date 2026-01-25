@@ -33,6 +33,11 @@ const HeroSection = () => {
                 src={hmLogo} 
                 alt="H&M Original Parts" 
                 className="w-40 h-40 md:w-52 md:h-52 mx-auto object-contain"
+                width={208}
+                height={208}
+                loading="eager"
+                fetchPriority="high"
+                decoding="async"
               />
             </div>
           </ScrollReveal>
