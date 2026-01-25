@@ -12,13 +12,13 @@ import {
   LucideIcon
 } from 'lucide-react';
 
-export type Brand = 'dayon' | 'hogan' | 'cmg' | 'halawa' | 'bajaj' | 'other';
+export type Brand = 'dayon' | 'hogan' | 'cmg' | 'halawa';
 
 // الأقسام الرئيسية
 export type ProductSection = 
   | 'engine'        // المحرك
   | 'electrical'    // الكهرباء والإضاءة
-  | 'suspension'    // العفشة والمساعدين
+  | 'suspension'    // المساعدين
   | 'brakes'        // الفرامل
   | 'drivetrain'    // الجر والسرعة
   | 'fuel'          // الكاربيراتير والوقود
@@ -39,7 +39,7 @@ export type ProductSubSection =
   | 'ignition'          // منظومة الحريق
   | 'lighting'          // الإضاءة
   | 'starter'           // المارش والكهرباء
-  // العفشة
+  // المساعدين
   | 'shocks'            // المساعدين
   | 'steering'          // التوجيه
   | 'swingarm'          // المقصات
@@ -92,7 +92,7 @@ export type BrandFilter = 'all' | Brand;
 export const sectionLabels: Record<ProductSection, string> = {
   engine: 'المحرك',
   electrical: 'الكهرباء والإضاءة',
-  suspension: 'العفشة والمساعدين',
+  suspension: 'المساعدين',
   brakes: 'الفرامل',
   drivetrain: 'الجر والسرعة',
   fuel: 'الكاربيراتير والوقود',
@@ -162,7 +162,7 @@ export const subSectionLabels: Record<ProductSubSection, string> = {
 // ربط الأقسام الفرعية بالأقسام الرئيسية
 export const sectionSubSections: Record<ProductSection, ProductSubSection[]> = {
   engine: ['cylinder', 'internal_motion', 'valves', 'clutch'],
-  electrical: ['batteries', 'ignition', 'lighting', 'starter'],
+  electrical: ['batteries', 'lighting', 'starter'],
   suspension: ['shocks', 'steering', 'swingarm'],
   brakes: ['brake_pads', 'master_cylinder', 'brake_drums'],
   drivetrain: ['chain_kit', 'speedometer'],
@@ -179,6 +179,4 @@ export const brandLabels: Record<Brand, string> = {
   hogan: 'هوجان',
   cmg: 'CMG',
   halawa: 'حلاوة',
-  bajaj: 'باجاج',
-  other: 'أخرى',
 };
