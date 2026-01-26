@@ -20,11 +20,6 @@ const ProductFilters = ({
     { value: 'essentials', label: 'كماليات' },
   ];
 
-  const vehicles: { value: VehicleFilter; label: string }[] = [
-    { value: 'all', label: 'الكل' },
-    { value: 'motorcycle', label: 'موتوسيكل' },
-  ];
-
   const brands: { value: BrandFilter; label: string }[] = [
     { value: 'all', label: 'الكل' },
     { value: 'dayon', label: brandLabels.dayon },
