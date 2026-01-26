@@ -1,16 +1,20 @@
 import { useState } from 'react';
-import { Star, Quote, Send, Loader2 } from 'lucide-react';
+import { Star, Quote, Send, Loader2, MessageCircle, ChevronDown, ChevronUp } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 import ScrollReveal from '@/components/ui/scroll-reveal';
 import { useCustomerReviews } from '@/hooks/useCustomerReviews';
 
 const CustomerReviews = () => {
-  const { reviews, isLoading, isSubmitting, submitReview } = useCustomerReviews();
+  const { reviews, isLoading, isSubmitting, isSubmittingReply, submitReview, submitReply } = useCustomerReviews();
   const [comment, setComment] = useState('');
   const [rating, setRating] = useState(0);
   const [hoverRating, setHoverRating] = useState(0);
+  const [replyingTo, setReplyingTo] = useState<string | null>(null);
+  const [replyText, setReplyText] = useState('');
+  const [expandedReplies, setExpandedReplies] = useState<Set<string>>(new Set());
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -21,6 +25,28 @@ const CustomerReviews = () => {
       setComment('');
       setRating(0);
     }
+  };
+
+  const handleReplySubmit = async (reviewId: string) => {
+    const success = await submitReply(reviewId, replyText);
+    
+    if (success) {
+      setReplyText('');
+      setReplyingTo(null);
+      setExpandedReplies(prev => new Set(prev).add(reviewId));
+    }
+  };
+
+  const toggleReplies = (reviewId: string) => {
+    setExpandedReplies(prev => {
+      const newSet = new Set(prev);
+      if (newSet.has(reviewId)) {
+        newSet.delete(reviewId);
+      } else {
+        newSet.add(reviewId);
+      }
+      return newSet;
+    });
   };
 
   const renderStars = (starRating: number) => {
@@ -123,9 +149,9 @@ const CustomerReviews = () => {
             {reviews.map((review, index) => (
               <ScrollReveal key={review.id} variant="fadeUp" delay={index * 0.1}>
                 <Card
-                  className="bg-card/50 backdrop-blur-sm border-border hover:border-primary/50 transition-all duration-300 hover:shadow-glow h-full"
+                  className="bg-card/50 backdrop-blur-sm border-border hover:border-primary/50 transition-all duration-300 hover:shadow-glow h-full flex flex-col"
                 >
-                  <CardContent className="p-6">
+                  <CardContent className="p-6 flex flex-col flex-1">
                     <Quote className="w-8 h-8 text-primary/30 mb-4" />
                     
                     <p className="text-foreground/90 text-sm leading-relaxed mb-4">
@@ -137,12 +163,94 @@ const CustomerReviews = () => {
                     </div>
 
                     {review.vehicle_type && (
-                      <div className="border-t border-border pt-4">
+                      <div className="border-t border-border pt-4 mb-3">
                         <span className="inline-block text-xs bg-primary/10 text-primary px-2 py-1 rounded-full">
                           {review.vehicle_type}
                         </span>
                       </div>
                     )}
+
+                    {/* Replies Section */}
+                    <div className="mt-auto pt-3 border-t border-border">
+                      {review.replies.length > 0 && (
+                        <button
+                          onClick={() => toggleReplies(review.id)}
+                          className="flex items-center gap-1 text-xs text-muted-foreground hover:text-primary transition-colors mb-2"
+                        >
+                          <MessageCircle className="w-3 h-3" />
+                          <span>{review.replies.length} رد</span>
+                          {expandedReplies.has(review.id) ? (
+                            <ChevronUp className="w-3 h-3" />
+                          ) : (
+                            <ChevronDown className="w-3 h-3" />
+                          )}
+                        </button>
+                      )}
+
+                      {/* Show Replies */}
+                      {expandedReplies.has(review.id) && review.replies.length > 0 && (
+                        <div className="space-y-2 mb-3">
+                          {review.replies.map((reply) => (
+                            <div
+                              key={reply.id}
+                              className="bg-muted/50 rounded-lg p-2 text-xs text-foreground/80"
+                            >
+                              {reply.reply_text}
+                            </div>
+                          ))}
+                        </div>
+                      )}
+
+                      {/* Reply Form */}
+                      {replyingTo === review.id ? (
+                        <div className="space-y-2">
+                          <Input
+                            placeholder="اكتب ردك..."
+                            value={replyText}
+                            onChange={(e) => setReplyText(e.target.value)}
+                            className="text-xs h-8"
+                            maxLength={200}
+                            disabled={isSubmittingReply}
+                          />
+                          <div className="flex gap-1">
+                            <Button
+                              size="sm"
+                              className="h-7 text-xs flex-1"
+                              onClick={() => handleReplySubmit(review.id)}
+                              disabled={isSubmittingReply}
+                            >
+                              {isSubmittingReply ? (
+                                <Loader2 className="w-3 h-3 animate-spin" />
+                              ) : (
+                                'إرسال'
+                              )}
+                            </Button>
+                            <Button
+                              size="sm"
+                              variant="outline"
+                              className="h-7 text-xs"
+                              onClick={() => {
+                                setReplyingTo(null);
+                                setReplyText('');
+                              }}
+                              disabled={isSubmittingReply}
+                            >
+                              إلغاء
+                            </Button>
+                          </div>
+                        </div>
+                      ) : (
+                        <Button
+                          size="sm"
+                          variant="ghost"
+                          className="h-7 text-xs w-full"
+                          onClick={() => setReplyingTo(review.id)}
+                        >
+                          <MessageCircle className="w-3 h-3 ml-1" />
+                          رد
+                        </Button>
+                      )}
+                    </div>
                   </CardContent>
                 </Card>
               </ScrollReveal>
