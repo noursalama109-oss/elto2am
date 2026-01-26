@@ -64,7 +64,7 @@ export const products: Product[] = [
     vehicleType: 'motorcycle',
     brand: 'other',
     section: 'electrical',
-    subSection: 'ignition',
+    subSection: 'starter',
     description: 'موبينة مارش قوية ومتينة',
     inStock: true,
   },
