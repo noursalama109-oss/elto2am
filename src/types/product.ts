@@ -127,7 +127,7 @@ export const subSectionLabels: Record<ProductSubSection, string> = {
   ignition: 'منظومة الحريق',
   lighting: 'الإضاءة',
   starter: 'المارش والكهرباء',
-  //قسم العفشة
+  //  قسم العفشة والتحكم
   shocks: 'المساعدين',
   steering: 'التوجيه',
   swingarm: 'المقصات',
@@ -158,7 +158,11 @@ export const subSectionLabels: Record<ProductSubSection, string> = {
   mods: 'تعديلات',
   other: 'أخرى',
 };
-
+export const subSectionDescriptions: Record<string, string> = {
+  'lighting': "فوانيس أمامية وخلفية، إشارات، لمبات LED",
+  'electrical': "مارش، بوجيهات، ضفيرة، بطاريات",
+  'engine': "بساتم، شميز، صبابات، جوانات",
+  'brakes': "تيل فرامل، ماستر، خراطيم، طنابير",
 // ربط الأقسام الفرعية بالأقسام الرئيسية
 export const sectionSubSections: Record<ProductSection, ProductSubSection[]> = {
   engine: ['cylinder', 'internal_motion', 'valves', 'clutch'],
