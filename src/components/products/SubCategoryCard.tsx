@@ -43,14 +43,13 @@ const SubCategoryCard = ({ section, subSection, productCount, productImages }: S
             {subSectionLabels[subSection]}
           </h3>
 
-          {/* التعديل الجوهري: عرض الوصف بوضوح تحت العنوان في صفحة المنتجات */}
           {subSectionDescriptions && subSectionDescriptions[subSection] && (
-            <p className="text-[10px] text-muted-foreground -mt-2 mb-3 leading-tight px-1 min-h-[20px]">
+            <p className="text-[10px] text-muted-foreground -mt-2 mb-3 leading-tight px-1">
               ({subSectionDescriptions[subSection]})
             </p>
           )}
 
-          <div className="flex items-center justify-between mt-auto">
+          <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <span className="text-sm text-muted-foreground">{productCount} قطعة متوفرة</span>
             </div>
