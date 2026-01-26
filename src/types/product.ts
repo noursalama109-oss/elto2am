@@ -144,6 +144,7 @@ export const subSectionLabels: Record<ProductSubSection, string> = {
   filters: 'الفلاتر',
   //قسم الهيكل
   fairings: 'أطقم الفيبر',
+  Exoskeleton: 'الهيكل الخارجي',
   seats: 'المقاعد',
   mirrors: 'المرايات',
   //قسم العجلات
@@ -166,7 +167,7 @@ export const sectionSubSections: Record<ProductSection, ProductSubSection[]> = {
   brakes: ['brake_pads', 'master_cylinder', 'brake_drums'],
   drivetrain: ['chain_kit', 'speedometer'],
   fuel: ['carburetor', 'fuel_tank', 'filters'],
-  body: ['fairings', 'seats', 'mirrors'],
+  body: ['fairings', 'seats', 'mirrors','Exoskeleton'],
   wheels: ['tires', 'rims'],
   oils: ['engine_oil', 'cleaners'],
   accessories: ['gear', 'mods', 'other'],
