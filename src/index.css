@@ -80,10 +80,13 @@
 
   html {
     direction: rtl;
+    overflow-x: hidden;
   }
 
   body {
     @apply bg-background text-foreground font-cairo antialiased;
+    overflow-x: hidden;
+    position: relative;
   }
 }
 
