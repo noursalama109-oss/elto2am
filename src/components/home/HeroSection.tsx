@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import hmLogo from '@/assets/hm-logo.png';
 import heroImage from '@/assets/hero-motorcycle-engine.jpg';
+import hmLogoHeader from '@/assets/hm-logo-header.jpeg';
 import PaymentMethodDialog from '@/components/checkout/PaymentMethodDialog';
 import ScrollReveal from '@/components/ui/scroll-reveal';
 
@@ -153,9 +154,11 @@ const HeroSection = () => {
         <div className="container mx-auto px-4">
           <ScrollReveal variant="fadeUp">
             <div className="flex flex-col md:flex-row items-center justify-center gap-6 text-center">
-              <div className="w-20 h-20 rounded-xl bg-white border border-border flex items-center justify-center shadow-lg">
-                <span className="text-green-600 font-black text-2xl">H & M</span>
-              </div>
+              <img 
+                src={hmLogoHeader} 
+                alt="H&M Logo" 
+                className="w-20 h-20 rounded-xl bg-white border border-border shadow-lg object-contain"
+              />
               <div>
                 <p className="text-2xl md:text-3xl font-bold text-foreground mb-2">
                   الجودة التي يثق بها المحترفون

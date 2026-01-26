@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Phone, MapPin, Clock, CreditCard, Wallet, Truck, Facebook, Instagram } from 'lucide-react';
+import hmLogoHeader from '@/assets/hm-logo-header.jpeg';
 
 const Footer = () => {
   return (
@@ -9,9 +10,11 @@ const Footer = () => {
           {/* About */}
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-10 h-10 rounded-lg bg-white border border-gray-200 flex items-center justify-center">
-                <span className="text-green-700 font-bold text-sm">H & M</span>
-              </div>
+              <img 
+                src={hmLogoHeader} 
+                alt="H&M Logo" 
+                className="w-10 h-10 rounded-lg bg-white border border-gray-200 object-contain"
+              />
               <div className="flex flex-col">
                 <span className="font-bold text-lg leading-tight">التوأم</span>
                 <span className="text-xs text-muted-foreground">لقطع الغيار</span>
