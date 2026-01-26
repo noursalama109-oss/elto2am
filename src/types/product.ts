@@ -16,16 +16,16 @@ export type Brand = 'dayon' | 'hogan' | 'cmg' | 'halawa' | 'bajaj' | 'other';
 
 // الأقسام الرئيسية
 export type ProductSection = 
-  | 'engine'        // المحرك
-  | 'electrical'    // الكهرباء والإضاءة
-  | 'suspension'    // المساعدين
-  | 'brakes'        // الفرامل
-  | 'drivetrain'    // الجر والسرعة
-  | 'fuel'          // الكاربيراتير والوقود
-  | 'body'          // الهيكل الخارجي والفيبر
-  | 'wheels'        // الإطارات والجنوط
-  | 'oils'          // الزيوت والشحوم
-  | 'accessories';  // الكماليات والإكسسوارات
+  | 'engine'        // قسم المحرك
+  | 'electrical'    // قسم الكهرباء والإضاءة
+  | 'suspension'    // قسم العفشة
+  | 'brakes'        // قسم الفرامل
+  | 'drivetrain'    // قسم الجر والسرعة
+  | 'fuel'          // قسم الكاربيراتير والوقود
+  | 'body'          // قسم الهيكل الخارجي والفيبر
+  | 'wheels'        // قسم الإطارات والجنوط
+  | 'oils'          // قسم الزيوت والشحوم
+  | 'accessories';  // قسم الكماليات والإكسسوارات
 
 // الأقسام الفرعية
 export type ProductSubSection = 
@@ -39,7 +39,7 @@ export type ProductSubSection =
   | 'ignition'          // منظومة الحريق
   | 'lighting'          // الإضاءة
   | 'starter'           // المارش والكهرباء
-  // المساعدين
+  //  العفشة
   | 'shocks'            // المساعدين
   | 'steering'          // التوجيه
   | 'swingarm'          // المقصات
@@ -118,42 +118,42 @@ export const sectionIcons: Record<ProductSection, LucideIcon> = {
 
 // تسميات الأقسام الفرعية
 export const subSectionLabels: Record<ProductSubSection, string> = {
-  // المحرك
+  // قسم المحرك
   cylinder: 'مجموعة السلندر',
   internal_motion: 'منظومة الحركة الداخلية',
   valves: 'الصبابات والتاكيهات',
   clutch: 'الديسك والدبرياج',
-  // الكهرباء
+  //قسم الكهرباء
   batteries: 'البطاريات',
   ignition: 'منظومة الحريق',
   lighting: 'الإضاءة',
   starter: 'المارش والكهرباء',
-  // العفشة
+  //قسم العفشة
   shocks: 'المساعدين',
   steering: 'التوجيه',
   swingarm: 'المقصات',
-  // الفرامل
+  //قسم الفرامل
   brake_pads: 'تيل الفرامل',
   master_cylinder: 'خزنة وماستر',
   brake_drums: 'الطنابير',
-  // الجر
+  //قسم الجر
   chain_kit: 'الات الجر',
   speedometer: 'العدادات',
-  // الوقود
+  //قسم الوقود
   carburetor: 'الكاربيراتير',
   fuel_tank: 'خزان البنزين',
   filters: 'الفلاتر',
-  // الهيكل
+  //قسم الهيكل
   fairings: 'أطقم الفيبر',
   seats: 'المقاعد',
   mirrors: 'المرايات',
-  // العجلات
+  //قسم العجلات
   tires: 'الكاوتش',
   rims: 'الجنوط',
-  // الزيوت
+  //قسم الزيوت
   engine_oil: 'زيوت المحرك',
   cleaners: 'المنظفات',
-  // الكماليات
+  //قسم الكماليات
   gear: 'تجهيزات',
   mods: 'تعديلات',
   other: 'أخرى',
