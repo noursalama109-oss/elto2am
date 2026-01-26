@@ -103,7 +103,7 @@ export const sectionLabels: Record<ProductSection, string> = {
 
 // أيقونات الأقسام الرئيسية
 export const sectionIcons: Record<ProductSection, LucideIcon> = {
-  engine: engine,
+  engine: Cog,
   electrical: Zap,
   suspension: Car,
   brakes: Disc,
