@@ -31,17 +31,17 @@ export type ProductSection =
 export type ProductSubSection = 
   // المحرك
   | 'cylinder'          // مجموعة السلندر
-  | 'internal_motion'   // منظومة الحركة الداخلية
+  | 'heart_of_machine'  // قلب المكنة
   | 'valves'            // الصبابات والتاكيهات
   | 'clutch'            // الديسك والدبرياج
   // الكهرباء
   | 'batteries'         // البطاريات
-  | 'ignition'          // منظومة الحريق
+  | 'burning_kit'       // طقم الحرق
   | 'lighting'          // الإضاءة
   | 'starter'           // المارش والكهرباء
   // العفشة والتحكم
   | 'shocks'            // المساعدين
-  | 'steering'          // التوجيه
+  | 'control'           // التحكم
   | 'swingarm'          // المقصات
   // الفرامل
   | 'brake_pads'        // تيل الفرامل
@@ -55,7 +55,7 @@ export type ProductSubSection =
   | 'fuel_tank'         // خزان البنزين
   | 'filters'           // الفلاتر
   // الهيكل
-  | 'fairings'          // أطقم الفيبر
+  | 'fiberglass_sheet_metal_sets'          // أطقم الفيبر والصاج
   | 'seats'             // المقاعد
   | 'mirrors'           // المرايات
   // العجلات
@@ -124,12 +124,12 @@ export const subSectionLabels: Record<ProductSubSection, string> = {
   clutch: 'الديسك والدبرياج',
   //قسم الكهرباء
   batteries: 'البطاريات',
-  Burning_kit: 'طقم الحرق',
+  burning_kit: 'طقم الحرق',
   lighting: 'الإضاءة',
   starter: 'المارش والكهرباء',
   //  قسم العفشة والتحكم
   shocks: 'المساعدين',
-  Control: 'التحكم',
+  control: 'التحكم',
   swingarm: 'المقصات',
   //قسم الفرامل
   brake_pads: 'تيل الفرامل',
@@ -143,8 +143,8 @@ export const subSectionLabels: Record<ProductSubSection, string> = {
   fuel_tank: 'خزان البنزين',
   filters: 'الفلاتر',
   //قسم الهيكل
-  Fiberglass_sheet_metal_sets: 'أطقم الفيبر والصاج',
-  Motor_covers: 'اغطية الماتور',
+  fiberglass_sheet_metal_sets: 'أطقم الفيبر والصاج',
+  motor_covers: 'اغطية الماتور',
   seats: 'المقاعد',
   mirrors: 'المرايات',
   //قسم العجلات
@@ -166,10 +166,10 @@ export const subSectionDescriptions: Record<string, string> = {
   'valves': "صبابات سحب وطرد، شواكيش",
   'clutch': "ورق دبرياج، ديسك كامل، سلك دبرياج",
   'batteries': "بمختلف الأمبيرات",
-  'Burning_kit': "بوجيهات، موبينة حريق، وحدة الـ CDI، بلاطة الشحن",
+  'burning_kit': "بوجيهات، موبينة حريق، وحدة الـ CDI، بلاطة الشحن",
   'starter': "مارش، ضفيرة كهرباء كاملة، كتاوت",
   'shocks': "مساعدين أمامية، مساعدين خلفية، طقم إصلاح مساعد",
-  'Control': "رقبة الموتوسيكل، بلي رقبة، جادون",
+  'control': "رقبة الموتوسيكل، بلي رقبة، جادون",
   'swingarm': "مقص خلفي، جلب مقص",
   'brake_pads': "تيل أمامي، تيل خلفي - عادي وباكم",
   'master_cylinder': "خزنة فرامل علوية وسفلية، خراطيم باكم",
@@ -179,8 +179,8 @@ export const subSectionDescriptions: Record<string, string> = {
   'carburetor': "كاربيراتير كامل، طقم إصلاح كاربيراتير",
   'fuel_tank': "تنفيس بنزين، حنفية بنزين، خرطوم بنزين",
   'filters': "فلتر هواء، فلتر بنزين",
-  'Fiberglass_sheet_metal_sets': "فيبر كامل، رفارف أمامية وخلفية،طقم صاج",
-  'Motor covers': "وش الزيت، وش الترس، غطاء وش زيت، وطقم طبب الزيت",
+  'fiberglass_sheet_metal_sets': "فيبر كامل، رفارف أمامية وخلفية،طقم صاج",
+  'motor covers': "وش الزيت، وش الترس، غطاء وش زيت، وطقم طبب الزيت",
   'seats': "شاسيه كرسي، كسوة كرسي",
   'mirrors': "مرايات جانبية بأنواعها",
   'tires': "كاوتش خارجي، شمبر داخلي",
@@ -193,12 +193,12 @@ export const subSectionDescriptions: Record<string, string> = {
 // ربط الأقسام الفرعية بالأقسام الرئيسية
 export const sectionSubSections: Record<ProductSection, ProductSubSection[]> = {
   engine: ['cylinder', 'heart_of_machine', 'valves', 'clutch'],
-  electrical: ['batteries', 'lighting', 'starter','Burning_kit'],
-  suspension: ['shocks', 'Control', 'swingarm'],
+  electrical: ['batteries', 'lighting', 'starter','burning_kit'],
+  suspension: ['shocks', 'control', 'swingarm'],
   brakes: ['brake_pads', 'master_cylinder', 'brake_drums'],
   drivetrain: ['chain_kit', 'speedometer'],
   fuel: ['carburetor', 'fuel_tank', 'filters'],
-  body: ['Fiberglass_sheet_metal_sets', 'seats', 'mirrors','Motor_covers'],
+  body: ['fiberglass_sheet_metal_sets', 'seats', 'mirrors','motor_covers'],
   wheels: ['tires', 'rims'],
   oils: ['engine_oil', 'cleaners'],
   accessories: ['gear', 'mods', 'other'],
