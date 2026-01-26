@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ProductSection, ProductSubSection, subSectionLabels } from '@/types/product';
+import { ProductSection, ProductSubSection, subSectionLabels, subSectionDescriptions} from '@/types/product';
 import { ChevronLeft, Package } from 'lucide-react';
 
 interface SubCategoryCardProps {
