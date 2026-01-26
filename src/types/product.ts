@@ -158,11 +158,13 @@ export const subSectionLabels: Record<ProductSubSection, string> = {
   mods: 'تعديلات',
   other: 'أخرى',
 };
+// قائمة الأوصاف للأقسام الفرعية
 export const subSectionDescriptions: Record<string, string> = {
   'lighting': "فوانيس أمامية وخلفية، إشارات، لمبات LED",
   'electrical': "مارش، بوجيهات، ضفيرة، بطاريات",
   'engine': "بساتم، شميز، صبابات، جوانات",
   'brakes': "تيل فرامل، ماستر، خراطيم، طنابير",
+};
 // ربط الأقسام الفرعية بالأقسام الرئيسية
 export const sectionSubSections: Record<ProductSection, ProductSubSection[]> = {
   engine: ['cylinder', 'internal_motion', 'valves', 'clutch'],
