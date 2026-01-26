@@ -189,6 +189,7 @@ export const subSectionDescriptions: Record<string, string> = {
   'cleaners': " شحم حراري للأجزاء المتحركة، اسبري جنزير، منظف كاربيراتير",
   'gear': "خوذ، قفازات، أقفال حماية",
   'mods': "شكمانات تربو، مقابض معدلة، ستيكرات",
+  'other': "أخرى",
 };
 // ربط الأقسام الفرعية بالأقسام الرئيسية
 export const sectionSubSections: Record<ProductSection, ProductSubSection[]> = {
