@@ -4,6 +4,7 @@ import { Menu, X, Phone, Search, CreditCard, Star, MessageSquareWarning } from '
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { products } from '@/data/products';
+import hmLogoHeader from '@/assets/hm-logo-header.jpeg';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -108,9 +109,11 @@ const Header = () => {
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2">
-            <div className="w-14 h-14 rounded-lg bg-white border border-gray-200 flex items-center justify-center shadow-sm">
-              <span className="text-green-600 font-bold text-xl">H & M</span>
-            </div>
+            <img 
+              src={hmLogoHeader} 
+              alt="H&M Hal makn" 
+              className="w-14 h-14 object-contain rounded-lg bg-white"
+            />
             <div className="flex flex-col">
               <span className="font-bold text-lg leading-tight text-foreground">التوأم</span>
               <span className="text-xs text-muted-foreground font-medium">لقطع الغيار</span>
