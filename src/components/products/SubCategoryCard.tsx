@@ -44,11 +44,11 @@ const SubCategoryCard = ({ section, subSection, productCount, productImages , de
             {subSectionLabels[subSection]}
           </h3>
 
-          {subSectionDescriptions && subSectionDescriptions[subSection] && (
-            <p className="text-[10px] text-muted-foreground -mt-2 mb-3 leading-tight px-1">
-              ({subSectionDescriptions[subSection]})
-            </p>
-          )}
+          {description && (
+  <p className="text-[10px] text-muted-foreground -mt-2 mb-3 leading-tight px-1">
+    ({description})
+  </p>
+)}
 
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
