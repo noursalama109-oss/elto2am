@@ -3,19 +3,15 @@ import { CategoryFilter, VehicleFilter, BrandFilter, brandLabels } from '@/types
 
 interface ProductFiltersProps {
   categoryFilter: CategoryFilter;
-  vehicleFilter: VehicleFilter;
   brandFilter: BrandFilter;
   onCategoryChange: (category: CategoryFilter) => void;
-  onVehicleChange: (vehicle: VehicleFilter) => void;
   onBrandChange: (brand: BrandFilter) => void;
 }
 
 const ProductFilters = ({
   categoryFilter,
-  vehicleFilter,
   brandFilter,
   onCategoryChange,
-  onVehicleChange,
   onBrandChange,
 }: ProductFiltersProps) => {
   const categories: { value: CategoryFilter; label: string }[] = [
@@ -27,7 +23,6 @@ const ProductFilters = ({
   const vehicles: { value: VehicleFilter; label: string }[] = [
     { value: 'all', label: 'الكل' },
     { value: 'motorcycle', label: 'موتوسيكل' },
-    { value: 'tricycle', label: 'تروسيكل' },
   ];
 
   const brands: { value: BrandFilter; label: string }[] = [
@@ -66,28 +61,6 @@ const ProductFilters = ({
             </div>
           </div>
 
-          {/* Vehicle Filter */}
-          <div className="flex-1">
-            <h3 className="font-semibold mb-3 text-sm text-muted-foreground">نوع المركبة</h3>
-            <div className="flex flex-wrap gap-2">
-              {vehicles.map((vehicle) => (
-                <Button
-                  key={vehicle.value}
-                  variant={vehicleFilter === vehicle.value ? 'default' : 'outline'}
-                  size="sm"
-                  onClick={() => onVehicleChange(vehicle.value)}
-                  className={
-                    vehicleFilter === vehicle.value
-                      ? 'gradient-primary shadow-glow text-white'
-                      : ''
-                  }
-                >
-                  {vehicle.label}
-                </Button>
-              ))}
-            </div>
-          </div>
-        </div>
 
         {/* Brand Filter */}
         <div>
