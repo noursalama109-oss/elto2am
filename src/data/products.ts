@@ -112,7 +112,7 @@ export const products: Product[] = [
     id: '9',
     name: ' ألة جر دايون 40 H & M',
     price: 350,
-    image: '/h.jpeg',
+    image: '/IMG_20260125_153507.png',
     category: 'essentials',
     vehicleType: 'motorcycle',
     brand: 'other',
