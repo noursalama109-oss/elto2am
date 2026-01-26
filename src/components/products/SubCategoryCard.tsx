@@ -7,10 +7,10 @@ interface SubCategoryCardProps {
   subSection: ProductSubSection;
   productCount: number;
   productImages: string[];
-  description: string; //
+  subSectionDescriptions: string; //
 }
 
-const SubCategoryCard = ({ section, subSection, productCount, productImages , description}: SubCategoryCardProps) => {
+const SubCategoryCard = ({ section, subSection, productCount, productImages , subSectionDescriptions}: SubCategoryCardProps) => {
   const previewImage = productImages[0];
   const hasImage = !!previewImage;
 
