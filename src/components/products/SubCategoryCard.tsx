@@ -47,6 +47,9 @@ const SubCategoryCard = ({ section, subSection, productCount, productImages }: S
           <h3 className="font-bold text-foreground mb-3 line-clamp-1">
             {subSectionLabels[subSection]}
           </h3>
+          <p className="text-xs text-muted-foreground -mt-2 mb-2">
+  ({subSectionDescriptions[subSection]})
+</p>
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <span className="text-sm text-muted-foreground">{productCount} قطعة متوفرة</span>
