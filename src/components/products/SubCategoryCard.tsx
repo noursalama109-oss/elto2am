@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ProductSection, ProductSubSection, subSectionLabels, subSectionDescriptions} from '@/types/product';
+import { ProductSection, ProductSubSection, subSectionLabels, subSectionDescriptions } from '@/types/product';
 import { ChevronLeft, Package } from 'lucide-react';
 
 interface SubCategoryCardProps {
@@ -10,14 +10,12 @@ interface SubCategoryCardProps {
 }
 
 const SubCategoryCard = ({ section, subSection, productCount, productImages }: SubCategoryCardProps) => {
-  // Get the first image for preview
   const previewImage = productImages[0];
   const hasImage = !!previewImage;
 
   return (
     <Link to={`/products/${section}/${subSection}`}>
       <div className="group bg-card rounded-xl border border-border overflow-hidden shadow-card hover:border-primary/50 transition-all duration-300 hover:-translate-y-1">
-        {/* Image */}
         <div className="relative aspect-square bg-muted overflow-hidden">
           {hasImage ? (
             <img
@@ -31,27 +29,27 @@ const SubCategoryCard = ({ section, subSection, productCount, productImages }: S
             </div>
           )}
           
-          {/* Product count badge */}
           <div className="absolute top-3 left-3 bg-primary text-primary-foreground text-xs font-bold px-2.5 py-1 rounded-full shadow-lg">
             {productCount} منتج
           </div>
         </div>
 
-        {/* Content */}
         <div className="p-4">
           <div className="mb-2">
-            <span className="text-xs text-primary font-medium">
-              اضغط للتصفح
-            </span>
+            <span className="text-xs text-primary font-medium">اضغط للتصفح</span>
           </div>
+          
           <h3 className="font-bold text-foreground mb-3 line-clamp-1">
             {subSectionLabels[subSection]}
           </h3>
-  {subSectionDescriptions[subSection] && (
-  <p className="text-[10px] text-muted-foreground -mt-2 mb-3 leading-tight px-1">
-    ({subSectionDescriptions[subSection]})
-  </p>
-)}
+
+          {/* الكود الصحيح والوحيد لعرض الوصف بدون تداخل وسوم */}
+          {subSectionDescriptions && subSectionDescriptions[subSection] && (
+            <p className="text-[10px] text-muted-foreground -mt-2 mb-3 leading-tight px-1">
+              ({subSectionDescriptions[subSection]})
+            </p>
+          )}
+
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <span className="text-sm text-muted-foreground">{productCount} قطعة متوفرة</span>
