@@ -180,7 +180,7 @@ export const subSectionDescriptions: Record<string, string> = {
   'fuel_tank': "تنفيس بنزين، حنفية بنزين، خرطوم بنزين",
   'filters': "فلتر هواء، فلتر بنزين",
   'fiberglass_sheet_metal_sets': "فيبر كامل، رفارف أمامية وخلفية،طقم صاج",
-  'motor covers': "وش الزيت، وش الترس، غطاء وش زيت، وطقم طبب الزيت",
+  'motor_covers': "وش الزيت، وش الترس، غطاء وش زيت، وطقم طبب الزيت",
   'seats': "شاسيه كرسي، كسوة كرسي",
   'mirrors': "مرايات جانبية بأنواعها",
   'tires': "كاوتش خارجي، شمبر داخلي",
