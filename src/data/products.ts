@@ -110,7 +110,7 @@ export const products: Product[] = [
   },
   {
     id: '9',
-    name: 'ألة جر H & M',
+    name: ' ألة جر دايون 40 H & M',
     price: 350,
     image: '/h.jpeg',
     category: 'essentials',
