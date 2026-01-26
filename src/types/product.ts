@@ -56,6 +56,7 @@ export type ProductSubSection =
   | 'filters'           // الفلاتر
   // الهيكل
   | 'fiberglass_sheet_metal_sets'          // أطقم الفيبر والصاج
+  | 'motor_covers'      // أغطية الموتور
   | 'seats'             // المقاعد
   | 'mirrors'           // المرايات
   // العجلات
@@ -117,47 +118,38 @@ export const sectionIcons: Record<ProductSection, LucideIcon> = {
 
 // تسميات الأقسام الفرعية
 export const subSectionLabels: Record<ProductSubSection, string> = {
-  // قسم المحرك
   cylinder: 'مجموعة السلندر',
   heart_of_machine: 'قلب المكنة',
   valves: 'الصبابات والتاكيهات',
   clutch: 'الديسك والدبرياج',
-  //قسم الكهرباء
   batteries: 'البطاريات',
   burning_kit: 'طقم الحرق',
   lighting: 'الإضاءة',
   starter: 'المارش والكهرباء',
-  //  قسم العفشة والتحكم
   shocks: 'المساعدين',
   control: 'التحكم',
   swingarm: 'المقصات',
-  //قسم الفرامل
   brake_pads: 'تيل الفرامل',
   master_cylinder: 'خزنة وماستر',
   brake_drums: 'الطنابير',
-  //قسم الجر
   chain_kit: 'الات الجر',
   speedometer: 'العدادات',
-  //قسم الوقود
   carburetor: 'الكاربيراتير',
   fuel_tank: 'خزان البنزين',
   filters: 'الفلاتر',
-  //قسم الهيكل
   fiberglass_sheet_metal_sets: 'أطقم الفيبر والصاج',
   motor_covers: 'اغطية الماتور',
   seats: 'المقاعد',
   mirrors: 'المرايات',
-  //قسم العجلات
   tires: 'الكاوتش',
   rims: 'الجنوط',
-  //قسم الزيوت
   engine_oil: 'زيوت المحرك',
   cleaners: 'المنظفات',
-  //قسم الكماليات
   gear: 'تجهيزات',
   mods: 'تعديلات',
   other: 'أخرى',
 };
+
 // قائمة الأوصاف للأقسام الفرعية
 export const subSectionDescriptions: Record<string, string> = {
   'lighting': "فوانيس أمامية وخلفية، إشارات، لمبات LED",
@@ -190,4 +182,28 @@ export const subSectionDescriptions: Record<string, string> = {
   'gear': "خوذ، قفازات، أقفال حماية",
   'mods': "شكمانات تربو، مقابض معدلة، ستيكرات",
   'other': "أخرى"
+};
+
+// ربط الأقسام الفرعية بالأقسام الرئيسية 
+export const sectionSubSections: Record<ProductSection, ProductSubSection[]> = {
+  engine: ['cylinder', 'heart_of_machine', 'valves', 'clutch'],
+  electrical: ['batteries', 'lighting', 'starter','burning_kit'],
+  suspension: ['shocks', 'control', 'swingarm'],
+  brakes: ['brake_pads', 'master_cylinder', 'brake_drums'],
+  drivetrain: ['chain_kit', 'speedometer'],
+  fuel: ['carburetor', 'fuel_tank', 'filters'],
+  body: ['fiberglass_sheet_metal_sets', 'seats', 'mirrors','motor_covers'],
+  wheels: ['tires', 'rims'],
+  oils: ['engine_oil', 'cleaners'],
+  accessories: ['gear', 'mods', 'other'],
+};
+
+// تسميات الماركات
+export const brandLabels: Record<Brand, string> = {
+  dayon: 'دايون',
+  hogan: 'هوجان',
+  cmg: 'CMG',
+  halawa: 'حلاوة',
+  bajaj: 'باجاج',
+  other: 'أخرى',
 };
