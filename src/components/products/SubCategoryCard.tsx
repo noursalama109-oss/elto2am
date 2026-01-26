@@ -47,7 +47,6 @@ const SubCategoryCard = ({ section, subSection, productCount, productImages }: S
           <h3 className="font-bold text-foreground mb-3 line-clamp-1">
             {subSectionLabels[subSection]}
           </h3>
-         
 {/* السطر اللي هيعرض الوصف في صفحة المنتجات والرئيسية */}
 {subSectionDescriptions[subSection] && (
   <p className="text-[10px] text-muted-foreground -mt-2 mb-3 leading-tight px-1">
