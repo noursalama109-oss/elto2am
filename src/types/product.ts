@@ -18,7 +18,7 @@ export type Brand = 'dayon' | 'hogan' | 'cmg' | 'halawa' | 'bajaj' | 'other';
 export type ProductSection = 
   | 'engine'        // قسم المحرك
   | 'electrical'    // قسم الكهرباء والإضاءة
-  | 'suspension'    // قسم العفشة
+  | 'suspension'    // قسم العفشة والتحكم
   | 'brakes'        // قسم الفرامل
   | 'drivetrain'    // قسم الجر والسرعة
   | 'fuel'          // قسم الكاربيراتير والوقود
@@ -39,7 +39,7 @@ export type ProductSubSection =
   | 'ignition'          // منظومة الحريق
   | 'lighting'          // الإضاءة
   | 'starter'           // المارش والكهرباء
-  //  العفشة
+  // العفشة والتحكم
   | 'shocks'            // المساعدين
   | 'steering'          // التوجيه
   | 'swingarm'          // المقصات
@@ -91,7 +91,7 @@ export type BrandFilter = 'all' | Brand;
 export const sectionLabels: Record<ProductSection, string> = {
   engine: 'قسم المحرك',
   electrical: 'قسم الكهرباء والإضاءة',
-  suspension: 'قسم العفشة',
+  suspension: 'قسم العفشة والتحكم',
   brakes: 'قسم الفرامل',
   drivetrain: 'قسم الجر والسرعة',
   fuel: 'قسم الكاربيراتير والوقود',
