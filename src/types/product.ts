@@ -90,16 +90,16 @@ export type BrandFilter = 'all' | Brand;
 
 // تسميات الأقسام الرئيسية
 export const sectionLabels: Record<ProductSection, string> = {
-  engine: 'المحرك',
-  electrical: 'الكهرباء والإضاءة',
-  suspension: 'المساعدين',
-  brakes: 'الفرامل',
-  drivetrain: 'الجر والسرعة',
-  fuel: 'الكاربيراتير والوقود',
-  body: 'الهيكل الخارجي والفيبر',
-  wheels: 'الإطارات والجنوط',
-  oils: 'الزيوت والشحوم',
-  accessories: 'الكماليات والإكسسوارات',
+  engine: 'قسم المحرك',
+  electrical: 'قسم الكهرباء والإضاءة',
+  suspension: 'قسم العفشة',
+  brakes: 'قسم الفرامل',
+  drivetrain: 'قسم الجر والسرعة',
+  fuel: 'قسم الكاربيراتير والوقود',
+  body: 'قسم الهيكل الخارجي والفيبر',
+  wheels: 'قسم الإطارات والجنوط',
+  oils: 'قسم الزيوت والشحوم',
+  accessories: 'قسم الكماليات والإكسسوارات',
 };
 
 // أيقونات الأقسام الرئيسية
