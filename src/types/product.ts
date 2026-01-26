@@ -76,7 +76,6 @@ export interface Product {
   originalPrice?: number;
   image: string;
   category: 'accessories' | 'essentials';
-  vehicleType: 'motorcycle' | 'tricycle' | 'both';
   brand: Brand;
   section: ProductSection;
   subSection?: ProductSubSection;
@@ -104,7 +103,7 @@ export const sectionLabels: Record<ProductSection, string> = {
 
 // أيقونات الأقسام الرئيسية
 export const sectionIcons: Record<ProductSection, LucideIcon> = {
-  engine: Cog,
+  engine: engine,
   electrical: Zap,
   suspension: Car,
   brakes: Disc,
