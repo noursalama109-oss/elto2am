@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/button';
-import { CategoryFilter, VehicleFilter, BrandFilter, brandLabels } from '@/types/product';
+import { CategoryFilter, BrandFilter, brandLabels } from '@/types/product';
 
 interface ProductFiltersProps {
   categoryFilter: CategoryFilter;
