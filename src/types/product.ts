@@ -185,32 +185,9 @@ export const subSectionDescriptions: Record<string, string> = {
   'mirrors': "مرايات جانبية بأنواعها",
   'tires': "كاوتش خارجي، شمبر داخلي",
   'rims': "جنوط سبور، جنوط سلك، صرة عجل",
-  'engine_oil': "زيوت المحرك بمختلف اللزوجات 20W50 و 10W40",
-  'cleaners': "شحم حراري للأجزاء المتحركة، اسبري جنزير، منظف كاربيراتير",
+  'engine_oil': "زيوت بمختلف اللزوجات 20W50 و 10W40 من كبرى الشركات",
+  'cleaners': "شحم حراري، اسبري جنزير، منظف كاربيراتير",
   'gear': "خوذ، قفازات، أقفال حماية",
   'mods': "شكمانات تربو، مقابض معدلة، ستيكرات",
   'other': "أخرى"
-};
-// ربط الأقسام الفرعية بالأقسام الرئيسية
-export const sectionSubSections: Record<ProductSection, ProductSubSection[]> = {
-  engine: ['cylinder', 'heart_of_machine', 'valves', 'clutch'],
-  electrical: ['batteries', 'lighting', 'starter','burning_kit'],
-  suspension: ['shocks', 'control', 'swingarm'],
-  brakes: ['brake_pads', 'master_cylinder', 'brake_drums'],
-  drivetrain: ['chain_kit', 'speedometer'],
-  fuel: ['carburetor', 'fuel_tank', 'filters'],
-  body: ['fiberglass_sheet_metal_sets', 'seats', 'mirrors','motor_covers'],
-  wheels: ['tires', 'rims'],
-  oils: ['engine_oil', 'cleaners'],
-  accessories: ['gear', 'mods', 'other'],
-};
-
-// تسميات الماركات
-export const brandLabels: Record<Brand, string> = {
-  dayon: 'دايون',
-  hogan: 'هوجان',
-  cmg: 'CMG',
-  halawa: 'حلاوة',
-  bajaj: 'باجاج',
-  other: 'أخرى',
 };
