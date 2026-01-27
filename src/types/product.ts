@@ -76,7 +76,7 @@ export interface Product {
   price: number;
   originalPrice?: number;
   image: string;
-  category: 'accessories' | 'essentials';
+  category: 'essentials';
   brand: Brand;
   section: ProductSection;
   subSection?: ProductSubSection;
