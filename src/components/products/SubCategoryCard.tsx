@@ -7,12 +7,12 @@ interface SubCategoryCardProps {
   subSection: ProductSubSection;
   productCount: number;
   productImages: string[];
-  subSectionDescriptions: string; //
 }
 
-const SubCategoryCard = ({ section, subSection, productCount, productImages , subSectionDescriptions}: SubCategoryCardProps) => {
+const SubCategoryCard = ({ section, subSection, productCount, productImages }: SubCategoryCardProps) => {
   const previewImage = productImages[0];
   const hasImage = !!previewImage;
+  const description = subSectionDescriptions[subSection];
 
   return (
     <Link to={`/products/${section}/${subSection}`}>
@@ -44,11 +44,11 @@ const SubCategoryCard = ({ section, subSection, productCount, productImages , su
             {subSectionLabels[subSection]}
           </h3>
 
-          {subSectionDescriptions && subSectionDescriptions[subSection] && (
-  <p className="text-[10px] text-muted-foreground -mt-2 mb-3 leading-tight px-1">
-    ({subSectionDescriptions[subSection]})
-  </p>
-)}
+          {description && (
+            <p className="text-[10px] text-muted-foreground -mt-2 mb-3 leading-tight px-1">
+              ({description})
+            </p>
+          )}
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <span className="text-sm text-muted-foreground">{productCount} قطعة متوفرة</span>
