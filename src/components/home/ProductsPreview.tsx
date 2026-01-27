@@ -82,58 +82,61 @@ const ProductsPreview = () => {
                 </div>
               </ScrollReveal>
               
-              {/* Sub-sections Grid - Same style as ProductSection */}
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-                {subSectionData.map(({ subSection: sub, count, image }, subIndex) => (
-                  <ScrollReveal key={sub} variant="fadeUp" delay={(sectionIndex * 0.1) + (subIndex * 0.05)}>
-                    <Link to={`/products/${section}/${sub}`}>
-                      <div className="group bg-card rounded-xl border border-border overflow-hidden shadow-card hover:border-primary/50 transition-all duration-300 hover:-translate-y-1 h-full">
-                        {/* Image */}
-                        <div className="relative aspect-square bg-muted overflow-hidden">
-                          {image ? (
-                            <img
-                              src={image}
-                              alt={subSectionLabels[sub]}
-                              className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                            />
-                          ) : (
-                            <div className="w-full h-full flex items-center justify-center">
-                              <Package className="w-12 h-12 text-muted-foreground/30" />
+              {/* Sub-sections Horizontal Scroll */}
+              <div className="overflow-x-auto scrollbar-hide -mx-4 px-4">
+                <div className="flex gap-4 pb-4" style={{ minWidth: 'max-content' }}>
+                  {subSectionData.map(({ subSection: sub, count, image }, subIndex) => (
+                    <ScrollReveal key={sub} variant="fadeUp" delay={(sectionIndex * 0.1) + (subIndex * 0.05)}>
+                      <Link to={`/products/${section}/${sub}`}>
+                        <div className="group bg-card rounded-xl border border-border overflow-hidden shadow-card hover:border-primary/50 transition-all duration-300 hover:-translate-y-1 h-full w-[160px] sm:w-[180px] md:w-[200px] flex-shrink-0">
+                          {/* Image */}
+                          <div className="relative aspect-square bg-muted overflow-hidden">
+                            {image ? (
+                              <img
+                                src={image}
+                                alt={subSectionLabels[sub]}
+                                loading="lazy"
+                                className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                              />
+                            ) : (
+                              <div className="w-full h-full flex items-center justify-center">
+                                <Package className="w-12 h-12 text-muted-foreground/30" />
+                              </div>
+                            )}
+                            
+                            {/* Count badge */}
+                            <div className="absolute top-2 left-2 bg-primary text-primary-foreground text-xs font-bold px-2 py-0.5 rounded-full shadow-lg">
+                              {count} منتج
                             </div>
-                          )}
+                          </div>
                           
-                          {/* Count badge */}
-                          <div className="absolute top-2 left-2 bg-primary text-primary-foreground text-xs font-bold px-2 py-0.5 rounded-full shadow-lg">
-                            {count} منتج
-                          </div>
-                        </div>
-                        
-                        {/* Content */}
-                        <div className="p-3">
-                          <div className="mb-1">
-                            <span className="text-[10px] text-primary font-medium">
-                              اضغط للتصفح
-                            </span>
-                          </div>
-                          <h3 className="font-bold text-sm text-foreground mb-1 line-clamp-1 group-hover:text-primary transition-colors">
-                            {subSectionLabels[sub]}
-                          </h3>
-                          {subSectionDescriptions[sub] && (
-                            <p className="text-[9px] text-muted-foreground mb-2 line-clamp-2 leading-tight">
-                              ({subSectionDescriptions[sub]})
-                            </p>
-                          )}
-                          <div className="flex items-center justify-between">
-                            <span className="text-xs text-muted-foreground">{count} قطعة</span>
-                            <div className="w-7 h-7 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary group-hover:scale-110 transition-all duration-300">
-                              <ChevronLeft className="w-4 h-4 text-primary group-hover:text-primary-foreground transition-colors duration-300" />
+                          {/* Content */}
+                          <div className="p-3">
+                            <div className="mb-1">
+                              <span className="text-[10px] text-primary font-medium">
+                                اضغط للتصفح
+                              </span>
+                            </div>
+                            <h3 className="font-bold text-sm text-foreground mb-1 line-clamp-1 group-hover:text-primary transition-colors">
+                              {subSectionLabels[sub]}
+                            </h3>
+                            {subSectionDescriptions[sub] && (
+                              <p className="text-[9px] text-muted-foreground mb-2 line-clamp-2 leading-tight">
+                                ({subSectionDescriptions[sub]})
+                              </p>
+                            )}
+                            <div className="flex items-center justify-between">
+                              <span className="text-xs text-muted-foreground">{count} قطعة</span>
+                              <div className="w-7 h-7 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary group-hover:scale-110 transition-all duration-300">
+                                <ChevronLeft className="w-4 h-4 text-primary group-hover:text-primary-foreground transition-colors duration-300" />
+                              </div>
                             </div>
                           </div>
                         </div>
-                      </div>
-                    </Link>
-                  </ScrollReveal>
-                ))}
+                      </Link>
+                    </ScrollReveal>
+                  ))}
+                </div>
               </div>
             </div>
           );
