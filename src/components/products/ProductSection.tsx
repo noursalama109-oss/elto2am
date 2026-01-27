@@ -76,7 +76,7 @@ const ProductSection = ({ section, products }: ProductSectionProps) => {
                     {subSectionLabels[sub]}
                   </h3>
                   {subSectionDescriptions[sub] && (
-                    <p className="text-[9px] text-muted-foreground mb-2 line-clamp-2 leading-tight">
+                    <p className="text-[11px] sm:text-xs text-muted-foreground mb-2 line-clamp-2 leading-relaxed">
                       ({subSectionDescriptions[sub]})
                     </p>
                   )}
