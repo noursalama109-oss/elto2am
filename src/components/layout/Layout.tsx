@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import Header from './Header';
 import Footer from './Footer';
 import PageTransition from './PageTransition';
+import ScrollToTopButton from './ScrollToTopButton';
 
 interface LayoutProps {
   children: ReactNode;
@@ -21,6 +22,7 @@ const Layout = ({ children, hideHeaderPadding = false }: LayoutProps) => {
         </PageTransition>
       </main>
       <Footer />
+      <ScrollToTopButton />
     </div>
   );
 };
