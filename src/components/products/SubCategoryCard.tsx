@@ -46,7 +46,7 @@ const SubCategoryCard = ({ section, subSection, productCount, productImages }: S
           </h3>
 
           {description && (
-            <p className="text-[10px] text-muted-foreground -mt-2 mb-3 leading-tight px-1">
+            <p className="text-[11px] sm:text-xs text-muted-foreground -mt-1 mb-3 leading-relaxed px-1">
               ({description})
             </p>
           )}
