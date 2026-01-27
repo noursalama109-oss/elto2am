@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Menu, X, Phone, Search, CreditCard, Star, MessageSquareWarning } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { products } from '@/data/products';
+import { useProducts } from '@/hooks/useProducts';
 import hmLogoHeader from '@/assets/hm-logo-header.jpeg';
 
 const Header = () => {
@@ -15,6 +15,9 @@ const Header = () => {
   const mobileSearchRef = useRef<HTMLDivElement>(null);
   const location = useLocation();
   const navigate = useNavigate();
+
+  // Fetch products from Supabase
+  const { data: products = [] } = useProducts();
 
   const isHomePage = location.pathname === '/';
 
@@ -65,7 +68,7 @@ const Header = () => {
         product.description?.toLowerCase().includes(query)
       )
       .slice(0, 5);
-  }, [searchQuery]);
+  }, [searchQuery, products]);
 
   // Close suggestions when clicking outside
   useEffect(() => {
