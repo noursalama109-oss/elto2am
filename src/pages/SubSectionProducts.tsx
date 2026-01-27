@@ -3,9 +3,10 @@ import { useParams, Navigate } from 'react-router-dom';
 import Layout from '@/components/layout/Layout';
 import ProductGrid from '@/components/products/ProductGrid';
 import ProductBreadcrumbs from '@/components/products/ProductBreadcrumbs';
-import { products } from '@/data/products';
+import { useProductsBySubSection } from '@/hooks/useProducts';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import { Loader2 } from 'lucide-react';
 import { 
   ProductSection, 
   ProductSubSection,
@@ -40,15 +41,7 @@ const SubSectionProducts = () => {
 
   const currentSubSection = subSection as ProductSubSection;
 
-  // Get all products in this subsection first (for brand counting)
-  const allSubSectionProducts = useMemo(() => {
-    return products.filter((product) => {
-      const matchesSection = product.section === currentSection;
-      const matchesSubSection = product.subSection === currentSubSection;
-      const hasPrice = product.price > 0;
-      return matchesSection && matchesSubSection && hasPrice;
-    });
-  }, [currentSection, currentSubSection]);
+  const { data: allSubSectionProducts = [], isLoading } = useProductsBySubSection(currentSection, currentSubSection);
 
   // Get available brands with counts
   const availableBrands = useMemo(() => {
@@ -126,7 +119,11 @@ const SubSectionProducts = () => {
           )}
 
           {/* Products Grid */}
-          {filteredProducts.length > 0 ? (
+          {isLoading ? (
+            <div className="flex justify-center items-center min-h-[300px]">
+              <Loader2 className="w-8 h-8 animate-spin text-primary" />
+            </div>
+          ) : filteredProducts.length > 0 ? (
             <ProductGrid products={filteredProducts} />
           ) : (
             <div className="text-center py-16">

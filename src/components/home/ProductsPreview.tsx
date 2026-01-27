@@ -1,8 +1,8 @@
 import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowLeft, Package, ChevronLeft } from 'lucide-react';
+import { ArrowLeft, Package, ChevronLeft, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { products } from '@/data/products';
+import { useProducts } from '@/hooks/useProducts';
 import { ProductSection, sectionLabels, sectionIcons, sectionSubSections, subSectionLabels, subSectionDescriptions } from '@/types/product';
 import ScrollReveal from '@/components/ui/scroll-reveal';
 
@@ -10,6 +10,8 @@ import ScrollReveal from '@/components/ui/scroll-reveal';
 const previewSections: ProductSection[] = ['engine', 'electrical', 'suspension'];
 
 const ProductsPreview = () => {
+  const { data: products = [], isLoading } = useProducts();
+
   const sectionData = useMemo(() => {
     return previewSections.map((section) => {
       const sectionProducts = products.filter((p) => p.section === section && p.price > 0);
@@ -30,7 +32,17 @@ const ProductsPreview = () => {
         subSectionData,
       };
     }).filter((data) => data.totalCount > 0);
-  }, []);
+  }, [products]);
+
+  if (isLoading) {
+    return (
+      <section className="py-16 md:py-20 bg-muted/30">
+        <div className="container mx-auto px-4 flex justify-center items-center min-h-[300px]">
+          <Loader2 className="w-8 h-8 animate-spin text-primary" />
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="py-16 md:py-20 bg-muted/30">
