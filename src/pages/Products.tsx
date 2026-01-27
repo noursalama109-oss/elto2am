@@ -4,8 +4,9 @@ import Layout from '@/components/layout/Layout';
 import ProductSection from '@/components/products/ProductSection';
 import ProductGrid from '@/components/products/ProductGrid';
 import ProductBreadcrumbs from '@/components/products/ProductBreadcrumbs';
-import { products } from '@/data/products';
+import { useProducts, useDiscountedProducts, useSearchProducts } from '@/hooks/useProducts';
 import { ProductSection as ProductSectionType, sectionLabels } from '@/types/product';
+import { Loader2 } from 'lucide-react';
 
 // ترتيب الأقسام الرئيسية
 const sectionOrder: ProductSectionType[] = [
@@ -26,27 +27,24 @@ const Products = () => {
   const searchQuery = searchParams.get('search') || '';
   const discountOnly = searchParams.get('discount') === 'true';
 
-  // Filter products for search or discount
+  const { data: allProducts = [], isLoading: isLoadingAll } = useProducts();
+  const { data: discountedProducts = [], isLoading: isLoadingDiscounted } = useDiscountedProducts();
+  const { data: searchResults = [], isLoading: isLoadingSearch } = useSearchProducts(searchQuery);
+
+  // Determine which products to show based on filters
   const filteredProducts = useMemo(() => {
-    if (!searchQuery && !discountOnly) return null; // Use sections view
-    
-    return products.filter((product) => {
-      const matchesSearch = searchQuery
-        ? product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          (product.description?.toLowerCase().includes(searchQuery.toLowerCase()) ?? false)
-        : true;
-      const matchesDiscount = discountOnly
-        ? product.originalPrice && product.originalPrice > product.price
-        : true;
-      // Filter out placeholder products
-      const hasPrice = product.price > 0;
-      return matchesSearch && matchesDiscount && hasPrice;
-    });
-  }, [searchQuery, discountOnly]);
+    if (searchQuery) {
+      return searchResults;
+    }
+    if (discountOnly) {
+      return discountedProducts;
+    }
+    return null; // Use sections view
+  }, [searchQuery, discountOnly, searchResults, discountedProducts]);
 
   // Group products by section
   const productsBySection = useMemo(() => {
-    const grouped: Record<ProductSectionType, typeof products> = {
+    const grouped: Record<ProductSectionType, typeof allProducts> = {
       engine: [],
       electrical: [],
       suspension: [],
@@ -59,14 +57,16 @@ const Products = () => {
       accessories: [],
     };
 
-    products.forEach((product) => {
+    allProducts.forEach((product) => {
       if (product.section && grouped[product.section]) {
         grouped[product.section].push(product);
       }
     });
 
     return grouped;
-  }, []);
+  }, [allProducts]);
+
+  const isLoading = isLoadingAll || (discountOnly && isLoadingDiscounted) || (searchQuery && isLoadingSearch);
 
   // If searching or filtering, show grid view
   if (filteredProducts) {
@@ -86,7 +86,13 @@ const Products = () => {
                   : `تم العثور على ${filteredProducts.length} منتج`}
               </p>
             </div>
-            <ProductGrid products={filteredProducts} />
+            {isLoading ? (
+              <div className="flex justify-center items-center min-h-[300px]">
+                <Loader2 className="w-8 h-8 animate-spin text-primary" />
+              </div>
+            ) : (
+              <ProductGrid products={filteredProducts} />
+            )}
           </div>
         </div>
       </Layout>
@@ -109,14 +115,21 @@ const Products = () => {
             </p>
           </div>
 
-          {/* Sections */}
-          {sectionOrder.map((section) => (
-            <ProductSection
-              key={section}
-              section={section}
-              products={productsBySection[section]}
-            />
-          ))}
+          {/* Loading State */}
+          {isLoading ? (
+            <div className="flex justify-center items-center min-h-[300px]">
+              <Loader2 className="w-8 h-8 animate-spin text-primary" />
+            </div>
+          ) : (
+            /* Sections */
+            sectionOrder.map((section) => (
+              <ProductSection
+                key={section}
+                section={section}
+                products={productsBySection[section]}
+              />
+            ))
+          )}
         </div>
       </div>
     </Layout>

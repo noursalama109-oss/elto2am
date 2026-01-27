@@ -3,7 +3,8 @@ import { useParams, Navigate } from 'react-router-dom';
 import Layout from '@/components/layout/Layout';
 import ProductBreadcrumbs from '@/components/products/ProductBreadcrumbs';
 import SubCategoryCard from '@/components/products/SubCategoryCard';
-import { products } from '@/data/products';
+import { useProductsBySection } from '@/hooks/useProducts';
+import { Loader2 } from 'lucide-react';
 import { 
   ProductSection, 
   sectionLabels,
@@ -29,12 +30,14 @@ const SectionProducts = () => {
   const SectionIcon = sectionIcons[currentSection];
   const sectionLabel = sectionLabels[currentSection];
 
+  const { data: products = [], isLoading } = useProductsBySection(currentSection);
+
   // Get products and images per sub-section
   const subSectionData = useMemo(() => {
     const data: Record<string, { count: number; images: string[] }> = {};
     subSections.forEach((sub) => {
       const subProducts = products.filter(
-        (p) => p.section === currentSection && p.subSection === sub && p.price > 0
+        (p) => p.subSection === sub && p.price > 0
       );
       data[sub] = {
         count: subProducts.length,
@@ -42,12 +45,10 @@ const SectionProducts = () => {
       };
     });
     return data;
-  }, [currentSection, subSections]);
+  }, [products, subSections]);
 
   // Total products in section
-  const totalProducts = useMemo(() => {
-    return products.filter((p) => p.section === currentSection && p.price > 0).length;
-  }, [currentSection]);
+  const totalProducts = products.filter((p) => p.price > 0).length;
 
   return (
     <Layout>
@@ -76,7 +77,11 @@ const SectionProducts = () => {
             <h3 className="font-semibold mb-4 text-lg">اختر القسم الفرعي</h3>
           </div>
           
-          {subSections.length > 0 ? (
+          {isLoading ? (
+            <div className="flex justify-center items-center min-h-[300px]">
+              <Loader2 className="w-8 h-8 animate-spin text-primary" />
+            </div>
+          ) : subSections.length > 0 ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {subSections.map((sub, index) => (
                 <div
@@ -87,8 +92,8 @@ const SectionProducts = () => {
                   <SubCategoryCard
                     section={currentSection}
                     subSection={sub}
-                    productCount={subSectionData[sub].count}
-                    productImages={subSectionData[sub].images}
+                    productCount={subSectionData[sub]?.count || 0}
+                    productImages={subSectionData[sub]?.images || []}
                   />
                 </div>
               ))}
