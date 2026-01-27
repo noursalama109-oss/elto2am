@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Product, ProductSection as ProductSectionType, sectionLabels, sectionIcons, sectionSubSections, subSectionLabels } from '@/types/product';
+import { Product, ProductSection as ProductSectionType, sectionLabels, sectionIcons, sectionSubSections, subSectionLabels, subSectionDescriptions } from '@/types/product';
 import { ChevronLeft, Package } from 'lucide-react';
 
 interface ProductSectionProps {
@@ -70,9 +70,14 @@ const ProductSection = ({ section, products }: ProductSectionProps) => {
                     اضغط للتصفح
                   </span>
                 </div>
-                <h3 className="font-bold text-sm text-foreground mb-2 line-clamp-1 group-hover:text-primary transition-colors">
+                <h3 className="font-bold text-sm text-foreground mb-1 line-clamp-1 group-hover:text-primary transition-colors">
                   {subSectionLabels[sub]}
                 </h3>
+                {subSectionDescriptions[sub] && (
+                  <p className="text-[9px] text-muted-foreground mb-2 line-clamp-2 leading-tight">
+                    ({subSectionDescriptions[sub]})
+                  </p>
+                )}
                 <div className="flex items-center justify-between">
                   <span className="text-xs text-muted-foreground">{count} قطعة</span>
                   <div className="w-7 h-7 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary group-hover:scale-110 transition-all duration-300">
