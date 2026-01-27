@@ -15,13 +15,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
   const [showPaymentDialog, setShowPaymentDialog] = useState(false);
   const [showImageDialog, setShowImageDialog] = useState(false);
 
-  const vehicleTypeLabel = {
-    motorcycle: 'موتوسيكل',
-    tricycle: 'تروسيكل',
-    both: 'موتوسيكل & تروسيكل',
-  };
-
-  const whatsappMessage = `أهلاً، أريد طلب المنتج التالي:%0A%0A📦 المنتج: ${product.name}%0A💰 السعر: ${product.price} جنيه${product.originalPrice ? ` (بدلاً من ${product.originalPrice} جنيه)` : ''}%0A🏍️ نوع المركبة: ${vehicleTypeLabel[product.vehicleType]}${product.description ? `%0A📝 الوصف: ${product.description}` : ''}`;
+  const whatsappMessage = `أهلاً، أريد طلب المنتج التالي:%0A%0A📦 المنتج: ${product.name}%0A💰 السعر: ${product.price} جنيه${product.originalPrice ? ` (بدلاً من ${product.originalPrice} جنيه)` : ''}${product.description ? `%0A📝 الوصف: ${product.description}` : ''}`;
 
   return (
     <>
@@ -56,24 +50,20 @@ const ProductCard = ({ product }: ProductCardProps) => {
         </div>
 
         {/* Content */}
-        <div className="p-4">
-          <div className="mb-2">
-            <span className="text-xs text-primary font-medium">
-              {vehicleTypeLabel[product.vehicleType]}
-            </span>
-          </div>
-          <h3 className="font-bold text-foreground mb-2 line-clamp-1">{product.name}</h3>
+        <div className="p-3 sm:p-4">
+          <h3 className="font-bold text-foreground mb-1 sm:mb-2 line-clamp-1 text-sm sm:text-base">{product.name}</h3>
           {product.description && (
-            <p className="text-sm text-muted-foreground mb-3 line-clamp-2">
+            <p className="text-xs sm:text-sm text-muted-foreground mb-2 sm:mb-3 line-clamp-2">
               {product.description}
             </p>
           )}
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <span className="text-xl font-bold text-primary">{product.price}</span>
-              <span className="text-sm text-muted-foreground">جنيه</span>
+          {/* Price and Button - Stack on mobile */}
+          <div className="flex flex-col gap-2">
+            <div className="flex items-center gap-1 sm:gap-2 flex-wrap">
+              <span className="text-lg sm:text-xl font-bold text-primary">{product.price}</span>
+              <span className="text-xs sm:text-sm text-muted-foreground">جنيه</span>
               {product.originalPrice && (
-                <span className="text-sm text-muted-foreground line-through">
+                <span className="text-xs sm:text-sm text-muted-foreground line-through">
                   {product.originalPrice}
                 </span>
               )}
@@ -82,9 +72,9 @@ const ProductCard = ({ product }: ProductCardProps) => {
               size="sm"
               disabled={!product.inStock}
               onClick={() => setShowPaymentDialog(true)}
-              className="gradient-primary shadow-glow hover:opacity-90 text-white shrink-0 whitespace-nowrap"
+              className="gradient-primary shadow-glow hover:opacity-90 text-white w-full text-xs sm:text-sm"
             >
-              <MessageCircle className="w-4 h-4" />
+              <MessageCircle className="w-3 h-3 sm:w-4 sm:h-4" />
               اطلب الآن
             </Button>
           </div>

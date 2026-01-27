@@ -57,25 +57,26 @@ const ProductFilters = ({
           </div>
 
 
-        {/* Brand Filter */}
-        <div>
-          <h3 className="font-semibold mb-3 text-sm text-muted-foreground">الماركة</h3>
-          <div className="flex flex-wrap gap-2">
-            {brands.map((brand) => (
-              <Button
-                key={brand.value}
-                variant={brandFilter === brand.value ? 'default' : 'outline'}
-                size="sm"
-                onClick={() => onBrandChange(brand.value)}
-                className={
-                  brandFilter === brand.value
-                    ? 'gradient-primary shadow-glow text-white'
-                    : ''
-                }
-              >
-                {brand.label}
-              </Button>
-            ))}
+          {/* Brand Filter */}
+          <div className="flex-1">
+            <h3 className="font-semibold mb-3 text-sm text-muted-foreground">الماركة</h3>
+            <div className="flex flex-wrap gap-2">
+              {brands.map((brand) => (
+                <Button
+                  key={brand.value}
+                  variant={brandFilter === brand.value ? 'default' : 'outline'}
+                  size="sm"
+                  onClick={() => onBrandChange(brand.value)}
+                  className={
+                    brandFilter === brand.value
+                      ? 'gradient-primary shadow-glow text-white'
+                      : ''
+                  }
+                >
+                  {brand.label}
+                </Button>
+              ))}
+            </div>
           </div>
         </div>
       </div>
