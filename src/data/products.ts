@@ -151,17 +151,4 @@ export const products: Product[] = [
     description: 'غطاء وش عالي الجودة',
     inStock: true,
   },
-  // منتجات فارغة للتعديل لاحقاً
-  ...Array.from({ length: 38 }, (_, i) => ({
-    id: String(13 + i),
-    name: `منتج ${13 + i}`,
-    price: 0,
-    image: '/placeholder.svg',
-    category: 'essentials' as const,
-    brand: 'other' as const,
-    section: 'accessories' as const,
-    subSection: 'other' as const,
-    description: 'وصف المنتج',
-    inStock: true,
-  })),
-];
+ 
