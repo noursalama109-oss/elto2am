@@ -26,7 +26,7 @@ const ProductFilters = ({
     { value: 'hogan', label: brandLabels.hogan },
     { value: 'cmg', label: brandLabels.cmg },
     { value: 'halawa', label: brandLabels.halawa },
-    { value: 'bajaj', label: brandLabels.bajaj },
+    { value: 'boxer', label: brandLabels.boxer },
     { value: 'other', label: brandLabels.other },
   ];
 
