@@ -204,6 +204,6 @@ export const brandLabels: Record<Brand, string> = {
   hogan: 'هوجان',
   cmg: 'CMG',
   halawa: 'حلاوة',
-  bajaj: 'باجاج',
+  boxer: 'بوكسر',
   other: 'أخرى',
 };
