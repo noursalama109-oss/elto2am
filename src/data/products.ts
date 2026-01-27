@@ -151,4 +151,4 @@ export const products: Product[] = [
     description: 'غطاء وش عالي الجودة',
     inStock: true,
   },
- 
+];
