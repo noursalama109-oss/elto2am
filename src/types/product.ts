@@ -12,7 +12,7 @@ import {
   LucideIcon
 } from 'lucide-react';
 
-export type Brand = 'dayon' | 'hogan' | 'cmg' | 'halawa' | 'bajaj' | 'other';
+export type Brand = 'dayon' | 'hogan' | 'cmg' | 'halawa' | 'boxer' | 'other';
 
 // الأقسام الرئيسية
 export type ProductSection = 
