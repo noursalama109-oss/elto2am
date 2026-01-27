@@ -16,7 +16,7 @@ const Layout = ({ children, hideHeaderPadding = false }: LayoutProps) => {
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
-      <main className={`flex-1 ${hideHeaderPadding ? '' : 'pt-20 md:pt-24'}`}>
+      <main className={`flex-1 ${hideHeaderPadding ? '' : 'pt-28 md:pt-24'}`}>
         <PageTransition key={location.pathname}>
           {children}
         </PageTransition>
