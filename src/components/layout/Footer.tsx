@@ -72,7 +72,8 @@ const Footer = () => {
               </li>
             </ul>
           </div>
-                         {/* Payment Methods */}
+
+          {/* Payment Methods */}
           <div>
             <h3 className="font-bold text-lg mb-4">طرق الدفع</h3>
             <ul className="space-y-3">
@@ -93,7 +94,6 @@ const Footer = () => {
         </div>
 
         <div className="mt-8 pt-8 border-t border-border">
-          <div className="mt-8 pt-8 border-t border-border">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-muted-foreground text-sm">© {new Date().getFullYear()} التوأم لقطع الغيار. جميع الحقوق محفوظة.</p>
             
