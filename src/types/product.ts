@@ -31,7 +31,7 @@ export type ProductSection =
 export type ProductSubSection = 
   // المحرك
   | 'cylinder'          // مجموعة السلندر
-  | 'engine_products'  // قلب المكنة
+  | 'engine_products'  // منتجات المحرك
   | 'valves'            // الصبابات والتاكيهات
   | 'clutch'            // الديسك والدبرياج
   // الكهرباء
@@ -119,7 +119,7 @@ export const sectionIcons: Record<ProductSection, LucideIcon> = {
 // تسميات الأقسام الفرعية
 export const subSectionLabels: Record<ProductSubSection, string> = {
   cylinder: 'مجموعة السلندر',
-  engine_products: 'قلب المكنة',
+  engine_products: 'منتجات المحرك',
   valves: 'الصبابات والتاكيهات',
   clutch: 'الديسك والدبرياج',
   batteries: 'البطاريات',
