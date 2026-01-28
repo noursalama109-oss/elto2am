@@ -73,27 +73,7 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Payment Methods */}
-          <div>
-            <h3 className="font-bold text-lg mb-4">طرق الدفع</h3>
-            <ul className="space-y-3">
-              <li className="flex items-center gap-2 text-muted-foreground">
-                <Wallet className="w-4 h-4 text-primary" />
-                <span>فودافون كاش</span>
-              </li>
-              <li className="flex items-center gap-2 text-muted-foreground">
-                <Truck className="w-4 h-4 text-primary" />
-                <span>الدفع عند الاستلام</span>
-              </li>
-              <li className="flex items-center gap-2 text-muted-foreground">
-                <CreditCard className="w-4 h-4 text-primary" />
-                <span>فيزا (قريباً)</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <div className="mt-8 pt-8 border-t border-border">
+          <div className="mt-8 pt-8 border-t border-border">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-muted-foreground text-sm">© {new Date().getFullYear()} التوأم لقطع الغيار. جميع الحقوق محفوظة.</p>
             
