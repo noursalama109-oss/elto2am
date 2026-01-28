@@ -31,7 +31,7 @@ export type ProductSection =
 export type ProductSubSection = 
   // المحرك
   | 'cylinder'          // مجموعة السلندر
-  | 'heart_of_machine'  // قلب المكنة
+  | 'engine_products'  // قلب المكنة
   | 'valves'            // الصبابات والتاكيهات
   | 'clutch'            // الديسك والدبرياج
   // الكهرباء
@@ -119,7 +119,7 @@ export const sectionIcons: Record<ProductSection, LucideIcon> = {
 // تسميات الأقسام الفرعية
 export const subSectionLabels: Record<ProductSubSection, string> = {
   cylinder: 'مجموعة السلندر',
-  heart_of_machine: 'قلب المكنة',
+  engine_products: 'قلب المكنة',
   valves: 'الصبابات والتاكيهات',
   clutch: 'الديسك والدبرياج',
   batteries: 'البطاريات',
@@ -154,7 +154,7 @@ export const subSectionLabels: Record<ProductSubSection, string> = {
 export const subSectionDescriptions: Record<string, string> = {
   'lighting': "فوانيس أمامية وخلفية، إشارات، لمبات LED",
   'cylinder': "بستم، شمبر، بنز، جوانات وش السلندر",
-  'heart_of_machine': "كرنك، حدافة، كاتينة، تروس كاتينة",
+  'engine_products': "كرنك، حدافة، كاتينة، تروس كاتينة",
   'valves': "صبابات سحب وطرد، شواكيش",
   'clutch': "ورق دبرياج، ديسك كامل، سلك دبرياج",
   'batteries': "بمختلف الأمبيرات",
@@ -186,7 +186,7 @@ export const subSectionDescriptions: Record<string, string> = {
 
 // ربط الأقسام الفرعية بالأقسام الرئيسية 
 export const sectionSubSections: Record<ProductSection, ProductSubSection[]> = {
-  engine: ['cylinder', 'heart_of_machine', 'valves', 'clutch'],
+  engine: ['cylinder', 'engine_products', 'valves', 'clutch'],
   electrical: ['batteries', 'lighting', 'starter','burning_kit'],
   suspension: ['shocks', 'control', 'swingarm'],
   brakes: ['brake_pads', 'master_cylinder', 'brake_drums'],
