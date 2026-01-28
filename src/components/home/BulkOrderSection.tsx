@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { FileText, ShoppingCart, Send, Search, Plus, Minus, X, MessageCircle } from 'lucide-react';
+import { useState, useRef } from 'react';
+import { FileText, ShoppingCart, Send, Search, Plus, Minus, X, MessageCircle, Image, Upload } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
@@ -19,6 +19,9 @@ const BulkOrderSection = () => {
   const [readyOrderText, setReadyOrderText] = useState('');
   const [selectedProducts, setSelectedProducts] = useState<SelectedProduct[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
+  const [selectedImage, setSelectedImage] = useState<File | null>(null);
+  const [imagePreview, setImagePreview] = useState<string | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
   
   const { data: products = [] } = useProducts();
 
@@ -26,6 +29,26 @@ const BulkOrderSection = () => {
     product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
     product.description?.toLowerCase().includes(searchQuery.toLowerCase())
   );
+
+  const handleImageSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      setSelectedImage(file);
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImagePreview(reader.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const removeImage = () => {
+    setSelectedImage(null);
+    setImagePreview(null);
+    if (fileInputRef.current) {
+      fileInputRef.current.value = '';
+    }
+  };
 
   const addProduct = (product: Product) => {
     const existing = selectedProducts.find(sp => sp.product.id === product.id);
@@ -66,7 +89,8 @@ const BulkOrderSection = () => {
     let message = '';
     
     if (orderType === 'ready') {
-      message = `السلام عليكم 👋\n\nعندي كشف طلبية:\n\n${readyOrderText}\n\nياريت تجهزوهالي وتوصلي في اسرع وقت 👌⚡\n\nشكراً ليكم 🙏`;
+      const imageNote = selectedImage ? '\n\n📷 هبعتلكم صورة الكشف دلوقتي...' : '';
+      message = `السلام عليكم 👋\n\nعندي كشف طلبية:\n\n${readyOrderText}${imageNote}\n\nياريت تجهزوهالي وتوصلي في اسرع وقت 👌⚡\n\nشكراً ليكم 🙏`;
     } else if (orderType === 'select') {
       const productsList = selectedProducts
         .map(sp => `• ${sp.product.name} - الكمية: ${sp.quantity}`)
@@ -85,10 +109,12 @@ const BulkOrderSection = () => {
     setReadyOrderText('');
     setSelectedProducts([]);
     setSearchQuery('');
+    setSelectedImage(null);
+    setImagePreview(null);
   };
 
   const canSend = orderType === 'ready' 
-    ? readyOrderText.trim().length > 0 
+    ? (readyOrderText.trim().length > 0 || selectedImage !== null)
     : selectedProducts.length > 0;
 
   const totalItems = selectedProducts.reduce((sum, sp) => sum + sp.quantity, 0);
@@ -175,10 +201,55 @@ const BulkOrderSection = () => {
                         رجوع
                       </Button>
                       
-                      <div className="space-y-3">
+                      <div className="space-y-4">
                         <p className="text-sm text-muted-foreground">
-                          اكتب الكشف هنا وهنبعته على الواتساب. لو عندك صورة، ابعتها على الواتساب مباشرة بعد الضغط على إرسال.
+                          اكتب الكشف أو ارفق صورة وهنبعتها على الواتساب
                         </p>
+                        
+                        {/* Image Upload */}
+                        <div className="space-y-2">
+                          <input
+                            type="file"
+                            ref={fileInputRef}
+                            onChange={handleImageSelect}
+                            accept="image/*"
+                            className="hidden"
+                          />
+                          
+                          {imagePreview ? (
+                            <div className="relative inline-block">
+                              <img 
+                                src={imagePreview} 
+                                alt="Preview" 
+                                className="max-h-32 rounded-lg border border-border"
+                              />
+                              <button
+                                onClick={removeImage}
+                                className="absolute -top-2 -right-2 bg-destructive text-destructive-foreground rounded-full p-1 shadow-md hover:bg-destructive/90"
+                              >
+                                <X className="w-4 h-4" />
+                              </button>
+                            </div>
+                          ) : (
+                            <Button
+                              type="button"
+                              variant="outline"
+                              onClick={() => fileInputRef.current?.click()}
+                              className="gap-2 w-full border-dashed"
+                            >
+                              <Upload className="w-4 h-4" />
+                              ارفق صورة الكشف
+                            </Button>
+                          )}
+                          
+                          {selectedImage && (
+                            <p className="text-xs text-muted-foreground flex items-center gap-1">
+                              <Image className="w-3 h-3" />
+                              ملاحظة: بعد الضغط على إرسال، ارفق الصورة في الواتساب
+                            </p>
+                          )}
+                        </div>
+                        
                         <Textarea
                           placeholder="اكتب الكشف هنا... مثال:
 - تيل فرامل أمامي هوجان 3 - عدد 2
@@ -186,7 +257,7 @@ const BulkOrderSection = () => {
 - مساعد خلفي CMG - عدد 2"
                           value={readyOrderText}
                           onChange={(e) => setReadyOrderText(e.target.value)}
-                          className="min-h-[200px] text-right"
+                          className="min-h-[150px] text-right"
                           dir="rtl"
                         />
                       </div>
@@ -255,7 +326,7 @@ const BulkOrderSection = () => {
                       )}
                       
                       {/* Products List */}
-                      <ScrollArea className="flex-1 -mx-4 px-4">
+                      <ScrollArea className="h-[300px] -mx-4 px-4">
                         <div className="grid grid-cols-1 gap-2 pb-4">
                           {filteredProducts.map(product => {
                             const qty = getProductQuantity(product.id);
