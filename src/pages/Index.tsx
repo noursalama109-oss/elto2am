@@ -12,9 +12,9 @@ const Index = () => {
   return (
     <Layout hideHeaderPadding>
       <HeroSection />
+      <BulkOrderSection />
       <DiscountedProducts />
       <ProductsPreview />
-      <BulkOrderSection />
       <section id="customer-videos">
         <CustomerVideos />
       </section>
