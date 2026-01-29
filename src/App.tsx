@@ -11,8 +11,6 @@ import Index from "./pages/Index";
 
 // Lazy load secondary pages for code splitting
 const Products = lazy(() => import("./pages/Products"));
-const SectionProducts = lazy(() => import("./pages/SectionProducts"));
-const SubSectionProducts = lazy(() => import("./pages/SubSectionProducts"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 const queryClient = new QueryClient();
@@ -35,8 +33,6 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/products" element={<Products />} />
-            <Route path="/products/:section" element={<SectionProducts />} />
-            <Route path="/products/:section/:subSection" element={<SubSectionProducts />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>
