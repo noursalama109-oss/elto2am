@@ -1,5 +1,5 @@
 import { useState, useRef } from 'react';
-import { FileText, ShoppingCart, Send, Search, Plus, Minus, X, MessageCircle, Image, Upload } from 'lucide-react';
+import { FileText, ShoppingCart, Send, Search, Plus, Minus, X, MessageCircle, Image, Upload, Banknote, Wallet, CreditCard } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
@@ -7,11 +7,36 @@ import { Textarea } from '@/components/ui/textarea';
 import { useProducts } from '@/hooks/useProducts';
 import { Product } from '@/types/product';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import { Label } from '@/components/ui/label';
+import { Badge } from '@/components/ui/badge';
 
 interface SelectedProduct {
   product: Product;
   quantity: number;
 }
+
+const paymentMethods = [
+  {
+    id: 'cod',
+    name: 'الدفع عند الاستلام',
+    icon: Banknote,
+    enabled: true,
+  },
+  {
+    id: 'vodafone',
+    name: 'فودافون كاش',
+    icon: Wallet,
+    enabled: true,
+  },
+  {
+    id: 'visa',
+    name: 'فيزا',
+    icon: CreditCard,
+    enabled: false,
+    comingSoon: true,
+  },
+];
 
 const BulkOrderSection = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -21,6 +46,8 @@ const BulkOrderSection = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
+  const [showPaymentSelection, setShowPaymentSelection] = useState(false);
+  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState('cod');
   const fileInputRef = useRef<HTMLInputElement>(null);
   
   const { data: products = [] } = useProducts();
@@ -85,19 +112,26 @@ const BulkOrderSection = () => {
     return selectedProducts.find(sp => sp.product.id === productId)?.quantity || 0;
   };
 
+  const handleProceedToPayment = () => {
+    setShowPaymentSelection(true);
+  };
+
   const sendToWhatsApp = () => {
+    const paymentMethod = paymentMethods.find(m => m.id === selectedPaymentMethod);
+    const paymentText = paymentMethod ? `\n\n💳 طريقة الدفع: ${paymentMethod.name}` : '';
+    
     let message = '';
     
     if (orderType === 'ready') {
       const imageNote = selectedImage ? '\n\n📷 هبعتلكم صورة الكشف دلوقتي...' : '';
-      message = `السلام عليكم 👋\n\nعندي كشف طلبية:\n\n${readyOrderText}${imageNote}\n\nياريت تجهزوهالي وتوصلي في اسرع وقت 👌⚡\n\nشكراً ليكم 🙏`;
+      message = `السلام عليكم 👋\n\nعندي كشف طلبية:\n\n${readyOrderText}${imageNote}${paymentText}\n\nياريت تجهزوهالي وتوصلي في اسرع وقت 👌⚡\n\nشكراً ليكم 🙏`;
     } else if (orderType === 'select') {
       const productsList = selectedProducts
         .map(sp => `• ${sp.product.name} - الكمية: ${sp.quantity}`)
         .join('\n');
       const total = selectedProducts.reduce((sum, sp) => sum + (sp.product.price * sp.quantity), 0);
       
-      message = `السلام عليكم 👋\n\nعندي كشف طلبية:\n\n${productsList}\n\n💰 الإجمالي التقريبي: ${total} جنيه\n\nياريت تجهزوهالي وتوصلي في اسرع وقت 👌⚡\n\nشكراً ليكم 🙏`;
+      message = `السلام عليكم 👋\n\nعندي كشف طلبية:\n\n${productsList}\n\n💰 الإجمالي التقريبي: ${total} جنيه${paymentText}\n\nياريت تجهزوهالي وتوصلي في اسرع وقت 👌⚡\n\nشكراً ليكم 🙏`;
     }
     
     const whatsappUrl = `https://wa.me/201014868268?text=${encodeURIComponent(message)}`;
@@ -111,6 +145,8 @@ const BulkOrderSection = () => {
     setSearchQuery('');
     setSelectedImage(null);
     setImagePreview(null);
+    setShowPaymentSelection(false);
+    setSelectedPaymentMethod('cod');
   };
 
   const canSend = orderType === 'ready' 
@@ -150,12 +186,97 @@ const BulkOrderSection = () => {
                   <DialogHeader>
                     <DialogTitle className="text-xl text-center">
                       {!orderType && 'اختر طريقة إرسال الكشف'}
-                      {orderType === 'ready' && 'كشف جاهز'}
-                      {orderType === 'select' && 'اختر من المنتجات'}
+                      {orderType === 'ready' && !showPaymentSelection && 'كشف جاهز'}
+                      {orderType === 'select' && !showPaymentSelection && 'اختر من المنتجات'}
+                      {showPaymentSelection && 'اختر طريقة الدفع'}
                     </DialogTitle>
                   </DialogHeader>
                   
-                  {!orderType && (
+                  {/* Payment Selection Screen */}
+                  {showPaymentSelection && (
+                    <div className="flex flex-col gap-4 p-4">
+                      <Button 
+                        variant="ghost" 
+                        size="sm" 
+                        onClick={() => setShowPaymentSelection(false)}
+                        className="self-start gap-1"
+                      >
+                        <X className="w-4 h-4" />
+                        رجوع
+                      </Button>
+                      
+                      <p className="text-sm text-muted-foreground text-center">
+                        اختر طريقة الدفع المفضلة لإتمام طلبك
+                      </p>
+                      
+                      <RadioGroup
+                        value={selectedPaymentMethod}
+                        onValueChange={setSelectedPaymentMethod}
+                        className="gap-3"
+                      >
+                        {paymentMethods.map((method) => {
+                          const Icon = method.icon;
+                          return (
+                            <div
+                              key={method.id}
+                              className={`relative flex items-center gap-4 p-4 rounded-xl border transition-all duration-200 ${
+                                method.enabled
+                                  ? selectedPaymentMethod === method.id
+                                    ? 'border-primary bg-primary/10'
+                                    : 'border-border hover:border-primary/50 hover:bg-secondary/50 cursor-pointer'
+                                  : 'border-border/50 bg-muted/30 cursor-not-allowed opacity-60'
+                              }`}
+                              onClick={() => method.enabled && setSelectedPaymentMethod(method.id)}
+                            >
+                              <RadioGroupItem
+                                value={method.id}
+                                id={`bulk-${method.id}`}
+                                disabled={!method.enabled}
+                                className="shrink-0"
+                              />
+                              <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${
+                                method.enabled ? 'bg-primary/20' : 'bg-muted'
+                              }`}>
+                                <Icon className={`w-5 h-5 ${method.enabled ? 'text-primary' : 'text-muted-foreground'}`} />
+                              </div>
+                              <Label
+                                htmlFor={`bulk-${method.id}`}
+                                className={`flex-1 cursor-pointer font-medium ${
+                                  !method.enabled && 'cursor-not-allowed text-muted-foreground'
+                                }`}
+                              >
+                                {method.name}
+                              </Label>
+                              {method.comingSoon && (
+                                <Badge variant="secondary" className="text-xs">
+                                  قريباً
+                                </Badge>
+                              )}
+                            </div>
+                          );
+                        })}
+                      </RadioGroup>
+
+                      <div className="flex gap-3 mt-4">
+                        <Button 
+                          onClick={sendToWhatsApp}
+                          className="flex-1 gap-2 bg-green-600 hover:bg-green-700"
+                        >
+                          <MessageCircle className="w-5 h-5" />
+                          تأكيد وإرسال على الواتساب
+                        </Button>
+                        <Button
+                          variant="outline"
+                          onClick={() => setShowPaymentSelection(false)}
+                          className="flex-1"
+                        >
+                          رجوع
+                        </Button>
+                      </div>
+                    </div>
+                  )}
+
+                  {!orderType && !showPaymentSelection && (
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-4">
                       <button
                         onClick={() => setOrderType('ready')}
@@ -189,7 +310,7 @@ const BulkOrderSection = () => {
                     </div>
                   )}
                   
-                  {orderType === 'ready' && (
+                  {orderType === 'ready' && !showPaymentSelection && (
                     <div className="flex flex-col gap-4 p-4">
                       <Button 
                         variant="ghost" 
@@ -263,17 +384,17 @@ const BulkOrderSection = () => {
                       </div>
                       
                       <Button 
-                        onClick={sendToWhatsApp}
+                        onClick={handleProceedToPayment}
                         disabled={!canSend}
                         className="gap-2 bg-green-600 hover:bg-green-700"
                       >
                         <MessageCircle className="w-5 h-5" />
-                        إرسال على الواتساب
+                        التالي - اختر طريقة الدفع
                       </Button>
                     </div>
                   )}
                   
-                  {orderType === 'select' && (
+                  {orderType === 'select' && !showPaymentSelection && (
                     <div className="flex flex-col gap-4 p-4 flex-1 overflow-hidden">
                       <Button 
                         variant="ghost" 
@@ -394,12 +515,12 @@ const BulkOrderSection = () => {
                       
                       {/* Send Button */}
                       <Button 
-                        onClick={sendToWhatsApp}
+                        onClick={handleProceedToPayment}
                         disabled={!canSend}
                         className="gap-2 bg-green-600 hover:bg-green-700 sticky bottom-0"
                       >
                         <MessageCircle className="w-5 h-5" />
-                        إرسال {totalItems > 0 && `(${totalItems} منتج)`} على الواتساب
+                        التالي {totalItems > 0 && `(${totalItems} منتج)`} - اختر طريقة الدفع
                       </Button>
                     </div>
                   )}
