@@ -52,7 +52,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
 
         {/* Content */}
         <div className="p-3 sm:p-4">
-          <h3 className="font-bold text-foreground mb-1 sm:mb-2 line-clamp-1 text-sm sm:text-base">{product.name}</h3>
+          <h3 className="font-semibold text-foreground mb-1 sm:mb-2 line-clamp-1 text-xs sm:text-sm">{product.name}</h3>
           {product.description && (
             <p className="text-xs sm:text-sm text-muted-foreground mb-2 sm:mb-3 line-clamp-2">
               {product.description}

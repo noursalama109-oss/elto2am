@@ -6,7 +6,7 @@ import BulkOrderSection from '@/components/home/BulkOrderSection';
 import CustomerVideos from '@/components/home/CustomerVideos';
 import CustomerReviews from '@/components/home/CustomerReviews';
 import ComplaintsSection from '@/components/home/ComplaintsSection';
-import PaymentMethods from '@/components/home/PaymentMethods';
+
 
 const Index = () => {
   return (
@@ -23,9 +23,6 @@ const Index = () => {
       </section>
       <section id="complaints">
         <ComplaintsSection />
-      </section>
-      <section id="payment-methods">
-        <PaymentMethods />
       </section>
     </Layout>
   );
