@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { supabase } from '@/integrations/supabase/client';
-import { Product, ProductSection, ProductSubSection, Brand } from '@/types/product';
+import { Product, ProductSection, ProductSubSection } from '@/types/product';
 
 interface SupabaseProduct {
   id: string;
@@ -9,7 +9,6 @@ interface SupabaseProduct {
   original_price: number | null;
   image: string;
   category: string;
-  brand: string;
   section: string;
   sub_section: string;
   description: string | null;
@@ -23,7 +22,6 @@ const mapSupabaseProduct = (p: SupabaseProduct): Product => ({
   originalPrice: p.original_price ?? undefined,
   image: p.image,
   category: 'essentials',
-  brand: p.brand as Brand,
   section: p.section as ProductSection,
   subSection: p.sub_section as ProductSubSection,
   description: p.description ?? undefined,
