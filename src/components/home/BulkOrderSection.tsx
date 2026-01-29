@@ -279,14 +279,14 @@ const BulkOrderSection = () => {
                         variant="ghost" 
                         size="sm" 
                         onClick={() => setOrderType(null)}
-                        className="self-start gap-1"
+                        className="self-start gap-1 flex-shrink-0"
                       >
                         <X className="w-4 h-4" />
                         رجوع
                       </Button>
                       
                       {/* Search */}
-                      <div className="relative">
+                      <div className="relative flex-shrink-0">
                         <Search className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                         <Input
                           placeholder="ابحث عن منتج..."
@@ -299,7 +299,7 @@ const BulkOrderSection = () => {
                       
                       {/* Selected Products Summary */}
                       {selectedProducts.length > 0 && (
-                        <div className="bg-accent/10 rounded-lg p-3 border border-accent/20">
+                        <div className="bg-accent/10 rounded-lg p-3 border border-accent/20 flex-shrink-0 max-h-24 overflow-y-auto">
                           <div className="flex items-center justify-between text-sm">
                             <span className="font-medium">
                               {totalItems} منتج - {totalPrice} جنيه
@@ -326,7 +326,7 @@ const BulkOrderSection = () => {
                       )}
                       
                       {/* Products List */}
-                      <ScrollArea className="h-[300px] -mx-4 px-4">
+                      <ScrollArea className="flex-1 min-h-0 -mx-4 px-4">
                         <div className="grid grid-cols-1 gap-2 pb-4">
                           {filteredProducts.map(product => {
                             const qty = getProductQuantity(product.id);
