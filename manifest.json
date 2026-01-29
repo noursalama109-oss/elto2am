@@ -1,0 +1,22 @@
+{
+  "name": "التوأم لقطع الغيار",
+  "short_name": "التوأم",
+  "description": "الموزع المعتمد لقطع غيار H & M الأصلية",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#008000",
+  "icons": [
+    {
+      "src": "https://storage.googleapis.com/gpt-engineer-file-uploads/9XoWCkI6fscAgoEMDZb2sWSRUjL2/social-images/social-1769665469123-Picsart_26-01-25_23-33-57-347.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "https://storage.googleapis.com/gpt-engineer-file-uploads/9XoWCkI6fscAgoEMDZb2sWSRUjL2/social-images/social-1769665469123-Picsart_26-01-25_23-33-57-347.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg"
+    }
+  ]
+}
+
