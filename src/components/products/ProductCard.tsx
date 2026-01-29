@@ -15,7 +15,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
   const [showPaymentDialog, setShowPaymentDialog] = useState(false);
   const [showImageDialog, setShowImageDialog] = useState(false);
 
-  const whatsappMessage = `أهلاً، أريد طلب المنتج التالي:%0A%0A📦 المنتج: ${product.name}%0A💰 السعر: ${product.price} جنيه${product.originalPrice ? ` (بدلاً من ${product.originalPrice} جنيه)` : ''}${product.description ? `%0A📝 الوصف: ${product.description}` : ''}`;
+  const whatsappMessage = `أهلاً، أريد طلب المنتج التالي:%0A%0A📦 المنتج: ${product.name}%0A💰 السعر: ${product.price} جنيه`;
 
   return (
     <>
