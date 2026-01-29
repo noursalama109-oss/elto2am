@@ -15,14 +15,10 @@ const ProductGrid = ({ products }: ProductGridProps) => {
   }
 
   return (
-    <div className="overflow-x-auto scrollbar-hide -mx-4 px-4">
-      <div className="flex gap-4 pb-4" style={{ minWidth: 'max-content' }}>
-        {products.map((product) => (
-          <div key={product.id} className="w-[260px] sm:w-[280px] md:w-[300px] flex-shrink-0">
-            <ProductCard product={product} />
-          </div>
-        ))}
-      </div>
+    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+      {products.map((product) => (
+        <ProductCard key={product.id} product={product} />
+      ))}
     </div>
   );
 };

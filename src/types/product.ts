@@ -12,7 +12,7 @@ import {
   LucideIcon
 } from 'lucide-react';
 
-export type Brand = 'dayon' | 'hogan' | 'cmg' | 'halawa' | 'boxer' | 'other';
+
 
 // الأقسام الرئيسية
 export type ProductSection = 
@@ -77,7 +77,6 @@ export interface Product {
   originalPrice?: number;
   image: string;
   category: 'essentials';
-  brand: Brand;
   section: ProductSection;
   subSection?: ProductSubSection;
   description?: string;
@@ -85,8 +84,6 @@ export interface Product {
 }
 
 export type CategoryFilter = 'all' | 'accessories' | 'essentials';
-export type VehicleFilter = 'all' | 'motorcycle' | 'tricycle';
-export type BrandFilter = 'all' | Brand;
 
 // تسميات الأقسام الرئيسية
 export const sectionLabels: Record<ProductSection, string> = {
@@ -198,12 +195,3 @@ export const sectionSubSections: Record<ProductSection, ProductSubSection[]> = {
   accessories: ['gear', 'mods', 'other'],
 };
 
-// تسميات الماركات
-export const brandLabels: Record<Brand, string> = {
-  dayon: 'دايون',
-  hogan: 'هوجان',
-  cmg: 'CMG',
-  halawa: 'حلاوة',
-  boxer: 'بوكسر',
-  other: 'أخرى',
-};
