@@ -326,7 +326,7 @@ const BulkOrderSection = () => {
                       )}
                       
                       {/* Products List */}
-                      <ScrollArea className="flex-1 min-h-0 -mx-4 px-4">
+                      <ScrollArea className="h-[250px] -mx-4 px-4">
                         <div className="grid grid-cols-1 gap-2 pb-4">
                           {filteredProducts.map(product => {
                             const qty = getProductQuantity(product.id);
