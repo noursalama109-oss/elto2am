@@ -8,7 +8,6 @@ interface SupabaseProduct {
   price: number;
   original_price: number | null;
   image: string;
-  category: string;
   section: string;
   sub_section: string;
   description: string | null;
@@ -21,7 +20,6 @@ const mapSupabaseProduct = (p: SupabaseProduct): Product => ({
   price: p.price,
   originalPrice: p.original_price ?? undefined,
   image: p.image,
-  category: 'essentials',
   section: p.section as ProductSection,
   subSection: p.sub_section as ProductSubSection,
   description: p.description ?? undefined,

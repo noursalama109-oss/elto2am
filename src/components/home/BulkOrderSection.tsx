@@ -157,7 +157,7 @@ const BulkOrderSection = () => {
   const totalPrice = selectedProducts.reduce((sum, sp) => sum + (sp.product.price * sp.quantity), 0);
 
   return (
-    <section className="py-12 bg-gradient-to-br from-accent/5 via-background to-primary/5">
+    <section id="bulk-order" className="py-12 bg-gradient-to-br from-accent/5 via-background to-primary/5">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
           <div className="bg-card rounded-2xl shadow-xl border border-border overflow-hidden">
@@ -466,7 +466,7 @@ const BulkOrderSection = () => {
                                   className="w-12 h-12 object-cover rounded"
                                 />
                                 <div className="flex-1 min-w-0">
-                                  <p className="font-medium text-sm truncate">{product.name}</p>
+                                  <p className="font-medium text-xs truncate">{product.name}</p>
                                   <p className="text-xs text-muted-foreground">{product.price} جنيه</p>
                                 </div>
                                 

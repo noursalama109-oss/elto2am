@@ -76,14 +76,13 @@ export interface Product {
   price: number;
   originalPrice?: number;
   image: string;
-  category: 'essentials';
   section: ProductSection;
   subSection?: ProductSubSection;
   description?: string;
   inStock: boolean;
 }
 
-export type CategoryFilter = 'all' | 'accessories' | 'essentials';
+
 
 // تسميات الأقسام الرئيسية
 export const sectionLabels: Record<ProductSection, string> = {
